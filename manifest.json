@@ -1,7 +1,9 @@
 {
   "name": "An Quy Chế – Đăng ký ca làm",
   "short_name": "AnQuyChe",
+  "description": "Hệ thống đăng ký ca làm việc nội bộ theo tuần",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0b3d2e",
   "theme_color": "#0b3d2e",
