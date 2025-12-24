@@ -2,255 +2,279 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>An Quy Chế – Đăng ký ca</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎄 An Quy Chế – Đăng ký ca làm</title>
 
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0ea5a4">
-
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<meta name="theme-color" content="#0b3d2e">
 
 <style>
-/* ===== THEME ===== */
 :root{
-  --bg:#020617;
-  --card:#020617;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --border:#0f172a;
-  --primary:#0ea5a4;
-}
-.light{
-  --bg:#f8fafc;
+  --bg:linear-gradient(180deg,#0b3d2e,#145a32);
   --card:#ffffff;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:#e2e8f0;
-  --primary:#0ea5a4;
+  --accent:#b71c1c;
+  --green:#1b5e20;
 }
-
-/* ===== BASE ===== */
-*{box-sizing:border-box;font-family:system-ui}
 body{
   margin:0;
+  font-family:system-ui,-apple-system;
   background:var(--bg);
-  color:var(--text);
-  transition:.3s;
-}
-header{
-  padding:14px 16px;
-  background:linear-gradient(90deg,var(--primary),#22d3ee);
-  font-weight:700;
+  min-height:100vh;
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:#001014;
+  justify-content:center;
 }
-button{
-  border:none;
-  border-radius:14px;
-  padding:12px;
-  font-weight:600;
-  background:var(--primary);
-  color:#001014;
-  transition:.2s;
-}
-button:active{transform:scale(.96)}
-select,input{
+.container{
   width:100%;
-  padding:12px;
-  margin-top:8px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
+  max-width:420px;
+  padding:20px;
 }
 .card{
-  margin:16px;
-  padding:16px;
-  border-radius:18px;
-  border:1px solid var(--border);
   background:var(--card);
-  animation:fadeUp .4s ease;
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 25px 60px rgba(0,0,0,.35);
 }
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:none}
-}
-.hidden{display:none}
+h2{margin:0}
+.sub{font-size:13px;opacity:.7;margin-bottom:10px}
 
-/* ===== TABLE ===== */
-table{
+input{
   width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-td,th{
-  border:1px solid var(--border);
-  padding:10px;
-  text-align:center;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #ccc;
+  margin:14px 0;
+  font-size:15px;
 }
 
-/* ===== SELECTED DAY ===== */
-.day-selected{
-  background:rgba(14,165,164,.15);
-  border-left:4px solid var(--primary);
+table{width:100%;border-spacing:0 10px}
+td.day{font-weight:700}
+select{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #ccc;
 }
-.day-selected td:first-child::after{
-  content:" ✓";
-  color:var(--primary);
+
+button{
+  margin-top:18px;
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:18px;
+  font-size:16px;
   font-weight:700;
+  background:linear-gradient(135deg,#b71c1c,#e53935);
+  color:white;
 }
 
-/* ===== DESKTOP CENTER ===== */
-@media(min-width:768px){
-  .card{max-width:500px;margin:24px auto}
+.note{font-size:13px;opacity:.65;margin-top:10px}
+
+.footer{
+  margin-top:20px;
+  text-align:center;
+  font-size:12px;
+  opacity:.6;
+}
+
+/* ===== DASHBOARD QUẢN LÝ ===== */
+.manager-panel{margin-top:18px}
+.manager-day{margin-top:14px}
+.manager-day h3{margin:6px 0}
+.shift-box{
+  background:#f1f5f9;
+  border-radius:14px;
+  padding:10px;
+  margin-bottom:8px;
+}
+.shift-title{font-weight:700;color:#b71c1c}
+.staff-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.staff-chip{
+  background:var(--green);
+  color:white;
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+/* ===== TUYẾT RƠI ===== */
+.snow{
+  position:fixed;
+  top:-10px;
+  color:white;
+  font-size:12px;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0}
 }
 </style>
 </head>
 
 <body>
+<div class="container">
+  <div class="card">
+    <h2>🎄 Đăng ký ca làm</h2>
+    <div class="sub">Tuần hiện tại • An Quy Chế</div>
 
-<header>
-  <span>AN QUY CHẾ – ĐĂNG KÝ CA</span>
-  <button onclick="toggleTheme()">🌙</button>
-</header>
+    <input id="name" placeholder="👤 Nhập tên (Quản lý nhập QuanLy)">
 
-<!-- STAFF REGISTER -->
-<div class="card" id="staffBox">
-  <h3>🗓️ Đăng ký ca làm trong tuần</h3>
+    <table id="schedule"></table>
 
-  <table>
-    <thead>
-      <tr><th>Thứ</th><th>Ca</th></tr>
-    </thead>
-    <tbody id="scheduleTable"></tbody>
-  </table>
+    <button id="submitBtn">🎅 Xác nhận đăng ký</button>
+    <div class="note">Ngày không làm có thể để trống</div>
 
-  <input id="nameInput" placeholder="Nhập tên (Quản lý nhập QuanLy)">
-  <button onclick="submitAll()">Xác nhận đăng ký</button>
+    <div id="managerPanel" class="manager-panel"></div>
+  </div>
 
-  <p style="font-size:13px;color:var(--muted)">
-    Ngày không làm có thể để trống.
-  </p>
+  <div class="footer">
+    © 2025 An Quy Chế • Developed by Đào Đăng Tùng
+  </div>
 </div>
 
-<!-- MANAGER -->
-<div class="card hidden" id="managerBox">
-  <h3>📊 Quản lý đăng ký ca</h3>
-  <select id="mDay"></select>
-  <select id="mShift"></select>
-  <div id="manageTable"></div>
-</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getDatabase, ref, set, get, remove } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-<script>
-/* ===== FIREBASE ===== */
-const firebaseConfig={
-  apiKey:"YOUR_API_KEY",
-  databaseURL:"https://YOUR_PROJECT_ID.firebaseio.com",
-  projectId:"YOUR_PROJECT_ID"
+/* ===== CẤU HÌNH ===== */
+const MANAGER_PIN = "2005";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM",
+  authDomain: "an-quy.firebaseapp.com",
+  databaseURL: "https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "an-quy",
+  storageBucket: "an-quy.firebasestorage.app",
+  messagingSenderId: "672469940026",
+  appId: "1:672469940026:web:a38e5b15bbeb2361b84203"
 };
-firebase.initializeApp(firebaseConfig);
-const db=firebase.database();
 
-/* ===== DATA ===== */
-const days=["T2","T3","T4","T5","T6","T7","CN"];
-const shifts=["","C1","F1","C2","F2","C3"];
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-/* ===== WEEK ===== */
-function getWeek(){
+/* ===== CA LÀM ===== */
+const days = ["T2","T3","T4","T5","T6","T7","CN"];
+const shifts = [
+  "C1","C2","C3",
+  "2C (C1 + C2)",
+  "2C (C2 + C3)",
+  "F1","F2"
+];
+
+const table = document.getElementById("schedule");
+days.forEach(d=>{
+  table.innerHTML += `
+    <tr>
+      <td class="day">${d}</td>
+      <td>
+        <select id="${d}">
+          <option value="">— Không làm —</option>
+          ${shifts.map(s=>`<option>${s}</option>`).join("")}
+        </select>
+      </td>
+    </tr>
+  `;
+});
+
+/* ===== RESET TUẦN ===== */
+function mondayTS(){
   const d=new Date();
-  d.setDate(d.getDate()+3-(d.getDay()+6)%7);
-  const w1=new Date(d.getFullYear(),0,4);
-  return d.getFullYear()+"-W"+
-    String(1+Math.round(((d-w1)/86400000-3+(w1.getDay()+6)%7)/7)).padStart(2,"0");
+  const day=d.getDay();
+  const diff=(day===0?-6:1)-day;
+  d.setDate(d.getDate()+diff);
+  d.setHours(0,0,0,0);
+  return d.getTime();
 }
-const week=getWeek();
-
-/* ===== BUILD TABLE ===== */
-scheduleTable.innerHTML = days.map(d=>`
-  <tr id="row-${d}">
-    <td>${d}</td>
-    <td>
-      <select data-day="${d}" onchange="markDay('${d}', this.value)">
-        ${shifts.map(s=>`
-          <option value="${s}">${s || "— Không làm —"}</option>
-        `).join("")}
-      </select>
-    </td>
-  </tr>
-`).join("");
-
-/* ===== MARK DAY ===== */
-function markDay(day,value){
-  const row=document.getElementById("row-"+day);
-  value ? row.classList.add("day-selected")
-        : row.classList.remove("day-selected");
-}
+(async()=>{
+  const snap=await get(ref(db,"meta/lastReset"));
+  const now=mondayTS();
+  if(!snap.exists()||snap.val()<now){
+    await remove(ref(db,"dangKy"));
+    await set(ref(db,"meta/lastReset"),now);
+  }
+})();
 
 /* ===== SUBMIT ===== */
-function submitAll(){
-  const name=nameInput.value.trim();
+document.getElementById("submitBtn").onclick = async()=>{
+  const name=document.getElementById("name").value.trim();
   if(!name) return alert("Chưa nhập tên");
 
+  /* ===== QUẢN LÝ ===== */
   if(name==="QuanLy"){
-    staffBox.classList.add("hidden");
-    managerBox.classList.remove("hidden");
-    initManager();
-    return;
-  }
+    const pin=prompt("🔐 Nhập mã PIN quản lý:");
+    if(pin!==MANAGER_PIN) return alert("❌ Sai mã PIN");
 
-  const updates={};
-  document.querySelectorAll("select[data-day]").forEach(sel=>{
-    if(sel.value){
-      updates[`registrations/${week}/${sel.dataset.day}/${sel.value}/${name}`]=true;
+    const panel=document.getElementById("managerPanel");
+    panel.innerHTML="<h2>📊 Tổng hợp đăng ký</h2>";
+
+    const snap=await get(ref(db,"dangKy"));
+    if(!snap.exists()){
+      panel.innerHTML+="<p>Chưa có dữ liệu</p>";
+      return;
     }
-  });
 
-  if(Object.keys(updates).length===0){
-    alert("Bạn chưa chọn ca nào");
+    const grouped={};
+    snap.forEach(u=>{
+      const user=u.key;
+      const lich=u.val().lich||{};
+      Object.keys(lich).forEach(day=>{
+        const shift=lich[day];
+        if(!grouped[day]) grouped[day]={};
+        if(!grouped[day][shift]) grouped[day][shift]=[];
+        grouped[day][shift].push(user);
+      });
+    });
+
+    Object.keys(grouped).forEach(day=>{
+      const d=document.createElement("div");
+      d.className="manager-day";
+      d.innerHTML=`<h3>🗓 ${day}</h3>`;
+      Object.keys(grouped[day]).forEach(shift=>{
+        const b=document.createElement("div");
+        b.className="shift-box";
+        b.innerHTML=`
+          <div class="shift-title">⏰ ${shift}</div>
+          <div class="staff-list">
+            ${grouped[day][shift].map(n=>`<span class="staff-chip">${n}</span>`).join("")}
+          </div>`;
+        d.appendChild(b);
+      });
+      panel.appendChild(d);
+    });
     return;
   }
 
-  db.ref().update(updates).then(()=>{
-    alert("✅ Đã ghi nhận toàn bộ đăng ký");
-    nameInput.value="";
+  /* ===== NHÂN VIÊN ===== */
+  const lich={};
+  days.forEach(d=>{
+    const v=document.getElementById(d).value;
+    if(v) lich[d]=v;
   });
-}
+  if(!Object.keys(lich).length) return alert("Chưa chọn ca nào");
 
-/* ===== MANAGER ===== */
-function initManager(){
-  mDay.innerHTML=days.map(d=>`<option>${d}</option>`).join("");
-  mShift.innerHTML=shifts.slice(1).map(s=>`<option>${s}</option>`).join("");
-  mDay.onchange=mShift.onchange=loadManager;
-  loadManager();
-}
-function loadManager(){
-  db.ref(`registrations/${week}/${mDay.value}/${mShift.value}`)
-    .once("value",snap=>{
-      let html="<table><tr><th>Nhân viên đăng ký</th></tr>";
-      snap.forEach(c=>html+=`<tr><td>${c.key}</td></tr>`);
-      html+="</table>";
-      manageTable.innerHTML=html;
-    });
-}
+  await set(ref(db,"dangKy/"+name),{
+    ten:name,
+    lich,
+    time:Date.now()
+  });
+  alert("🎉 Đăng ký thành công");
+};
 
-/* ===== THEME ===== */
-function toggleTheme(){
-  document.body.classList.toggle("light");
-  localStorage.theme=document.body.classList.contains("light")?"light":"dark";
-}
-if(localStorage.theme==="light"){
-  document.body.classList.add("light");
-}
+/* ===== TUYẾT ===== */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="snow";
+  s.textContent="❄";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=3+Math.random()*4+"s";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),7000);
+},350);
 
-/* ===== SERVICE WORKER ===== */
-if("serviceWorker" in navigator){
+/* ===== SW ===== */
+if("serviceWorker"in navigator){
   navigator.serviceWorker.register("sw.js");
 }
 </script>
-
 </body>
 </html>
-
