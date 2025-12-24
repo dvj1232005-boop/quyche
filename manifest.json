@@ -1,24 +1,21 @@
 {
   "name": "An Quy Chế – Đăng ký ca làm",
-  "short_name": "An Quy Chế",
-  "description": "Hệ thống đăng ký ca làm nội bộ An Café",
+  "short_name": "AnQuyChe",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#9b1c1f",
-  "theme_color": "#9b1c1f",
+  "background_color": "#0b3d2e",
+  "theme_color": "#0b3d2e",
   "orientation": "portrait",
-  "scope": "./",
   "icons": [
     {
-      "src": "logo.jpg",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/png"
     },
     {
-      "src": "logo.jpg",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ]
 }
-
