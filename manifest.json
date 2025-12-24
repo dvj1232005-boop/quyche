@@ -1,11 +1,11 @@
 {
-  "name": "An Quy Chế",
-  "short_name": "An Quy Chế",
-  "description": "Hệ thống đăng ký ca làm việc",
+  "name": "An Quy Chế – Đăng ký ca làm",
+  "short_name": "AnQuyChe",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#0ea5a4",
+  "background_color": "#0b3d2e",
+  "theme_color": "#0b3d2e",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
