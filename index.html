@@ -7,10 +7,7 @@
 <meta name="theme-color" content="#b91c1c">
 
 <style>
-/* ================= RESET ================= */
 *{box-sizing:border-box}
-
-/* ================= BASE ================= */
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
@@ -19,79 +16,57 @@ body{
 }
 .hidden{display:none}
 
-/* ================= INTRO ================= */
+/* INTRO */
 #intro{
   position:fixed;
   inset:0;
   background:#b91c1c;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   z-index:9999;
-  animation:introFade 0.8s ease forwards;
-  animation-delay:1.6s;
 }
-.intro-logo{
+#intro img{
   width:140px;
-  height:auto;
-  opacity:0;
-  transform:scale(.75);
-  animation:logoPop 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+  animation:pop 1s ease forwards;
 }
-@keyframes logoPop{
-  to{opacity:1;transform:scale(1)}
-}
-@keyframes introFade{
-  to{opacity:0;visibility:hidden}
+@keyframes pop{
+  from{transform:scale(.7);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
-/* ================= LAYOUT ================= */
-.container{
-  max-width:420px;
-  margin:auto;
-  padding:20px;
-}
+/* LAYOUT */
+.container{max-width:420px;margin:auto;padding:20px}
 .card{
-  background:#fff;
+  background:white;
   border-radius:22px;
   padding:20px;
   box-shadow:0 25px 50px rgba(0,0,0,.25);
 }
-h2{
-  margin:0 0 6px;
-  font-size:22px;
-}
-.sub{
-  font-size:13px;
-  color:#555;
-}
+h2{margin:0 0 6px}
+.sub{font-size:13px;color:#555}
 
-/* ================= FORM ================= */
+/* FORM */
 input,select{
   width:100%;
   padding:12px;
   margin:10px 0;
   border-radius:14px;
   border:1px solid #ccc;
-  font-size:15px;
 }
 button{
   width:100%;
   padding:14px;
   border:none;
   border-radius:16px;
-  font-size:16px;
-  font-weight:600;
   background:#b91c1c;
   color:white;
+  font-weight:600;
   margin-top:14px;
 }
-.day{
-  font-weight:700;
-  margin-top:14px;
-}
+.day{font-weight:700;margin-top:14px}
 
-/* ================= MANAGER ================= */
+/* MANAGER */
 .section{margin-top:18px}
 .shiftBox{
   background:#f1f5f9;
@@ -109,7 +84,7 @@ button{
   margin:4px 4px 0 0;
 }
 
-/* ================= SNOW ================= */
+/* SNOW */
 .snow{
   position:fixed;
   top:-10px;
@@ -117,17 +92,10 @@ button{
   pointer-events:none;
   animation:fall linear infinite;
 }
-@keyframes fall{
-  to{transform:translateY(110vh)}
-}
+@keyframes fall{to{transform:translateY(110vh)}}
 
-/* ================= FOOTER ================= */
-footer{
-  text-align:center;
-  margin-top:16px;
-  font-size:12px;
-  color:#eee;
-}
+/* FOOTER */
+footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
 </style>
 </head>
 
@@ -135,10 +103,9 @@ footer{
 
 <!-- INTRO -->
 <div id="intro">
-  <img src="logo.jpg" alt="An Quy Chế" class="intro-logo">
+  <img src="logo.jpg" alt="An Quy Chế">
 </div>
 
-<!-- APP -->
 <div class="container hidden" id="app">
   <div class="card">
     <h2>Đăng ký ca làm</h2>
@@ -148,7 +115,6 @@ footer{
     <input id="pin" placeholder="Nhập mã PIN quản lý" class="hidden">
 
     <div id="form"></div>
-
     <button id="submitBtn">Xác nhận đăng ký</button>
   </div>
 
@@ -162,27 +128,27 @@ footer{
 </div>
 
 <script type="module">
-/* ================= FIREBASE ================= */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getDatabase, ref, set, get, remove } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
+/* FIREBASE */
 const app = initializeApp({
   apiKey:"AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM",
   databaseURL:"https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 const db = getDatabase(app);
 
-/* ================= DATA ================= */
+/* DATA */
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","2C(C1+C2)","2C(C2+C3)","F1","F2"];
 
-/* ================= INTRO END ================= */
+/* INTRO END */
 setTimeout(()=>{
   document.getElementById("intro").remove();
   document.getElementById("app").classList.remove("hidden");
-},2600);
+},2000);
 
-/* ================= SNOW ================= */
+/* SNOW */
 setInterval(()=>{
   const s=document.createElement("div");
   s.className="snow";
@@ -191,9 +157,9 @@ setInterval(()=>{
   s.style.animationDuration=3+Math.random()*3+"s";
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),6000);
-},350);
+},400);
 
-/* ================= FORM ================= */
+/* FORM */
 const form=document.getElementById("form");
 DAYS.forEach(d=>{
   form.innerHTML+=`
@@ -205,18 +171,22 @@ DAYS.forEach(d=>{
   `;
 });
 
-/* ================= SUBMIT ================= */
-submitBtn.onclick=async()=>{
-  const ten=name.value.trim();
+/* SUBMIT */
+document.getElementById("submitBtn").onclick = async ()=>{
+  const ten = document.getElementById("name").value.trim();
+  const pinInput = document.getElementById("pin");
+
   if(!ten) return alert("Vui lòng nhập tên");
 
+  // MANAGER
   if(ten.toLowerCase()==="quanly"){
-    pin.classList.remove("hidden");
-    if(pin.value!=="2005") return alert("Mã PIN không đúng");
+    pinInput.classList.remove("hidden");
+    if(pinInput.value !== "2005") return alert("Mã PIN không đúng");
     showManager();
     return;
   }
 
+  // STAFF
   const lich={};
   DAYS.forEach(d=>{
     const v=document.getElementById(d).value;
@@ -230,12 +200,19 @@ submitBtn.onclick=async()=>{
   alert("Đã gửi đăng ký ca làm");
 };
 
-/* ================= MANAGER ================= */
+/* MANAGER VIEW */
 async function showManager(){
-  managerBox.classList.remove("hidden");
-  const snap=await get(ref(db,"dangKy"));
-  const sum={};
+  document.getElementById("managerBox").classList.remove("hidden");
+  const summary=document.getElementById("summary");
+  summary.innerHTML="";
 
+  const snap = await get(ref(db,"dangKy"));
+  if(!snap.exists()){
+    summary.innerHTML="<p>Chưa có dữ liệu đăng ký</p>";
+    return;
+  }
+
+  const sum={};
   snap.forEach(n=>{
     const ten=n.key;
     const lich=n.val().lich||{};
@@ -246,7 +223,6 @@ async function showManager(){
     });
   });
 
-  summary.innerHTML="";
   Object.entries(sum).forEach(([d,sh])=>{
     summary.innerHTML+=`<div class="day">${d}</div>`;
     Object.entries(sh).forEach(([c,arr])=>{
@@ -259,8 +235,8 @@ async function showManager(){
   });
 }
 
-/* ================= CLEAR ================= */
-clearBtn.onclick=async()=>{
+/* CLEAR */
+document.getElementById("clearBtn").onclick = async ()=>{
   if(confirm("Xóa toàn bộ đăng ký của tuần này?")){
     await remove(ref(db,"dangKy"));
     location.reload();
