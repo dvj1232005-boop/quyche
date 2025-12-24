@@ -102,55 +102,56 @@ button{
   justify-content:center;
   align-items:center;
   z-index:9999;
-  animation:fadeOut 1s ease forwards;
-  animation-delay:2.3s;
+  animation:introFadeOut 1s ease forwards;
+  animation-delay:2.6s;
 }
-.intro-content{
+.intro-box{
   text-align:center;
   color:white;
-  animation:zoomIn 1.2s ease;
+  animation:introZoom 1.2s ease;
 }
-.intro-content h1{
-  margin:12px 0 4px;
+.intro-logo{
+  width:120px;
+  height:auto;
+  margin-bottom:12px;
+  animation:logoFloat 2.5s ease-in-out infinite;
+}
+.intro-box h1{
+  margin:6px 0 2px;
   font-size:32px;
   letter-spacing:1px;
 }
-.intro-content p{
+.intro-box p{
   margin:0;
   font-size:15px;
   opacity:.85;
 }
-.intro-content span{
+.intro-box span{
   display:block;
   margin-top:10px;
   font-size:12px;
   opacity:.6;
 }
-.tree{
-  font-size:64px;
-  animation:shake 1.8s ease-in-out infinite;
-}
-@keyframes zoomIn{
+@keyframes introZoom{
   from{transform:scale(.85);opacity:0}
   to{transform:scale(1);opacity:1}
 }
-@keyframes fadeOut{
+@keyframes introFadeOut{
   to{opacity:0;visibility:hidden}
 }
-@keyframes shake{
-  0%,100%{transform:rotate(0)}
-  25%{transform:rotate(-5deg)}
-  75%{transform:rotate(5deg)}
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+<!-- ================= INTRO ================= -->
 <div id="intro">
-  <div class="intro-content">
-    <div class="tree">🎄</div>
+  <div class="intro-box">
+    <img src="logo.png" alt="An Quy Chế" class="intro-logo">
     <h1>An Quy Chế</h1>
     <p>Hệ thống đăng ký ca làm</p>
     <span>© Đào Đăng Tùng</span>
@@ -320,7 +321,7 @@ setInterval(()=>{
 setTimeout(()=>{
   const intro=document.getElementById("intro");
   if(intro) intro.remove();
-},3300);
+},3500);
 
 /* ===== SW ===== */
 if("serviceWorker"in navigator){
