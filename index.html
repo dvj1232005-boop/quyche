@@ -9,7 +9,6 @@
 <meta name="theme-color" content="#0b3d2e">
 
 <style>
-/* ================= THEME ================= */
 :root{
   --bg:linear-gradient(180deg,#e9fff6,#f7fbff);
   --card:#ffffff;
@@ -24,7 +23,7 @@ body.dark{
 }
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:system-ui,-apple-system;
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
@@ -32,7 +31,7 @@ body{
   justify-content:center;
 }
 
-/* ================= INTRO ================= */
+/* ===== INTRO ===== */
 #intro{
   position:fixed;
   inset:0;
@@ -42,12 +41,9 @@ body{
   justify-content:center;
   align-items:center;
   animation:introOut 1s ease forwards;
-  animation-delay:3.5s;
+  animation-delay:3s;
 }
-.intro-box{
-  text-align:center;
-  color:white;
-}
+.intro-box{text-align:center;color:white}
 .intro-logo{
   width:120px;
   border-radius:24px;
@@ -62,7 +58,7 @@ body{
   to{opacity:0;visibility:hidden}
 }
 
-/* ================= LAYOUT ================= */
+/* ===== LAYOUT ===== */
 .container{
   width:100%;
   max-width:420px;
@@ -81,7 +77,7 @@ body{
 }
 .toggle{cursor:pointer;font-size:20px}
 
-/* ================= FORM ================= */
+/* ===== FORM ===== */
 input,select{
   width:100%;
   padding:12px;
@@ -106,21 +102,15 @@ button{
   font-weight:700;
 }
 
-/* ================= MANAGER ================= */
+/* ===== MANAGER ===== */
 .manager-box{
   margin-top:16px;
   background:rgba(0,0,0,.05);
   padding:14px;
   border-radius:14px;
 }
-.group{
-  margin-bottom:12px;
-}
-.group h4{
-  margin:6px 0;
-}
 
-/* ================= SNOW ================= */
+/* ===== SNOW ===== */
 .snow{
   position:fixed;
   top:-10px;
@@ -133,27 +123,7 @@ button{
   to{transform:translateY(110vh);opacity:0}
 }
 
-/* ================= TREE ================= */
-.tree{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  width:80px;
-}
-.tree .star{text-align:center}
-.layer{
-  border-left:40px solid transparent;
-  border-right:40px solid transparent;
-  border-bottom:50px solid #1f8f5f;
-  margin:-18px auto;
-}
-.trunk{
-  width:18px;height:20px;
-  background:#7a4a1c;
-  margin:auto;
-}
-
-/* ================= FOOTER ================= */
+/* ===== FOOTER ===== */
 .footer{
   text-align:center;
   font-size:12px;
@@ -174,19 +144,10 @@ button{
   </div>
 </div>
 
-<!-- TREE -->
-<div class="tree">
-  <div class="star">⭐</div>
-  <div class="layer"></div>
-  <div class="layer"></div>
-  <div class="layer"></div>
-  <div class="trunk"></div>
-</div>
-
 <div class="container">
   <div class="card">
     <div class="header">
-      <h3>🎄 Đăng ký ca làm</h3>
+      <h3>📅 Đăng ký ca làm</h3>
       <div class="toggle" onclick="toggleTheme()">🌙</div>
     </div>
 
@@ -194,13 +155,13 @@ button{
 
     <table id="schedule"></table>
 
-    <button onclick="submit()">👷‍♂️ Xác nhận đăng ký</button>
+    <button onclick="submit()">Xác nhận</button>
 
     <div id="managerBox" class="manager-box" style="display:none"></div>
   </div>
 
   <div class="footer">
-    © 2025 An Quy Chế • Developed by Đào Đăng Tùng
+    © 2025 An Quy Chế • Đào Đăng Tùng
   </div>
 </div>
 
@@ -208,87 +169,95 @@ button{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getDatabase, ref, set, get, remove } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-const firebaseConfig={
+/* ===== FIREBASE ===== */
+const app = initializeApp({
   apiKey:"AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM",
   databaseURL:"https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId:"an-quy"
-};
-const app=initializeApp(firebaseConfig);
-const db=getDatabase(app);
+});
+const db = getDatabase(app);
 
+/* ===== TIME ===== */
+function getWeekKey(){
+  const d=new Date();
+  const first=new Date(d.getFullYear(),0,1);
+  const week=Math.ceil((((d-first)/86400000)+first.getDay()+1)/7);
+  return `${d.getFullYear()}-W${week}`;
+}
+const WEEK = getWeekKey();
+
+/* ===== CA ===== */
 const days=["T2","T3","T4","T5","T6","T7","CN"];
 const shifts=["C1","C2","C3","2C(C1+C2)","2C(C2+C3)","F1","F2"];
 const table=document.getElementById("schedule");
 
 days.forEach(d=>{
   table.innerHTML+=`
-    <tr><td class="day">${d}</td>
-    <td><select id="${d}">
-      <option value="">— Không làm —</option>
-      ${shifts.map(s=>`<option>${s}</option>`).join("")}
-    </select></td></tr>`;
+    <tr>
+      <td class="day">${d}</td>
+      <td>
+        <select id="${d}">
+          <option value="">— Không làm —</option>
+          ${shifts.map(s=>`<option>${s}</option>`).join("")}
+        </select>
+      </td>
+    </tr>`;
 });
 
-/* ===== RESET TUẦN ===== */
-function mondayKey(){
-  const d=new Date();
-  const day=d.getDay()||7;
-  d.setDate(d.getDate()-day+1);
-  d.setHours(0,0,0,0);
-  return d.getTime();
-}
-
 /* ===== SUBMIT ===== */
-window.submit=async()=>{
-  const name=nameEl.value.trim();
+window.submit = async()=>{
+  const name=document.getElementById("name").value.trim();
   if(!name) return alert("Chưa nhập tên");
 
+  /* MANAGER */
   if(name.toLowerCase()==="quanly"){
-    const pin=prompt("Nhập PIN quản lý");
+    const pin=prompt("Nhập mã PIN quản lý");
     if(pin!=="2005") return alert("Sai PIN");
 
     const box=document.getElementById("managerBox");
     box.style.display="block";
-    box.innerHTML="<h4>Tổng hợp ca</h4>";
+    box.innerHTML="<h4>Tổng hợp lịch</h4>";
 
-    const snap=await get(ref(db,"dangKy/"+mondayKey()));
-    if(!snap.exists()) return box.innerHTML+="<p>Chưa có dữ liệu</p>";
+    const snap=await get(ref(db,`dangKy/${WEEK}`));
+    if(!snap.exists()){
+      box.innerHTML+="<p>Chưa có dữ liệu</p>";
+      return;
+    }
 
-    const map={};
+    const grouped={};
     snap.forEach(n=>{
       const lich=n.val().lich||{};
-      for(const d in lich){
-        const k=`${d}-${lich[d]}`;
-        map[k]=map[k]||[];
-        map[k].push(n.key);
-      }
+      Object.keys(lich).forEach(d=>{
+        const k=`${d} – ${lich[d]}`;
+        grouped[k]=grouped[k]||[];
+        grouped[k].push(n.key);
+      });
     });
 
-    Object.keys(map).forEach(k=>{
-      box.innerHTML+=`
-        <div class="group">
-          <b>${k}</b>: ${map[k].join(", ")}
-        </div>`;
+    Object.keys(grouped).forEach(k=>{
+      box.innerHTML+=`<div>${k}: ${grouped[k].join(", ")}</div>`;
     });
 
-    box.innerHTML+=`
-      <button onclick="clearWeek()">🗑 Xóa tuần</button>`;
+    box.innerHTML+=`<button onclick="clearWeek()">Xóa tuần</button>`;
     return;
   }
 
+  /* STAFF */
   const lich={};
   days.forEach(d=>{
     const v=document.getElementById(d).value;
     if(v) lich[d]=v;
   });
+  if(!Object.keys(lich).length) return alert("Chưa chọn ca");
 
-  await set(ref(db,`dangKy/${mondayKey()}/${name}`),{lich});
+  await set(ref(db,`dangKy/${WEEK}/${name}`),{lich});
   alert("Đã gửi lịch");
 };
 
-window.clearWeek=async()=>{
+/* ===== CLEAR ===== */
+window.clearWeek = async()=>{
   if(confirm("Xóa toàn bộ lịch tuần này?")){
-    await remove(ref(db,"dangKy/"+mondayKey()));
+    await remove(ref(db,`dangKy/${WEEK}`));
     location.reload();
   }
 };
@@ -304,10 +273,10 @@ setInterval(()=>{
   s.style.animationDuration=(3+Math.random()*4)+"s";
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),7000);
-},300);
+},350);
 
 /* ===== SW ===== */
-if("serviceWorker" in navigator){
+if("serviceWorker"in navigator){
   navigator.serviceWorker.register("sw.js");
 }
 </script>
