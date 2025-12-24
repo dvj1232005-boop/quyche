@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>An Quy Chế – Đăng ký ca</title>
+<title>Hệ thống đăng ký ca làm – An Quy Chế</title>
 
-<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b3d2e">
+<link rel="manifest" href="manifest.json">
 
 <style>
+/* ================== THEME ================== */
 :root{
   --bg:linear-gradient(180deg,#0b3d2e,#145a32);
   --card:#ffffff;
   --accent:#b71c1c;
+  --green:#1b5e20;
 }
 body{
   margin:0;
@@ -35,7 +37,6 @@ body{
 }
 h2{margin:0}
 .sub{font-size:13px;opacity:.7;margin-bottom:10px}
-
 input{
   width:100%;
   padding:14px;
@@ -44,7 +45,6 @@ input{
   margin:14px 0;
   font-size:15px;
 }
-
 table{width:100%;border-spacing:0 10px}
 td.day{font-weight:700}
 select{
@@ -53,7 +53,6 @@ select{
   border-radius:12px;
   border:1px solid #ccc;
 }
-
 button{
   margin-top:16px;
   width:100%;
@@ -65,9 +64,7 @@ button{
   background:linear-gradient(135deg,#b71c1c,#e53935);
   color:white;
 }
-
 .note{font-size:13px;opacity:.65;margin-top:8px}
-
 .footer{
   margin-top:18px;
   text-align:center;
@@ -75,13 +72,21 @@ button{
   opacity:.6;
 }
 
-/* ===== QUẢN LÝ ===== */
-.manager-panel{margin-top:14px}
+/* ========== MANAGER VIEW ========== */
 .manager-day{margin-top:10px}
-.manager-day h3{margin:6px 0}
-.manager-line{
-  margin:6px 0;
-  font-size:14px;
+.manager-line{margin:6px 0;font-size:14px}
+
+/* ========== SNOW ========== */
+.snow{
+  position:fixed;
+  top:-10px;
+  color:white;
+  font-size:12px;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0}
 }
 </style>
 </head>
@@ -89,10 +94,10 @@ button{
 <body>
 <div class="container">
   <div class="card">
-    <h2>📅 An Quy Chế</h2>
-    <div class="sub">Hệ thống đăng ký ca làm</div>
+    <h2>📅 Đăng ký ca làm</h2>
+    <div class="sub">© Đào Đăng Tùng</div>
 
-    <input id="name" placeholder="👤 Nhập tên (Quản lý nhập QuanLy)">
+    <input id="name" placeholder="Nhập tên (Quản lý nhập QuanLy)">
 
     <!-- FORM NHÂN VIÊN -->
     <div id="staffForm">
@@ -101,12 +106,12 @@ button{
       <div class="note">Ngày không làm có thể để trống</div>
     </div>
 
-    <!-- BẢNG QUẢN LÝ -->
-    <div id="managerPanel" class="manager-panel"></div>
+    <!-- TỔNG HỢP QUẢN LÝ -->
+    <div id="managerPanel"></div>
   </div>
 
   <div class="footer">
-    © 2025 An Quy Chế
+    Hệ thống đăng ký ca làm việc nội bộ
   </div>
 </div>
 
@@ -114,10 +119,9 @@ button{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getDatabase, ref, set, get, remove } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-/* ===== PIN QUẢN LÝ ===== */
+/* ================= CONFIG ================= */
 const MANAGER_PIN = "2005";
 
-/* ===== FIREBASE ===== */
 const firebaseConfig = {
   apiKey: "AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM",
   authDomain: "an-quy.firebaseapp.com",
@@ -131,7 +135,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-/* ===== CA LÀM ===== */
+/* ================= CA LÀM ================= */
 const days = ["T2","T3","T4","T5","T6","T7","CN"];
 const shifts = [
   "C1","C2","C3",
@@ -155,7 +159,7 @@ days.forEach(d=>{
   `;
 });
 
-/* ===== RESET TUẦN (0:00 THỨ 2) ===== */
+/* ================= RESET TỰ ĐỘNG ================= */
 function mondayTS(){
   const d=new Date();
   const day=d.getDay();
@@ -173,37 +177,35 @@ function mondayTS(){
   }
 })();
 
-/* ===== SUBMIT ===== */
+/* ================= SUBMIT ================= */
 document.getElementById("submitBtn").onclick = async()=>{
   const name=document.getElementById("name").value.trim();
   if(!name) return alert("Chưa nhập tên");
 
   /* ===== QUẢN LÝ ===== */
-  if(name==="QuanLy"){
+  if(name.toLowerCase()==="quanly"){
     document.getElementById("staffForm").style.display="none";
-
-    const pin=prompt("🔐 Nhập mã PIN quản lý:");
-    if(pin!==MANAGER_PIN) return alert("❌ Sai mã PIN");
+    const pin=prompt("Nhập mã PIN quản lý:");
+    if(pin!==MANAGER_PIN) return alert("Sai mã PIN");
 
     const panel=document.getElementById("managerPanel");
     panel.innerHTML=`
       <h2>📊 Tổng hợp lịch đăng ký</h2>
-      <button id="clearWeekBtn"
-        style="margin:10px 0;padding:10px;border:none;border-radius:12px;
-               background:#b71c1c;color:white;font-weight:600;width:100%">
-        🧹 Xóa toàn bộ lịch tuần này
+      <button id="clearBtn" style="margin:10px 0;padding:10px;width:100%;
+      border:none;border-radius:12px;background:#b71c1c;color:white">
+      Xóa toàn bộ lịch tuần
       </button>
     `;
 
-    document.getElementById("clearWeekBtn").onclick=async()=>{
+    document.getElementById("clearBtn").onclick=async()=>{
       if(!confirm("Xóa toàn bộ lịch tuần này?")) return;
       await remove(ref(db,"dangKy"));
-      panel.innerHTML="<p>📭 Hiện chưa có lịch đăng ký</p>";
+      panel.innerHTML="<p>Chưa có lịch đăng ký</p>";
     };
 
     const snap=await get(ref(db,"dangKy"));
     if(!snap.exists()){
-      panel.innerHTML+="<p>📭 Chưa có dữ liệu</p>";
+      panel.innerHTML+="<p>Chưa có dữ liệu</p>";
       return;
     }
 
@@ -222,11 +224,11 @@ document.getElementById("submitBtn").onclick = async()=>{
     Object.keys(grouped).forEach(day=>{
       const d=document.createElement("div");
       d.className="manager-day";
-      d.innerHTML=`<h3>🗓 ${day}</h3>`;
+      d.innerHTML=`<b>${day}</b>`;
       Object.keys(grouped[day]).forEach(shift=>{
         const line=document.createElement("div");
         line.className="manager-line";
-        line.innerHTML=`• <b>${shift}</b>: ${grouped[day][shift].join(", ")}`;
+        line.innerHTML=`• ${shift}: ${grouped[day][shift].join(", ")}`;
         d.appendChild(line);
       });
       panel.appendChild(d);
@@ -243,14 +245,26 @@ document.getElementById("submitBtn").onclick = async()=>{
   if(!Object.keys(lich).length) return alert("Chưa chọn ca nào");
 
   await set(ref(db,"dangKy/"+name),{ten:name,lich,time:Date.now()});
-  alert("🎉 Đăng ký thành công");
+  alert("Đăng ký thành công");
 };
 
-/* ===== SERVICE WORKER ===== */
+/* ================= SNOW ================= */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="snow";
+  s.textContent="❄";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=3+Math.random()*4+"s";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),7000);
+},350);
+
+/* ================= SW ================= */
 if("serviceWorker"in navigator){
   navigator.serviceWorker.register("sw.js");
 }
 </script>
 </body>
 </html>
+
 
