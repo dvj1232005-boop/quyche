@@ -16,13 +16,9 @@
   --green:#1b5e20;
 }
 
-/* ===== DARK / LIGHT AUTO ===== */
-body.light{
-  --bg:linear-gradient(180deg,#f5f7fa,#e4e7eb);
-}
-body.dark{
-  --bg:linear-gradient(180deg,#0b3d2e,#145a32);
-}
+/* DARK / LIGHT */
+body.light{--bg:linear-gradient(180deg,#f5f7fa,#e4e7eb)}
+body.dark{--bg:linear-gradient(180deg,#0b3d2e,#145a32)}
 
 body{
   margin:0;
@@ -51,19 +47,9 @@ body{
   flex-direction:column;
   align-items:center;
 }
-#splash img{
-  width:150px;
-  animation:logoPop 1.2s ease;
-}
-.brand{
-  color:#fff;
-  letter-spacing:4px;
-  margin-top:16px;
-  font-size:18px;
-  opacity:.9;
-}
+#splash img{width:150px;animation:logoPop 1.2s ease}
+.brand{color:#fff;letter-spacing:4px;margin-top:16px;font-size:18px}
 
-/* intro anim */
 @keyframes logoPop{
   from{opacity:0;transform:scale(.6)}
   to{opacity:1;transform:scale(1)}
@@ -74,32 +60,21 @@ body{
 
 /* loading */
 .loading{
-  width:160px;
-  height:4px;
-  background:rgba(255,255,255,.25);
-  border-radius:999px;
-  overflow:hidden;
-  margin-top:22px;
+  width:160px;height:4px;background:rgba(255,255,255,.25);
+  border-radius:999px;overflow:hidden;margin-top:22px
 }
 .loading span{
-  display:block;
-  height:100%;
-  width:0;
-  background:#fff;
-  animation:load 2.5s linear forwards;
+  display:block;height:100%;width:0;background:#fff;
+  animation:load 2.5s linear forwards
 }
 @keyframes load{to{width:100%}}
 
 /* steam */
 .steam{
-  position:absolute;
-  bottom:120px;
-  width:6px;
-  height:40px;
+  position:absolute;bottom:120px;width:6px;height:40px;
   background:rgba(255,255,255,.35);
-  border-radius:50%;
-  filter:blur(2px);
-  animation:steamUp 3s infinite ease-in-out;
+  border-radius:50%;filter:blur(2px);
+  animation:steamUp 3s infinite ease-in-out
 }
 .steam:nth-child(1){left:-30px}
 .steam:nth-child(2){left:0;animation-delay:1s}
@@ -111,12 +86,9 @@ body{
 
 /* ripple */
 .ripple{
-  position:absolute;
-  width:180px;
-  height:180px;
-  border-radius:50%;
+  position:absolute;width:180px;height:180px;border-radius:50%;
   border:2px solid rgba(255,255,255,.15);
-  animation:ripple 3s infinite;
+  animation:ripple 3s infinite
 }
 @keyframes ripple{
   from{transform:scale(.7);opacity:.4}
@@ -130,33 +102,25 @@ body{
   background:var(--card);
   border-radius:24px;
   padding:20px;
-  box-shadow:0 25px 60px rgba(0,0,0,.35);
+  box-shadow:0 25px 60px rgba(0,0,0,.35)
 }
 h2{margin:0}
 .sub{font-size:13px;opacity:.7;margin-bottom:10px}
 
 input,select{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:1px solid #ccc;
-  margin:14px 0;
-  font-size:15px;
+  width:100%;padding:14px;border-radius:14px;
+  border:1px solid #ccc;margin:14px 0;font-size:15px
 }
 
 table{width:100%;border-spacing:0 10px}
 td.day{font-weight:700}
 
 button{
-  margin-top:18px;
-  width:100%;
-  padding:16px;
-  border:none;
-  border-radius:18px;
-  font-size:16px;
-  font-weight:700;
+  margin-top:18px;width:100%;padding:16px;
+  border:none;border-radius:18px;
+  font-size:16px;font-weight:700;
   background:linear-gradient(135deg,#b71c1c,#e53935);
-  color:white;
+  color:white
 }
 
 .note{font-size:13px;opacity:.65;margin-top:10px}
@@ -167,13 +131,13 @@ select.selected{
   border:2px solid transparent;
   background-origin:border-box;
   background-clip:padding-box,border-box;
-  animation:borderFlow 2.5s linear infinite;
+  animation:borderFlow 2.5s linear infinite
 }
 @keyframes borderFlow{
   to{
     background-image:
       linear-gradient(#fff,#fff),
-      linear-gradient(360deg,#ff5252,#ffeb3b,#4caf50,#2196f3,#ff5252);
+      linear-gradient(360deg,#ff5252,#ffeb3b,#4caf50,#2196f3,#ff5252)
   }
 }
 select.c1{background:#e8f5e9}
@@ -182,25 +146,10 @@ select.c3{background:#ede7f6}
 select.c2c{background:#fbe9e7}
 select.f{background:#e3f2fd}
 
-/* ===== QUẢN LÝ ===== */
-.manager-day{margin-top:14px}
-.shift-box{background:#f1f5f9;border-radius:14px;padding:10px;margin-bottom:8px}
-.shift-title{font-weight:700;color:#b71c1c}
-.staff-chip{
-  background:var(--green);
-  color:white;
-  padding:5px 12px;
-  border-radius:999px;
-  font-size:13px;
-  margin:4px;
-}
-
-/* ===== SNOW ===== */
+/* snow */
 .snow{
-  position:fixed;
-  top:-10px;
-  color:white;
-  animation:fall linear forwards;
+  position:fixed;top:-10px;color:white;
+  animation:fall linear forwards
 }
 @keyframes fall{to{transform:translateY(110vh);opacity:0}}
 </style>
@@ -226,13 +175,13 @@ select.f{background:#e3f2fd}
       <h2>🎄 Đăng ký ca làm</h2>
       <div class="sub">Tuần hiện tại • An Quy Chế</div>
 
-      <input id="name" placeholder="👤 Nhập tên (Quản lý nhập QuanLy)">
+      <input id="name" placeholder="👤 Nhập tên">
       <table id="schedule"></table>
 
-      <button id="submitBtn">🎅 Xác nhận đăng ký</button>
+      <button>🎅 Xác nhận đăng ký</button>
       <div class="note">Ngày không làm có thể để trống</div>
-      <div id="managerPanel"></div>
     </div>
+
     <div class="footer">© 2025 An Quy Chế • Developed by Đào Đăng Tùng</div>
   </div>
 </div>
@@ -245,31 +194,59 @@ document.body.classList.add(h>=6&&h<18?"light":"dark");
 /* INTRO 1 LẦN / NGÀY */
 const today=new Date().toDateString();
 if(localStorage.getItem("introShown")===today){
-  splash.style.display="none";
-  app.style.display="block";
+  splash.style.display="none"; app.style.display="block";
 }else{
   localStorage.setItem("introShown",today);
   setTimeout(()=>app.style.display="block",2500);
 }
 
-/* SNOW */
+/* ===== TẠO BẢNG CA (FIX LỖI CHÍNH) ===== */
+const days=["T2","T3","T4","T5","T6","T7","CN"];
+const shifts=["C1","C2","C3","2C (C1 + C2)","2C (C2 + C3)","F1","F2"];
+const table=document.getElementById("schedule");
+
+days.forEach(d=>{
+  table.innerHTML+=`
+    <tr>
+      <td class="day">${d}</td>
+      <td>
+        <select>
+          <option value="">— Không làm —</option>
+          ${shifts.map(s=>`<option>${s}</option>`).join("")}
+        </select>
+      </td>
+    </tr>`;
+});
+
+/* hiệu ứng chọn ca */
+document.addEventListener("change",e=>{
+  if(e.target.tagName!=="SELECT")return;
+  const s=e.target;
+  s.className="";
+  if(!s.value)return;
+  s.classList.add("selected");
+  if(s.value==="C1")s.classList.add("c1");
+  else if(s.value==="C2")s.classList.add("c2");
+  else if(s.value==="C3")s.classList.add("c3");
+  else if(s.value.includes("2C"))s.classList.add("c2c");
+  else if(s.value.startsWith("F"))s.classList.add("f");
+});
+
+/* snow */
 setInterval(()=>{
   const s=document.createElement("div");
-  s.className="snow";
-  s.textContent="❄";
+  s.className="snow"; s.textContent="❄";
   s.style.left=Math.random()*100+"vw";
   s.style.animationDuration=3+Math.random()*4+"s";
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),7000);
 },350);
 
-/* SERVICE WORKER */
-if("serviceWorker" in navigator){
+/* SW */
+if("serviceWorker"in navigator){
   navigator.serviceWorker.register("sw.js");
 }
 </script>
-
-<!-- 🔒 PHẦN FIREBASE + LOGIC ĐĂNG KÝ CỦA BẠN GIỮ NGUYÊN -->
 </body>
 </html>
 
