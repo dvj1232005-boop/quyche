@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hệ thống đăng ký ca làm – An Quy Chế</title>
+<title>An Quy Chế – Đăng ký ca làm</title>
 
-<meta name="theme-color" content="#0b3d2e">
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b3d2e">
 
 <style>
-/* ================== THEME ================== */
+/* ================= THEME NOEL ================= */
 :root{
   --bg:linear-gradient(180deg,#0b3d2e,#145a32);
   --card:#ffffff;
   --accent:#b71c1c;
-  --green:#1b5e20;
 }
 body{
   margin:0;
@@ -37,6 +36,7 @@ body{
 }
 h2{margin:0}
 .sub{font-size:13px;opacity:.7;margin-bottom:10px}
+
 input{
   width:100%;
   padding:14px;
@@ -45,6 +45,7 @@ input{
   margin:14px 0;
   font-size:15px;
 }
+
 table{width:100%;border-spacing:0 10px}
 td.day{font-weight:700}
 select{
@@ -53,6 +54,7 @@ select{
   border-radius:12px;
   border:1px solid #ccc;
 }
+
 button{
   margin-top:16px;
   width:100%;
@@ -64,7 +66,9 @@ button{
   background:linear-gradient(135deg,#b71c1c,#e53935);
   color:white;
 }
+
 .note{font-size:13px;opacity:.65;margin-top:8px}
+
 .footer{
   margin-top:18px;
   text-align:center;
@@ -72,11 +76,11 @@ button{
   opacity:.6;
 }
 
-/* ========== MANAGER VIEW ========== */
+/* ===== MANAGER VIEW ===== */
 .manager-day{margin-top:10px}
 .manager-line{margin:6px 0;font-size:14px}
 
-/* ========== SNOW ========== */
+/* ================= SNOW ================= */
 .snow{
   position:fixed;
   top:-10px;
@@ -88,30 +92,91 @@ button{
 @keyframes fall{
   to{transform:translateY(110vh);opacity:0}
 }
+
+/* ================= INTRO ================= */
+#intro{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#0b3d2e,#145a32);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  animation:fadeOut 1s ease forwards;
+  animation-delay:2.3s;
+}
+.intro-content{
+  text-align:center;
+  color:white;
+  animation:zoomIn 1.2s ease;
+}
+.intro-content h1{
+  margin:12px 0 4px;
+  font-size:32px;
+  letter-spacing:1px;
+}
+.intro-content p{
+  margin:0;
+  font-size:15px;
+  opacity:.85;
+}
+.intro-content span{
+  display:block;
+  margin-top:10px;
+  font-size:12px;
+  opacity:.6;
+}
+.tree{
+  font-size:64px;
+  animation:shake 1.8s ease-in-out infinite;
+}
+@keyframes zoomIn{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden}
+}
+@keyframes shake{
+  0%,100%{transform:rotate(0)}
+  25%{transform:rotate(-5deg)}
+  75%{transform:rotate(5deg)}
+}
 </style>
 </head>
 
 <body>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-content">
+    <div class="tree">🎄</div>
+    <h1>An Quy Chế</h1>
+    <p>Hệ thống đăng ký ca làm</p>
+    <span>© Đào Đăng Tùng</span>
+  </div>
+</div>
+
 <div class="container">
   <div class="card">
     <h2>📅 Đăng ký ca làm</h2>
-    <div class="sub">© Đào Đăng Tùng</div>
+    <div class="sub">Tuần hiện tại</div>
 
     <input id="name" placeholder="Nhập tên (Quản lý nhập QuanLy)">
 
-    <!-- FORM NHÂN VIÊN -->
+    <!-- NHÂN VIÊN -->
     <div id="staffForm">
       <table id="schedule"></table>
       <button id="submitBtn">Xác nhận đăng ký</button>
       <div class="note">Ngày không làm có thể để trống</div>
     </div>
 
-    <!-- TỔNG HỢP QUẢN LÝ -->
+    <!-- QUẢN LÝ -->
     <div id="managerPanel"></div>
   </div>
 
   <div class="footer">
-    Hệ thống đăng ký ca làm việc nội bộ
+    © 2025 Đào Đăng Tùng
   </div>
 </div>
 
@@ -119,7 +184,7 @@ button{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getDatabase, ref, set, get, remove } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-/* ================= CONFIG ================= */
+/* ===== CONFIG ===== */
 const MANAGER_PIN = "2005";
 
 const firebaseConfig = {
@@ -135,14 +200,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-/* ================= CA LÀM ================= */
+/* ===== CA LÀM ===== */
 const days = ["T2","T3","T4","T5","T6","T7","CN"];
-const shifts = [
-  "C1","C2","C3",
-  "2C (C1 + C2)",
-  "2C (C2 + C3)",
-  "F1","F2"
-];
+const shifts = ["C1","C2","C3","2C (C1 + C2)","2C (C2 + C3)","F1","F2"];
 
 const table = document.getElementById("schedule");
 days.forEach(d=>{
@@ -155,11 +215,10 @@ days.forEach(d=>{
           ${shifts.map(s=>`<option>${s}</option>`).join("")}
         </select>
       </td>
-    </tr>
-  `;
+    </tr>`;
 });
 
-/* ================= RESET TỰ ĐỘNG ================= */
+/* ===== RESET THỨ 2 ===== */
 function mondayTS(){
   const d=new Date();
   const day=d.getDay();
@@ -177,25 +236,23 @@ function mondayTS(){
   }
 })();
 
-/* ================= SUBMIT ================= */
+/* ===== SUBMIT ===== */
 document.getElementById("submitBtn").onclick = async()=>{
   const name=document.getElementById("name").value.trim();
   if(!name) return alert("Chưa nhập tên");
 
-  /* ===== QUẢN LÝ ===== */
+  /* QUẢN LÝ */
   if(name.toLowerCase()==="quanly"){
     document.getElementById("staffForm").style.display="none";
     const pin=prompt("Nhập mã PIN quản lý:");
     if(pin!==MANAGER_PIN) return alert("Sai mã PIN");
 
     const panel=document.getElementById("managerPanel");
-    panel.innerHTML=`
-      <h2>📊 Tổng hợp lịch đăng ký</h2>
-      <button id="clearBtn" style="margin:10px 0;padding:10px;width:100%;
-      border:none;border-radius:12px;background:#b71c1c;color:white">
-      Xóa toàn bộ lịch tuần
-      </button>
-    `;
+    panel.innerHTML=`<h2>📊 Tổng hợp lịch</h2>
+    <button id="clearBtn" style="margin:10px 0;padding:10px;width:100%;
+    border:none;border-radius:12px;background:#b71c1c;color:white">
+    Xóa toàn bộ lịch tuần
+    </button>`;
 
     document.getElementById("clearBtn").onclick=async()=>{
       if(!confirm("Xóa toàn bộ lịch tuần này?")) return;
@@ -236,7 +293,7 @@ document.getElementById("submitBtn").onclick = async()=>{
     return;
   }
 
-  /* ===== NHÂN VIÊN ===== */
+  /* NHÂN VIÊN */
   const lich={};
   days.forEach(d=>{
     const v=document.getElementById(d).value;
@@ -248,7 +305,7 @@ document.getElementById("submitBtn").onclick = async()=>{
   alert("Đăng ký thành công");
 };
 
-/* ================= SNOW ================= */
+/* ===== TUYẾT ===== */
 setInterval(()=>{
   const s=document.createElement("div");
   s.className="snow";
@@ -259,7 +316,13 @@ setInterval(()=>{
   setTimeout(()=>s.remove(),7000);
 },350);
 
-/* ================= SW ================= */
+/* ===== INTRO REMOVE ===== */
+setTimeout(()=>{
+  const intro=document.getElementById("intro");
+  if(intro) intro.remove();
+},3300);
+
+/* ===== SW ===== */
 if("serviceWorker"in navigator){
   navigator.serviceWorker.register("sw.js");
 }
