@@ -2,11 +2,10 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>An Quy Chế – Đăng ký ca làm</title>
+<title>An Quy Chế – Đăng ký ca & Partner Treat</title>
 
 <meta name="theme-color" content="#0b3d2e">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,7 +35,7 @@ h2{margin:0 0 6px}
 .sub{font-size:13px;color:#555}
 
 /* FORM */
-input,select{
+input,select,textarea{
   width:100%;
   padding:14px;
   margin:10px 0;
@@ -54,28 +53,8 @@ button{
   font-weight:600;
   margin-top:14px;
 }
-button.secondary{
-  background:#334155;
-}
+button.secondary{background:#334155}
 .day{font-weight:700;margin-top:14px}
-
-/* MANAGER */
-.section{margin-top:18px}
-.shiftBox{
-  background:#f1f5f9;
-  border-radius:14px;
-  padding:10px;
-  margin:8px 0;
-}
-.badge{
-  display:inline-block;
-  background:#14532d;
-  color:white;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:13px;
-  margin:4px 4px 0 0;
-}
 
 /* COUNTDOWN */
 .countdown{
@@ -94,18 +73,46 @@ button.secondary{
   background:#fef2f2;
   border-color:#dc2626;
 }
-.cd-label{
-  font-size:13px;
-  color:#555;
-  margin-bottom:6px;
-}
 #countdownTime{
   font-size:26px;
   font-weight:700;
-  letter-spacing:1px;
 }
 
-/* FOOTER */
+/* PARTNER */
+#partnerBox{
+  margin-top:14px;
+  padding:14px;
+  background:#f8fafc;
+  border-radius:16px;
+}
+.codeItem{
+  display:inline-block;
+  background:#0f766e;
+  color:white;
+  padding:6px 10px;
+  border-radius:10px;
+  margin:4px;
+  font-weight:600;
+}
+
+/* MANAGER */
+.section{margin-top:18px}
+.shiftBox{
+  background:#f1f5f9;
+  border-radius:14px;
+  padding:10px;
+  margin:8px 0;
+}
+.badge{
+  display:inline-block;
+  background:#14532d;
+  color:white;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:13px;
+  margin:4px;
+}
+
 footer{
   text-align:center;
   margin-top:16px;
@@ -117,40 +124,60 @@ footer{
 
 <body>
 
-<div class="container" id="app">
-  <div class="card">
-    <h2>Đăng ký ca làm</h2>
-    <div class="sub">Tuần hiện tại • An Quy Chế</div>
-    <div id="lockStatus" class="sub"></div>
+<div class="container">
 
-    <!-- COUNTDOWN -->
-    <div id="countdownCard" class="countdown">
-      <div class="cd-label">⏳ Thời gian còn lại để đăng ký</div>
-      <div id="countdownTime">-- : -- : -- : --</div>
-    </div>
+<!-- ================= NHÂN VIÊN ================= -->
+<div class="card">
+  <h2>Đăng ký ca làm</h2>
+  <div id="lockStatus" class="sub"></div>
 
-    <input id="name" placeholder="Nhập tên nhân viên">
-
-    <div id="form"></div>
-
-    <button id="submitBtn">Xác nhận đăng ký</button>
-    <button id="managerBtn" class="secondary">🔐 Quản lý</button>
+  <div class="countdown" id="countdownCard">
+    <div class="sub">⏳ Thời gian còn lại để đăng ký</div>
+    <div id="countdownTime">--:--:--</div>
   </div>
 
-  <div class="card section hidden" id="managerBox">
-    <h2>Tổng hợp đăng ký ca làm</h2>
+  <input id="name" placeholder="Tên nhân viên (VD: Đào Đăng Tùng)">
+  <input id="userPin" type="password" placeholder="PIN cá nhân (xem mã Partner)">
 
-    <input id="pin" placeholder="Nhập mã PIN quản lý">
-    <button id="loginManager">Đăng nhập quản lý</button>
-
-    <div id="summary"></div>
-
-    <button id="clearBtn" class="secondary">
-      Xóa toàn bộ lịch tuần này
-    </button>
+  <div id="partnerBox" class="hidden">
+    <h3>🎁 Mã Partner Treat của bạn</h3>
+    <div id="partnerCodes"></div>
   </div>
 
-  <footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
+  <div id="form"></div>
+  <button id="submitBtn">Xác nhận đăng ký ca</button>
+</div>
+
+<!-- ================= QUẢN LÝ ================= -->
+<div class="card section">
+  <h2>🔐 Quản lý</h2>
+
+  <input id="adminPin" type="password" placeholder="PIN quản lý">
+  <button id="loginAdmin">Đăng nhập quản lý</button>
+
+  <div id="adminBox" class="hidden">
+
+    <hr>
+    <h3>🎁 Kho mã Partner Treat</h3>
+    <textarea id="codeInput"
+      placeholder="Dán danh sách mã, mỗi dòng 1 mã"></textarea>
+    <button id="saveCodes" class="secondary">Lưu kho mã</button>
+
+    <hr>
+    <h3>👤 Phát / Thu hồi mã</h3>
+    <input id="staffName" placeholder="Tên nhân viên">
+    <select id="staffType">
+      <option value="parttime">Part-time (5 mã)</option>
+      <option value="fulltime">Full-time (10 mã)</option>
+    </select>
+    <input id="staffPin" placeholder="Đặt PIN cho nhân viên (4–6 số)">
+    <button id="assignCodes">Phát mã</button>
+    <button id="revokeCodes" class="secondary">Thu hồi mã</button>
+
+  </div>
+</div>
+
+<footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
 </div>
 
 <script type="module">
@@ -169,66 +196,43 @@ const db = getDatabase(app);
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
-/* TIME LOCK – LOGIC GỐC */
-function isRegistrationLocked(){
+/* LOCK */
+function isLocked(){
   const n=new Date();
-  const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
-  if(d===5 && (h>20 || (h===20 && m>=0))) return true;
-  if(d===6 || d===0) return true;
-  return false;
+  return n.getDay()>=6 || (n.getDay()==5 && n.getHours()>=20);
 }
-
-/* STATUS */
-const lockStatus=document.getElementById("lockStatus");
-lockStatus.style.fontWeight="600";
-if(isRegistrationLocked()){
-  lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
-  lockStatus.style.color="#b91c1c";
-}else{
-  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
-  lockStatus.style.color="#14532d";
-}
+document.getElementById("lockStatus").innerText=
+  isLocked()?"⛔ Đã khóa đăng ký":"✅ Đang mở đăng ký";
 
 /* COUNTDOWN */
-const cdCard=document.getElementById("countdownCard");
-const cdTime=document.getElementById("countdownTime");
-const submitBtn=document.getElementById("submitBtn");
+const cd=document.getElementById("countdownCard");
+const cdt=document.getElementById("countdownTime");
+const btn=document.getElementById("submitBtn");
 
 function getLockTime(){
   const now=new Date();
   const lock=new Date(now);
-  const diff=5-now.getDay();
-  lock.setDate(now.getDate()+diff);
+  lock.setDate(now.getDate()+(5-now.getDay()));
   lock.setHours(20,0,0,0);
   return lock;
 }
 const lockTime=getLockTime();
-
-function updateCountdown(){
-  const now=new Date();
-  const diff=lockTime-now;
-
+setInterval(()=>{
+  const diff=lockTime-new Date();
   if(diff<=0){
-    cdTime.innerText="ĐÃ KHÓA";
-    cdCard.className="countdown danger";
-    submitBtn.disabled=true;
+    cdt.innerText="ĐÃ KHÓA";
+    btn.disabled=true;
+    cd.className="countdown danger";
     return;
   }
-
-  const d=Math.floor(diff/(1000*60*60*24));
-  const h=Math.floor(diff/(1000*60*60))%24;
-  const m=Math.floor(diff/(1000*60))%60;
-  const s=Math.floor(diff/1000)%60;
-
-  cdTime.innerText=
-    `${d} : ${h.toString().padStart(2,"0")} : ${m.toString().padStart(2,"0")} : ${s.toString().padStart(2,"0")}`;
-
-  cdCard.className="countdown";
-  if(diff<1000*60*30) cdCard.className="countdown danger";
-  else if(diff<1000*60*120) cdCard.className="countdown warn";
-}
-setInterval(updateCountdown,1000);
-updateCountdown();
+  const h=Math.floor(diff/36e5);
+  const m=Math.floor(diff/6e4)%60;
+  const s=Math.floor(diff/1e3)%60;
+  cdt.innerText=
+    `${h}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+  cd.className=
+    diff<18e5?"countdown danger":diff<72e5?"countdown warn":"countdown";
+},1000);
 
 /* FORM */
 const form=document.getElementById("form");
@@ -238,79 +242,86 @@ DAYS.forEach(d=>{
     <select id="${d}">
       <option value="">Không đăng ký</option>
       ${SHIFTS.map(s=>`<option>${s}</option>`).join("")}
-    </select>
-  `;
+    </select>`;
 });
 
-/* SUBMIT */
-document.getElementById("submitBtn").onclick=async()=>{
-  const ten=document.getElementById("name").value.trim();
-  if(!ten) return alert("Vui lòng nhập tên");
-
-  if(isRegistrationLocked())
-    return alert("⛔ Đã khóa đăng ký. Mở lại Thứ 2.");
-
+/* SUBMIT CA */
+btn.onclick=async()=>{
+  if(isLocked()) return alert("Đã khóa đăng ký");
+  const name=document.getElementById("name").value.trim();
+  if(!name) return alert("Chưa nhập tên");
   const lich={};
   DAYS.forEach(d=>{
     const v=document.getElementById(d).value;
     if(v) lich[d]=v;
   });
   if(!Object.keys(lich).length)
-    return alert("Bạn chưa đăng ký ca nào");
-
-  await set(ref(db,"dangKy/"+ten),{lich});
-  alert("Đã gửi đăng ký ca làm");
+    return alert("Chưa chọn ca");
+  await set(ref(db,"dangKy/"+name),{lich});
+  alert("Đã gửi đăng ký ca");
 };
 
-/* MANAGER */
-document.getElementById("managerBtn").onclick=()=>{
-  document.getElementById("managerBox").classList.remove("hidden");
-};
+/* NHÂN VIÊN XEM MÃ */
+const partnerBox=document.getElementById("partnerBox");
+const partnerCodes=document.getElementById("partnerCodes");
 
-document.getElementById("loginManager").onclick=async()=>{
-  if(document.getElementById("pin").value!=="2005")
-    return alert("Mã PIN không đúng");
-
-  const summary=document.getElementById("summary");
-  summary.innerHTML="";
-  const snap=await get(ref(db,"dangKy"));
-  if(!snap.exists()){
-    summary.innerHTML="<p>Chưa có dữ liệu đăng ký</p>";
-    return;
-  }
-
-  const sum={};
-  snap.forEach(n=>{
-    const ten=n.key;
-    const lich=n.val().lich||{};
-    Object.entries(lich).forEach(([d,c])=>{
-      sum[d]??={};
-      sum[d][c]??=[];
-      sum[d][c].push(ten);
-    });
+document.getElementById("userPin").addEventListener("change",async()=>{
+  const ten=document.getElementById("name").value.trim();
+  const pin=document.getElementById("userPin").value.trim();
+  if(!ten||!pin) return;
+  const snap=await get(ref(db,"partnerCodes/assigned/"+ten));
+  if(!snap.exists()) return alert("Chưa được cấp mã");
+  if(snap.val().pin!==pin) return alert("Sai PIN");
+  partnerBox.classList.remove("hidden");
+  partnerCodes.innerHTML="";
+  snap.val().codes.forEach(c=>{
+    partnerCodes.innerHTML+=`<span class="codeItem">${c}</span>`;
   });
+});
 
-  DAYS.forEach(day=>{
-    if(!sum[day]) return;
-    summary.innerHTML+=`<div class="day">${day}</div>`;
-    SHIFTS.forEach(shift=>{
-      if(!sum[day][shift]) return;
-      summary.innerHTML+=`
-        <div class="shiftBox">
-          <b>${shift}</b><br>
-          ${sum[day][shift].map(n=>`<span class="badge">${n}</span>`).join("")}
-        </div>
-      `;
-    });
-  });
+/* ADMIN */
+document.getElementById("loginAdmin").onclick=()=>{
+  if(document.getElementById("adminPin").value==="2005")
+    document.getElementById("adminBox").classList.remove("hidden");
+  else alert("Sai PIN quản lý");
 };
 
-/* CLEAR */
-document.getElementById("clearBtn").onclick=async()=>{
-  if(confirm("Xóa toàn bộ đăng ký tuần này?")){
-    await remove(ref(db,"dangKy"));
-    location.reload();
-  }
+/* SAVE POOL */
+document.getElementById("saveCodes").onclick=async()=>{
+  const raw=document.getElementById("codeInput").value.trim();
+  raw.split("\n").forEach(c=>{
+    if(c) set(ref(db,"partnerCodes/pool/"+c.trim()),true);
+  });
+  alert("Đã lưu kho mã");
+};
+
+/* ASSIGN */
+document.getElementById("assignCodes").onclick=async()=>{
+  const ten=document.getElementById("staffName").value.trim();
+  const type=document.getElementById("staffType").value;
+  const pin=document.getElementById("staffPin").value.trim();
+  if(!ten||!/^\d{4,6}$/.test(pin)) return alert("Thiếu tên hoặc PIN");
+  const need=type==="fulltime"?10:5;
+  const poolSnap=await get(ref(db,"partnerCodes/pool"));
+  if(!poolSnap.exists()) return alert("Kho mã trống");
+  const pool=Object.keys(poolSnap.val());
+  if(pool.length<need) return alert("Không đủ mã");
+  const give=pool.slice(0,need);
+  await set(ref(db,"partnerCodes/assigned/"+ten),{type,pin,codes:give});
+  for(const c of give)
+    await remove(ref(db,"partnerCodes/pool/"+c));
+  alert("Đã phát mã cho "+ten);
+};
+
+/* REVOKE */
+document.getElementById("revokeCodes").onclick=async()=>{
+  const ten=document.getElementById("staffName").value.trim();
+  const snap=await get(ref(db,"partnerCodes/assigned/"+ten));
+  if(!snap.exists()) return alert("Người này chưa có mã");
+  for(const c of snap.val().codes)
+    await set(ref(db,"partnerCodes/pool/"+c),true);
+  await remove(ref(db,"partnerCodes/assigned/"+ten));
+  alert("Đã thu hồi mã");
 };
 </script>
 
