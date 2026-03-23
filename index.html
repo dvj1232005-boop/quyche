@@ -43,6 +43,9 @@ input,select{
   border:1px solid #ccc;
   font-size:16px;
 }
+input[type="password"]{
+  letter-spacing:3px;
+}
 button{
   width:100%;
   padding:14px;
@@ -163,7 +166,8 @@ footer{
 
   <div class="card section hidden" id="managerBox">
     <h2>Tổng hợp đăng ký ca làm</h2>
-    <input id="pin" placeholder="Nhập mã PIN quản lý">
+    <!-- FIX PIN -->
+    <input id="pin" type="password" placeholder="Nhập mã PIN quản lý">
     <button id="loginManager">Đăng nhập quản lý</button>
     <div id="summary"></div>
     <button id="clearBtn" class="secondary">Xóa toàn bộ lịch tuần này</button>
@@ -180,7 +184,7 @@ footer{
       Cảm ơn bạn đã luôn nỗ lực và đóng góp cho tập thể An Quy Chế.
       Chúc bạn một tuần làm việc hiệu quả!
     </p>
-    <button id="closeBtn">Thank you baeeee</button>
+    <button id="closeBtn">Đã hiểu</button>
   </div>
 </div>
 
@@ -344,19 +348,17 @@ document.getElementById("clearBtn").onclick=async()=>{
   }
 };
 
-/* FIX POPUP (KHÔNG DÙNG onclick) */
-const closeBtn = document.getElementById("closeBtn");
+/* POPUP */
 const popup = document.getElementById("thankPopup");
+const closeBtn = document.getElementById("closeBtn");
 
 closeBtn.addEventListener("click", ()=>{
   popup.style.display="none";
-  localStorage.setItem("seenThank","1");
 });
 
+/* LUÔN HIỆN */
 window.addEventListener("load", ()=>{
-  if(localStorage.getItem("seenThank")){
-    popup.style.display="none";
-  }
+  popup.style.display="flex";
 });
 </script>
 
