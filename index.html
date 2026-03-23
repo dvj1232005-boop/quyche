@@ -12,7 +12,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="AnQuyChe">
-<link rel="apple-touch-icon" href="icon-192.png">
 
 <style>
 *{box-sizing:border-box}
@@ -150,14 +149,12 @@ footer{
     <div class="sub">Tuần hiện tại • An Quy Chế</div>
     <div id="lockStatus" class="sub"></div>
 
-    <!-- COUNTDOWN -->
     <div id="countdownCard" class="countdown">
       <div class="cd-label">⏳ Thời gian còn lại để đăng ký</div>
       <div id="countdownTime">-- : -- : -- : --</div>
     </div>
 
     <input id="name" placeholder="Nhập tên nhân viên">
-
     <div id="form"></div>
 
     <button id="submitBtn">Xác nhận đăng ký</button>
@@ -166,21 +163,16 @@ footer{
 
   <div class="card section hidden" id="managerBox">
     <h2>Tổng hợp đăng ký ca làm</h2>
-
     <input id="pin" placeholder="Nhập mã PIN quản lý">
     <button id="loginManager">Đăng nhập quản lý</button>
-
     <div id="summary"></div>
-
-    <button id="clearBtn" class="secondary">
-      Xóa toàn bộ lịch tuần này
-    </button>
+    <button id="clearBtn" class="secondary">Xóa toàn bộ lịch tuần này</button>
   </div>
 
   <footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
 </div>
 
-<!-- POPUP TRI ÂN -->
+<!-- POPUP -->
 <div id="thankPopup" class="popup">
   <div class="popupContent">
     <h3>💖 Tri ân nhân viên</h3>
@@ -188,7 +180,7 @@ footer{
       Cảm ơn bạn đã luôn nỗ lực và đóng góp cho tập thể An Quy Chế.
       Chúc bạn một tuần làm việc hiệu quả!
     </p>
-    <button onclick="closePopup()">Đã hiểu</button>
+    <button id="closeBtn">Thank you baeeee</button>
   </div>
 </div>
 
@@ -352,15 +344,18 @@ document.getElementById("clearBtn").onclick=async()=>{
   }
 };
 
-/* POPUP LOGIC */
-function closePopup(){
-  document.getElementById("thankPopup").style.display="none";
-  localStorage.setItem("seenThank","1");
-}
+/* FIX POPUP (KHÔNG DÙNG onclick) */
+const closeBtn = document.getElementById("closeBtn");
+const popup = document.getElementById("thankPopup");
 
-window.addEventListener("load",()=>{
+closeBtn.addEventListener("click", ()=>{
+  popup.style.display="none";
+  localStorage.setItem("seenThank","1");
+});
+
+window.addEventListener("load", ()=>{
   if(localStorage.getItem("seenThank")){
-    document.getElementById("thankPopup").style.display="none";
+    popup.style.display="none";
   }
 });
 </script>
