@@ -115,7 +115,7 @@ footer{
   color:#eee
 }
 
-/* POPUP TRI ÂN */
+/* POPUP */
 .popup{
   position:fixed;
   top:0;
@@ -166,11 +166,17 @@ footer{
 
   <div class="card section hidden" id="managerBox">
     <h2>Tổng hợp đăng ký ca làm</h2>
+
     <!-- FIX PIN -->
     <input id="pin" type="password" placeholder="Nhập mã PIN quản lý">
+
     <button id="loginManager">Đăng nhập quản lý</button>
+
     <div id="summary"></div>
-    <button id="clearBtn" class="secondary">Xóa toàn bộ lịch tuần này</button>
+
+    <button id="clearBtn" class="secondary">
+      Xóa toàn bộ lịch tuần này
+    </button>
   </div>
 
   <footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
@@ -348,7 +354,7 @@ document.getElementById("clearBtn").onclick=async()=>{
   }
 };
 
-/* POPUP */
+/* POPUP (LUÔN HIỆN) */
 const popup = document.getElementById("thankPopup");
 const closeBtn = document.getElementById("closeBtn");
 
@@ -356,7 +362,6 @@ closeBtn.addEventListener("click", ()=>{
   popup.style.display="none";
 });
 
-/* LUÔN HIỆN */
 window.addEventListener("load", ()=>{
   popup.style.display="flex";
 });
