@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -53,7 +54,9 @@ button{
   font-weight:600;
   margin-top:14px;
 }
-button.secondary{background:#334155}
+button.secondary{
+  background:#334155;
+}
 .day{font-weight:700;margin-top:14px}
 
 /* MANAGER */
@@ -109,6 +112,33 @@ footer{
   font-size:12px;
   color:#eee
 }
+
+/* POPUP TRI ÂN */
+.popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.popupContent{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  width:85%;
+  max-width:320px;
+  text-align:center;
+  animation:fadeIn 0.3s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.9)}
+  to{opacity:1; transform:scale(1)}
+}
 </style>
 </head>
 
@@ -150,6 +180,18 @@ footer{
   <footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
 </div>
 
+<!-- POPUP TRI ÂN -->
+<div id="thankPopup" class="popup">
+  <div class="popupContent">
+    <h3>💖 Tri ân nhân viên</h3>
+    <p>
+      Cảm ơn bạn đã luôn nỗ lực và đóng góp cho tập thể An Quy Chế.
+      Chúc bạn một tuần làm việc hiệu quả!
+    </p>
+    <button onclick="closePopup()">Đã hiểu</button>
+  </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getDatabase, ref, set, get, remove }
@@ -166,7 +208,7 @@ const db = getDatabase(app);
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
-/* TIME LOCK – LOGIC GỐC */
+/* LOCK */
 function isRegistrationLocked(){
   const n=new Date();
   const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
@@ -178,63 +220,51 @@ function isRegistrationLocked(){
 /* STATUS */
 const lockStatus=document.getElementById("lockStatus");
 lockStatus.style.fontWeight="600";
-lockStatus.textContent = isRegistrationLocked()
-  ? "⛔ Đang khóa đăng ký • Mở lại Thứ 2"
-  : "✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
+if(isRegistrationLocked()){
+  lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
+  lockStatus.style.color="#b91c1c";
+}else{
+  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
+  lockStatus.style.color="#14532d";
+}
 
-/* COUNTDOWN – FIX THEO THỨ 5 */
+/* COUNTDOWN */
 const cdCard=document.getElementById("countdownCard");
 const cdTime=document.getElementById("countdownTime");
 const submitBtn=document.getElementById("submitBtn");
 
 function getLockTime(){
-  const now = new Date();
-  const lock = new Date(now);
-  let diff = 5 - now.getDay(); // Thứ 6
-
-  if (diff < 0 || (diff === 0 && now.getHours() >= 20)) {
-    diff += 7;
-  }
-
-  lock.setDate(now.getDate() + diff);
+  const now=new Date();
+  const lock=new Date(now);
+  const diff=5-now.getDay();
+  lock.setDate(now.getDate()+diff);
   lock.setHours(20,0,0,0);
   return lock;
 }
-const lockTime = getLockTime();
+const lockTime=getLockTime();
 
 function updateCountdown(){
-  const now = new Date();
-  const day = now.getDay();
-  const diff = lockTime - now;
+  const now=new Date();
+  const diff=lockTime-now;
 
-  /* Sau khi khóa */
-  if (diff <= 0) {
-    cdTime.innerText = "ĐÃ KHÓA";
-    cdCard.className = "countdown danger";
-    submitBtn.disabled = true;
+  if(diff<=0){
+    cdTime.innerText="ĐÃ KHÓA";
+    cdCard.className="countdown danger";
+    submitBtn.disabled=true;
     return;
   }
 
-  /* Thứ 2 – Thứ 4: chưa đếm */
-  if (day >= 1 && day <= 3) {
-    cdTime.innerText = "Bắt đầu từ Thứ 5";
-    cdCard.className = "countdown";
-    submitBtn.disabled = false;
-    return;
-  }
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor(diff/(1000*60*60))%24;
+  const m=Math.floor(diff/(1000*60))%60;
+  const s=Math.floor(diff/1000)%60;
 
-  /* Thứ 5 → Thứ 6 trước 20h: đếm */
-  const d = Math.floor(diff/(1000*60*60*24));
-  const h = Math.floor(diff/(1000*60*60))%24;
-  const m = Math.floor(diff/(1000*60))%60;
-  const s = Math.floor(diff/1000)%60;
-
-  cdTime.innerText =
+  cdTime.innerText=
     `${d} : ${h.toString().padStart(2,"0")} : ${m.toString().padStart(2,"0")} : ${s.toString().padStart(2,"0")}`;
 
-  cdCard.className = "countdown";
-  if (diff < 1000*60*30) cdCard.className = "countdown danger";
-  else if (diff < 1000*60*120) cdCard.className = "countdown warn";
+  cdCard.className="countdown";
+  if(diff<1000*60*30) cdCard.className="countdown danger";
+  else if(diff<1000*60*120) cdCard.className="countdown warn";
 }
 setInterval(updateCountdown,1000);
 updateCountdown();
@@ -255,6 +285,7 @@ DAYS.forEach(d=>{
 document.getElementById("submitBtn").onclick=async()=>{
   const ten=document.getElementById("name").value.trim();
   if(!ten) return alert("Vui lòng nhập tên");
+
   if(isRegistrationLocked())
     return alert("⛔ Đã khóa đăng ký. Mở lại Thứ 2.");
 
@@ -320,6 +351,18 @@ document.getElementById("clearBtn").onclick=async()=>{
     location.reload();
   }
 };
+
+/* POPUP LOGIC */
+function closePopup(){
+  document.getElementById("thankPopup").style.display="none";
+  localStorage.setItem("seenThank","1");
+}
+
+window.addEventListener("load",()=>{
+  if(localStorage.getItem("seenThank")){
+    document.getElementById("thankPopup").style.display="none";
+  }
+});
 </script>
 
 </body>
