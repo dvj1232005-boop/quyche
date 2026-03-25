@@ -2,9 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>An Quy Chế – Đăng ký ca làm</title>
 
@@ -16,146 +14,137 @@ body{
   background:linear-gradient(180deg,#7f1d1d,#064e3b);
   min-height:100vh;
 }
+.hidden{display:none}
 
-/* ===== CARD ===== */
+/* LAYOUT */
 .container{max-width:420px;margin:auto;padding:20px}
+
+/* CARD */
 .card{
-  background:rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(12px);
   border-radius:24px;
-  padding:22px;
-  box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  padding:20px;
+  box-shadow:0 25px 60px rgba(0,0,0,.3);
+  margin-bottom:16px;
 }
 
-/* ===== TEXT ===== */
 h2{margin:0 0 6px}
 .sub{font-size:13px;color:#555}
 
-/* ===== INPUT ===== */
-input,select{
+/* INPUT */
+input{
   width:100%;
   padding:14px;
   margin:10px 0;
-  border:none;
   border-radius:14px;
+  border:none;
   background:#f1f5f9;
   font-size:16px;
 }
-input:focus,select:focus{
-  outline:none;
-  box-shadow:0 0 0 2px #10b981;
-  background:white;
-}
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 button{
   width:100%;
   padding:14px;
   border:none;
   border-radius:18px;
+  background:#b91c1c;
   color:white;
   font-weight:600;
-  margin-top:14px;
-  transition:.2s;
-}
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 20px rgba(0,0,0,.2);
-}
-#submitBtn{
-  background:linear-gradient(135deg,#ef4444,#b91c1c);
-}
-#managerBtn{
-  background:linear-gradient(135deg,#1e293b,#334155);
-}
-button.secondary{
-  background:linear-gradient(135deg,#334155,#475569);
-}
-
-/* ===== DAY ===== */
-.day{
-  font-weight:700;
-  margin-top:16px;
-  color:#065f46;
-}
-
-/* ===== COUNTDOWN NEW ===== */
-.countdown{
   margin-top:12px;
-  padding:16px;
-  border-radius:18px;
-  text-align:center;
-  background:linear-gradient(135deg,#065f46,#10b981);
+  cursor:pointer;
+}
+button.secondary{background:#334155}
+
+/* DAY */
+.day{font-weight:700;margin-top:16px;color:#065f46}
+
+/* SHIFT BUTTON */
+.shift-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.shift-btn{
+  padding:8px 12px;
+  border-radius:999px;
+  border:none;
+  background:#e2e8f0;
+  cursor:pointer;
+}
+.shift-btn.active{
+  background:#10b981;
   color:white;
 }
+.shift-btn.suggest{
+  outline:2px solid #22c55e;
+}
 
+/* COUNTDOWN */
+.countdown{
+  margin-top:12px;
+  padding:14px;
+  border-radius:16px;
+  background:#065f46;
+  color:white;
+  text-align:center;
+}
 .cd-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-top:10px;
+  gap:8px;
 }
-
 .cd-grid div{
-  background:rgba(255,255,255,0.15);
-  padding:12px;
-  border-radius:14px;
-}
-
-.cd-grid span{
-  font-size:22px;
-  font-weight:700;
-  display:block;
-}
-
-.cd-grid small{
-  font-size:11px;
-  opacity:0.8;
-}
-
-/* ===== MANAGER ===== */
-.section{margin-top:18px}
-.shiftBox{
-  background:#f1f5f9;
-  border-radius:14px;
+  background:rgba(255,255,255,0.2);
   padding:10px;
-  margin:8px 0;
+  border-radius:10px;
 }
+
+/* DASHBOARD */
+.stat-box{
+  display:flex;
+  justify-content:space-between;
+  padding:8px;
+  border-radius:10px;
+  margin:5px 0;
+}
+.stat-low{background:#dcfce7}
+.stat-mid{background:#fef9c3}
+.stat-high{background:#fee2e2}
+
+/* BADGE */
 .badge{
   display:inline-block;
-  background:#14532d;
+  background:#065f46;
   color:white;
-  padding:6px 10px;
+  padding:5px 10px;
   border-radius:999px;
-  font-size:13px;
-  margin:4px 4px 0 0;
-}
-
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  margin-top:16px;
+  margin:3px;
   font-size:12px;
-  color:#eee
 }
 
-/* ===== POPUP ===== */
+.shiftBox{
+  background:#f1f5f9;
+  padding:10px;
+  border-radius:12px;
+  margin:6px 0;
+}
+
+/* POPUP */
 .popup{
   position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
+  inset:0;
   background:rgba(0,0,0,0.5);
   display:flex;
   align-items:center;
   justify-content:center;
-  z-index:999;
 }
 .popupContent{
   background:white;
   padding:20px;
   border-radius:20px;
   width:85%;
-  max-width:320px;
   text-align:center;
 }
 </style>
@@ -163,56 +152,47 @@ footer{
 
 <body>
 
-<div class="container" id="app">
-  <div class="card">
-    <h2>Đăng ký ca làm</h2>
-    <div class="sub">Tuần hiện tại • An Quy Chế</div>
-    <div id="lockStatus" class="sub"></div>
+<div class="container">
 
-    <!-- COUNTDOWN NEW UI -->
-    <div id="countdownCard" class="countdown">
-      <div>⏳ Thời gian còn lại</div>
-      <div class="cd-grid">
-        <div><span id="d">0</span><small>Ngày</small></div>
-        <div><span id="h">00</span><small>Giờ</small></div>
-        <div><span id="m">00</span><small>Phút</small></div>
-        <div><span id="s">00</span><small>Giây</small></div>
-      </div>
-    </div>
+<div class="card">
+<h2>Đăng ký ca làm</h2>
+<div id="lockStatus"></div>
 
-    <input id="name" placeholder="Nhập tên nhân viên">
-    <div id="form"></div>
-
-    <button id="submitBtn">Xác nhận đăng ký</button>
-    <button id="managerBtn" class="secondary">🔐 Quản lý</button>
-  </div>
-
-  <div class="card section hidden" id="managerBox">
-    <h2>Tổng hợp đăng ký ca làm</h2>
-
-    <input id="pin" type="password" placeholder="Nhập mã PIN quản lý">
-
-    <button id="loginManager">Đăng nhập quản lý</button>
-
-    <div id="summary"></div>
-
-    <button id="clearBtn" class="secondary">
-      Xóa toàn bộ lịch tuần này
-    </button>
-  </div>
-
-  <footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
+<div class="countdown">
+<div class="cd-grid">
+<div><span id="d"></span><br>Ngày</div>
+<div><span id="h"></span><br>Giờ</div>
+<div><span id="m"></span><br>Phút</div>
+<div><span id="s"></span><br>Giây</div>
+</div>
 </div>
 
-<!-- POPUP -->
+<div id="dashboard"></div>
+<div id="who"></div>
+
+<input id="name" placeholder="Nhập tên">
+
+<div id="form"></div>
+
+<button id="submitBtn">Xác nhận đăng ký</button>
+<button id="managerBtn" class="secondary">🔐 Quản lý</button>
+</div>
+
+<div class="card hidden" id="managerBox">
+<input id="pin" type="password" placeholder="PIN">
+<button id="loginManager">Đăng nhập</button>
+<div id="summary"></div>
+<button id="clearBtn" class="secondary">Xóa</button>
+</div>
+
+</div>
+
 <div id="thankPopup" class="popup">
-  <div class="popupContent">
-    <h3>💖 Tri ân nhân viên</h3>
-    <p>
-Ngày 31 là ngày làm việc cuối cùng của anh Nguyễn Minh Hiếu...
-    </p>
-    <button id="closeBtn">Thank you baeeeee</button>
-  </div>
+<div class="popupContent">
+<h3>💖 Tri ân</h3>
+<p>Cảm ơn bạn!</p>
+<button id="closeBtn">Đóng</button>
+</div>
 </div>
 
 <script type="module">
@@ -220,18 +200,18 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebas
 import { getDatabase, ref, set, get, remove }
 from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-/* FIREBASE (GIỮ NGUYÊN) */
+/* FIREBASE */
 const app = initializeApp({
   apiKey:"AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM",
   databaseURL:"https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 const db = getDatabase(app);
 
-/* DATA (GIỮ NGUYÊN) */
+/* DATA */
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
-/* LOCK (GIỮ NGUYÊN) */
+/* LOCK */
 function isRegistrationLocked(){
   const n=new Date();
   const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
@@ -241,139 +221,142 @@ function isRegistrationLocked(){
 }
 
 /* STATUS */
-const lockStatus=document.getElementById("lockStatus");
-lockStatus.style.fontWeight="600";
-if(isRegistrationLocked()){
-  lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
-  lockStatus.style.color="#b91c1c";
-}else{
-  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
-  lockStatus.style.color="#14532d";
-}
+lockStatus.innerText=isRegistrationLocked()?"⛔ Đang khóa":"✅ Đang mở";
 
-/* COUNTDOWN (CHỈ ĐỔI HIỂN THỊ) */
+/* COUNTDOWN */
 function getLockTime(){
   const now=new Date();
   const lock=new Date(now);
-  const diff=5-now.getDay();
-  lock.setDate(now.getDate()+diff);
+  lock.setDate(now.getDate()+(5-now.getDay()));
   lock.setHours(20,0,0,0);
   return lock;
 }
 const lockTime=getLockTime();
 
 function updateCountdown(){
-  const now=new Date();
-  const diff=lockTime-now;
-
-  if(diff<=0){
-    document.getElementById("d").innerText="0";
-    document.getElementById("h").innerText="00";
-    document.getElementById("m").innerText="00";
-    document.getElementById("s").innerText="00";
-    return;
-  }
-
-  const d=Math.floor(diff/(1000*60*60*24));
-  const h=Math.floor(diff/(1000*60*60))%24;
-  const m=Math.floor(diff/(1000*60))%60;
-  const s=Math.floor(diff/1000)%60;
-
-  document.getElementById("d").innerText=d;
-  document.getElementById("h").innerText=h.toString().padStart(2,"0");
-  document.getElementById("m").innerText=m.toString().padStart(2,"0");
-  document.getElementById("s").innerText=s.toString().padStart(2,"0");
+  const diff=lockTime-new Date();
+  document.getElementById("d").innerText=Math.floor(diff/86400000);
+  document.getElementById("h").innerText=Math.floor(diff/3600000)%24;
+  document.getElementById("m").innerText=Math.floor(diff/60000)%60;
+  document.getElementById("s").innerText=Math.floor(diff/1000)%60;
 }
 setInterval(updateCountdown,1000);
-updateCountdown();
 
-/* FORM (GIỮ NGUYÊN) */
+/* FORM */
 const form=document.getElementById("form");
+const selected=JSON.parse(localStorage.getItem("lich")||"{}");
+
 DAYS.forEach(d=>{
-  form.innerHTML+=`
-    <div class="day">${d}</div>
-    <select id="${d}">
-      <option value="">Không đăng ký</option>
-      ${SHIFTS.map(s=>`<option>${s}</option>`).join("")}
-    </select>
-  `;
+ form.innerHTML+=`<div class="day">${d}</div>
+ <div class="shift-group" id="g-${d}">
+ ${SHIFTS.map(s=>`<button class="shift-btn" data-d="${d}" data-s="${s}">${s}</button>`).join("")}
+ </div>`;
 });
 
-/* SUBMIT (GIỮ NGUYÊN) */
-document.getElementById("submitBtn").onclick=async()=>{
-  const ten=document.getElementById("name").value.trim();
-  if(!ten) return alert("Vui lòng nhập tên");
+/* CLICK */
+document.addEventListener("click",e=>{
+ if(e.target.classList.contains("shift-btn")){
+  const d=e.target.dataset.d;
+  document.querySelectorAll(`#g-${d} .shift-btn`).forEach(b=>b.classList.remove("active"));
+  e.target.classList.add("active");
+  selected[d]=e.target.dataset.s;
+  localStorage.setItem("lich",JSON.stringify(selected));
+ }
+});
 
-  if(isRegistrationLocked())
-    return alert("⛔ Đã khóa đăng ký. Mở lại Thứ 2.");
+/* SUBMIT */
+let isSubmitting=false;
 
-  const lich={};
-  DAYS.forEach(d=>{
-    const v=document.getElementById(d).value;
-    if(v) lich[d]=v;
+submitBtn.onclick=async()=>{
+ if(isSubmitting)return;
+ isSubmitting=true;
+
+ const ten=name.value.trim();
+ if(!ten){alert("Nhập tên");isSubmitting=false;return;}
+
+ if(isRegistrationLocked()){
+   alert("Đã khóa");isSubmitting=false;return;
+ }
+
+ if(!Object.keys(selected).length){
+   alert("Chưa chọn ca");isSubmitting=false;return;
+ }
+
+ await set(ref(db,"dangKy/"+ten),{lich:selected});
+ alert("Đã gửi");
+ isSubmitting=false;
+};
+
+/* DASHBOARD */
+async function render(){
+ const snap=await get(ref(db,"dangKy"));
+ if(!snap.exists())return;
+
+ let count={},people={};
+
+ snap.forEach(n=>{
+  const ten=n.key;
+  const lich=n.val().lich||{};
+  Object.entries(lich).forEach(([d,c])=>{
+   count[c]=(count[c]||0)+1;
+   (people[c]=people[c]||[]).push(ten);
   });
-  if(!Object.keys(lich).length)
-    return alert("Bạn chưa đăng ký ca nào");
+ });
 
-  await set(ref(db,"dangKy/"+ten),{lich});
-  alert("Đã gửi đăng ký ca làm");
-};
+ dashboard.innerHTML="<h3>📊 Ca</h3>";
+ who.innerHTML="<h3>👤</h3>";
 
-/* MANAGER (GIỮ NGUYÊN) */
-document.getElementById("managerBtn").onclick=()=>{
-  document.getElementById("managerBox").classList.remove("hidden");
-};
+ SHIFTS.forEach(s=>{
+  const num=count[s]||0;
 
-document.getElementById("loginManager").onclick=async()=>{
-  if(document.getElementById("pin").value!=="2005")
-    return alert("Mã PIN không đúng");
+  let cls="stat-low";
+  if(num>=4) cls="stat-high";
+  else if(num>=2) cls="stat-mid";
 
-  const summary=document.getElementById("summary");
-  summary.innerHTML="";
-  const snap=await get(ref(db,"dangKy"));
-  if(!snap.exists()){
-    summary.innerHTML="<p>Chưa có dữ liệu đăng ký</p>";
-    return;
+  dashboard.innerHTML+=`<div class="stat-box ${cls}">
+  ${s} <b>${num}</b></div>`;
+
+  if(num<=1){
+    document.querySelectorAll(`[data-s='${s}']`).forEach(b=>b.classList.add("suggest"));
   }
 
-  const sum={};
-  snap.forEach(n=>{
-    const ten=n.key;
-    const lich=n.val().lich||{};
-    Object.entries(lich).forEach(([d,c])=>{
-      sum[d]??={};
-      sum[d][c]??=[];
-      sum[d][c].push(ten);
-    });
-  });
-
-  DAYS.forEach(day=>{
-    if(!sum[day]) return;
-    summary.innerHTML+=`<div class="day">${day}</div>`;
-    SHIFTS.forEach(shift=>{
-      if(!sum[day][shift]) return;
-      summary.innerHTML+=`
-        <div class="shiftBox">
-          <b>${shift}</b><br>
-          ${sum[day][shift].map(n=>`<span class="badge">${n}</span>`).join("")}
-        </div>
-      `;
-    });
-  });
-};
-
-/* CLEAR (GIỮ NGUYÊN) */
-document.getElementById("clearBtn").onclick=async()=>{
-  if(confirm("Xóa toàn bộ đăng ký tuần này?")){
-    await remove(ref(db,"dangKy"));
-    location.reload();
+  if(people[s]){
+    who.innerHTML+=`<div class="shiftBox"><b>${s}</b><br>
+    ${people[s].map(x=>`<span class="badge">${x}</span>`).join("")}
+    </div>`;
   }
+ });
+}
+
+/* AUTO REFRESH */
+render();
+setInterval(render,5000);
+
+/* MANAGER */
+managerBtn.onclick=()=>managerBox.classList.remove("hidden");
+
+loginManager.onclick=async()=>{
+ if(pin.value!=="2005")return alert("Sai PIN");
+
+ summary.innerHTML="";
+ const snap=await get(ref(db,"dangKy"));
+
+ snap.forEach(n=>{
+  summary.innerHTML+=`<div>${n.key}</div>`;
+ });
 };
 
-/* POPUP (GIỮ NGUYÊN) */
-const popup=document.getElementById("thankPopup");
-document.getElementById("closeBtn").onclick=()=>popup.style.display="none";
-window.onload=()=>popup.style.display="flex";
+/* CLEAR */
+clearBtn.onclick=async()=>{
+ if(confirm("Xóa hết?")){
+  await remove(ref(db,"dangKy"));
+  location.reload();
+ }
+};
+
+/* POPUP */
+closeBtn.onclick=()=>thankPopup.style.display="none";
+window.onload=()=>thankPopup.style.display="flex";
 
 </script>
 
