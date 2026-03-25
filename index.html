@@ -8,8 +8,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 <title>An Quy Chế – Đăng ký ca làm</title>
 
-<meta name="theme-color" content="#0b3d2e">
-
 <style>
 *{box-sizing:border-box}
 body{
@@ -19,19 +17,21 @@ body{
   min-height:100vh;
 }
 
-/* LAYOUT */
+/* ===== CARD ===== */
 .container{max-width:420px;margin:auto;padding:20px}
 .card{
   background:rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border-radius:24px;
   padding:22px;
-  box-shadow:0 30px 60px rgba(0,0,0,0.3);
+  box-shadow:0 30px 60px rgba(0,0,0,0.35);
 }
+
+/* ===== TEXT ===== */
 h2{margin:0 0 6px}
 .sub{font-size:13px;color:#555}
 
-/* FORM */
+/* ===== INPUT ===== */
 input,select{
   width:100%;
   padding:14px;
@@ -47,7 +47,7 @@ input:focus,select:focus{
   background:white;
 }
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 button{
   width:100%;
   padding:14px;
@@ -62,50 +62,58 @@ button:hover{
   transform:translateY(-2px);
   box-shadow:0 10px 20px rgba(0,0,0,.2);
 }
-
 #submitBtn{
   background:linear-gradient(135deg,#ef4444,#b91c1c);
 }
 #managerBtn{
   background:linear-gradient(135deg,#1e293b,#334155);
 }
+button.secondary{
+  background:linear-gradient(135deg,#334155,#475569);
+}
 
+/* ===== DAY ===== */
 .day{
   font-weight:700;
   margin-top:16px;
   color:#065f46;
 }
 
-/* COUNTDOWN MỚI */
-.countdown.modern{
+/* ===== COUNTDOWN NEW ===== */
+.countdown{
   margin-top:12px;
-  padding:14px;
-  border-radius:16px;
+  padding:16px;
+  border-radius:18px;
   text-align:center;
   background:linear-gradient(135deg,#065f46,#10b981);
   color:white;
 }
+
 .cd-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
   margin-top:10px;
 }
+
 .cd-grid div{
   background:rgba(255,255,255,0.15);
   padding:12px;
   border-radius:14px;
 }
+
 .cd-grid span{
   font-size:22px;
   font-weight:700;
+  display:block;
 }
+
 .cd-grid small{
   font-size:11px;
   opacity:0.8;
 }
 
-/* MANAGER */
+/* ===== MANAGER ===== */
 .section{margin-top:18px}
 .shiftBox{
   background:#f1f5f9;
@@ -123,7 +131,15 @@ button:hover{
   margin:4px 4px 0 0;
 }
 
-/* POPUP */
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  margin-top:16px;
+  font-size:12px;
+  color:#eee
+}
+
+/* ===== POPUP ===== */
 .popup{
   position:fixed;
   top:0;left:0;
@@ -132,6 +148,7 @@ button:hover{
   display:flex;
   align-items:center;
   justify-content:center;
+  z-index:999;
 }
 .popupContent{
   background:white;
@@ -146,14 +163,14 @@ button:hover{
 
 <body>
 
-<div class="container">
+<div class="container" id="app">
   <div class="card">
     <h2>Đăng ký ca làm</h2>
     <div class="sub">Tuần hiện tại • An Quy Chế</div>
     <div id="lockStatus" class="sub"></div>
 
-    <!-- COUNTDOWN NEW -->
-    <div id="countdownCard" class="countdown modern">
+    <!-- COUNTDOWN NEW UI -->
+    <div id="countdownCard" class="countdown">
       <div>⏳ Thời gian còn lại</div>
       <div class="cd-grid">
         <div><span id="d">0</span><small>Ngày</small></div>
@@ -167,24 +184,34 @@ button:hover{
     <div id="form"></div>
 
     <button id="submitBtn">Xác nhận đăng ký</button>
-    <button id="managerBtn">🔐 Quản lý</button>
+    <button id="managerBtn" class="secondary">🔐 Quản lý</button>
   </div>
 
   <div class="card section hidden" id="managerBox">
-    <h2>Tổng hợp đăng ký</h2>
-    <input id="pin" type="password" placeholder="Nhập PIN">
-    <button id="loginManager">Đăng nhập</button>
+    <h2>Tổng hợp đăng ký ca làm</h2>
+
+    <input id="pin" type="password" placeholder="Nhập mã PIN quản lý">
+
+    <button id="loginManager">Đăng nhập quản lý</button>
+
     <div id="summary"></div>
-    <button id="clearBtn">Xóa toàn bộ</button>
+
+    <button id="clearBtn" class="secondary">
+      Xóa toàn bộ lịch tuần này
+    </button>
   </div>
+
+  <footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
 </div>
 
 <!-- POPUP -->
 <div id="thankPopup" class="popup">
   <div class="popupContent">
     <h3>💖 Tri ân nhân viên</h3>
-    <p>Chúc anh thành công và hạnh phúc trên chặng đường mới!</p>
-    <button id="closeBtn">Đóng</button>
+    <p>
+Ngày 31 là ngày làm việc cuối cùng của anh Nguyễn Minh Hiếu...
+    </p>
+    <button id="closeBtn">Thank you baeeeee</button>
   </div>
 </div>
 
@@ -193,16 +220,38 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebas
 import { getDatabase, ref, set, get, remove }
 from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
+/* FIREBASE (GIỮ NGUYÊN) */
 const app = initializeApp({
   apiKey:"AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM",
   databaseURL:"https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 const db = getDatabase(app);
 
+/* DATA (GIỮ NGUYÊN) */
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
-/* COUNTDOWN FIX */
+/* LOCK (GIỮ NGUYÊN) */
+function isRegistrationLocked(){
+  const n=new Date();
+  const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
+  if(d===5 && (h>20 || (h===20 && m>=0))) return true;
+  if(d===6 || d===0) return true;
+  return false;
+}
+
+/* STATUS */
+const lockStatus=document.getElementById("lockStatus");
+lockStatus.style.fontWeight="600";
+if(isRegistrationLocked()){
+  lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
+  lockStatus.style.color="#b91c1c";
+}else{
+  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
+  lockStatus.style.color="#14532d";
+}
+
+/* COUNTDOWN (CHỈ ĐỔI HIỂN THỊ) */
 function getLockTime(){
   const now=new Date();
   const lock=new Date(now);
@@ -217,6 +266,14 @@ function updateCountdown(){
   const now=new Date();
   const diff=lockTime-now;
 
+  if(diff<=0){
+    document.getElementById("d").innerText="0";
+    document.getElementById("h").innerText="00";
+    document.getElementById("m").innerText="00";
+    document.getElementById("s").innerText="00";
+    return;
+  }
+
   const d=Math.floor(diff/(1000*60*60*24));
   const h=Math.floor(diff/(1000*60*60))%24;
   const m=Math.floor(diff/(1000*60))%60;
@@ -230,7 +287,7 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* FORM GIỮ NGUYÊN */
+/* FORM (GIỮ NGUYÊN) */
 const form=document.getElementById("form");
 DAYS.forEach(d=>{
   form.innerHTML+=`
@@ -241,6 +298,83 @@ DAYS.forEach(d=>{
     </select>
   `;
 });
+
+/* SUBMIT (GIỮ NGUYÊN) */
+document.getElementById("submitBtn").onclick=async()=>{
+  const ten=document.getElementById("name").value.trim();
+  if(!ten) return alert("Vui lòng nhập tên");
+
+  if(isRegistrationLocked())
+    return alert("⛔ Đã khóa đăng ký. Mở lại Thứ 2.");
+
+  const lich={};
+  DAYS.forEach(d=>{
+    const v=document.getElementById(d).value;
+    if(v) lich[d]=v;
+  });
+  if(!Object.keys(lich).length)
+    return alert("Bạn chưa đăng ký ca nào");
+
+  await set(ref(db,"dangKy/"+ten),{lich});
+  alert("Đã gửi đăng ký ca làm");
+};
+
+/* MANAGER (GIỮ NGUYÊN) */
+document.getElementById("managerBtn").onclick=()=>{
+  document.getElementById("managerBox").classList.remove("hidden");
+};
+
+document.getElementById("loginManager").onclick=async()=>{
+  if(document.getElementById("pin").value!=="2005")
+    return alert("Mã PIN không đúng");
+
+  const summary=document.getElementById("summary");
+  summary.innerHTML="";
+  const snap=await get(ref(db,"dangKy"));
+  if(!snap.exists()){
+    summary.innerHTML="<p>Chưa có dữ liệu đăng ký</p>";
+    return;
+  }
+
+  const sum={};
+  snap.forEach(n=>{
+    const ten=n.key;
+    const lich=n.val().lich||{};
+    Object.entries(lich).forEach(([d,c])=>{
+      sum[d]??={};
+      sum[d][c]??=[];
+      sum[d][c].push(ten);
+    });
+  });
+
+  DAYS.forEach(day=>{
+    if(!sum[day]) return;
+    summary.innerHTML+=`<div class="day">${day}</div>`;
+    SHIFTS.forEach(shift=>{
+      if(!sum[day][shift]) return;
+      summary.innerHTML+=`
+        <div class="shiftBox">
+          <b>${shift}</b><br>
+          ${sum[day][shift].map(n=>`<span class="badge">${n}</span>`).join("")}
+        </div>
+      `;
+    });
+  });
+};
+
+/* CLEAR (GIỮ NGUYÊN) */
+document.getElementById("clearBtn").onclick=async()=>{
+  if(confirm("Xóa toàn bộ đăng ký tuần này?")){
+    await remove(ref(db,"dangKy"));
+    location.reload();
+  }
+};
+
+/* POPUP (GIỮ NGUYÊN) */
+const popup=document.getElementById("thankPopup");
+document.getElementById("closeBtn").onclick=()=>popup.style.display="none";
+window.onload=()=>popup.style.display="flex";
+
 </script>
 
 </body>
