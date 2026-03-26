@@ -127,7 +127,7 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
 
     <input id="name" placeholder="Nhập tên nhân viên">
 
-    <!-- 🔥 THÊM CƠ SỞ -->
+    <!-- CHỌN CƠ SỞ -->
     <select id="store">
       <option value="">Chọn cơ sở làm việc</option>
       <option value="QuyChe">Cơ sở Quy Chế</option>
@@ -144,7 +144,6 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
     <h2>Tổng hợp đăng ký ca làm</h2>
 
     <input id="pin" type="password" placeholder="Nhập mã PIN quản lý">
-
     <button id="loginManager">Đăng nhập quản lý</button>
 
     <div id="summary"></div>
@@ -157,6 +156,7 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
   <footer>© 2025 An Quy Chế • Developed by Đào Đăng Tùng</footer>
 </div>
 
+<!-- POPUP -->
 <div id="thankPopup" class="popup">
   <div class="popupContent">
     <h3>💖 Tri ân nhân viên</h3>
@@ -181,6 +181,7 @@ const db = getDatabase(app);
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
+/* LOCK */
 function isRegistrationLocked(){
   const n=new Date();
   const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
@@ -266,33 +267,51 @@ document.getElementById("submitBtn").onclick=async()=>{
     if(v) lich[d]=v;
   });
 
+  if(!Object.keys(lich).length)
+    return alert("Bạn chưa đăng ký ca nào");
+
   await set(ref(db,"dangKy/"+store+"/"+ten),{lich,store});
-  alert("Đã gửi đăng ký");
+  alert("Đã gửi đăng ký ca làm");
 };
 
-/* MANAGER */
+/* MANAGER FIX RÕ RÀNG */
 document.getElementById("managerBtn").onclick=()=>{
   document.getElementById("managerBox").classList.remove("hidden");
 };
 
 document.getElementById("loginManager").onclick=async()=>{
   if(document.getElementById("pin").value!=="2005")
-    return alert("Sai PIN");
+    return alert("Mã PIN không đúng");
 
   const summary=document.getElementById("summary");
   summary.innerHTML="";
 
   const snap=await get(ref(db,"dangKy"));
   if(!snap.exists()){
-    summary.innerHTML="Chưa có dữ liệu";
+    summary.innerHTML="<p>Chưa có dữ liệu đăng ký</p>";
     return;
   }
 
-  const data=snap.val();
+  const data = snap.val();
 
-  Object.keys(data).forEach(store=>{
-    summary.innerHTML+=`<h3>🏪 ${store==="QuyChe"?"Quy Chế":"Đền Đô"}</h3>`;
+  ["QuyChe","DenDo"].forEach(store => {
 
+    if(!data[store]) return;
+
+    summary.innerHTML += `
+      <div style="
+        margin-top:20px;
+        padding:12px;
+        border-radius:16px;
+        background:#f8fafc;
+        border:2px solid ${store==="QuyChe"?"#16a34a":"#2563eb"};
+      ">
+        <h3>🏪 ${store==="QuyChe"?"Quy Chế":"Đền Đô"}</h3>
+        <div id="box-${store}"></div>
+      </div>
+    `;
+
+    const box = document.getElementById(`box-${store}`);
     const sum={};
 
     Object.entries(data[store]).forEach(([ten,obj])=>{
@@ -306,10 +325,11 @@ document.getElementById("loginManager").onclick=async()=>{
 
     DAYS.forEach(day=>{
       if(!sum[day]) return;
-      summary.innerHTML+=`<div class="day">${day}</div>`;
+      box.innerHTML += `<div class="day">${day}</div>`;
+
       SHIFTS.forEach(shift=>{
         if(!sum[day][shift]) return;
-        summary.innerHTML+=`
+        box.innerHTML += `
           <div class="shiftBox">
             <b>${shift}</b><br>
             ${sum[day][shift].map(n=>`<span class="badge">${n}</span>`).join("")}
@@ -317,6 +337,7 @@ document.getElementById("loginManager").onclick=async()=>{
         `;
       });
     });
+
   });
 };
 
@@ -329,8 +350,9 @@ document.getElementById("clearBtn").onclick=async()=>{
 };
 
 /* POPUP */
-const popup=document.getElementById("thankPopup");
-const closeBtn=document.getElementById("closeBtn");
+const popup = document.getElementById("thankPopup");
+const closeBtn = document.getElementById("closeBtn");
+
 closeBtn.onclick=()=>popup.style.display="none";
 window.onload=()=>popup.style.display="flex";
 </script>
