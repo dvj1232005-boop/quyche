@@ -2,9 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>An Quy Chế – Đăng ký ca làm</title>
 
@@ -148,7 +146,6 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
     <div id="summary"></div>
     <div id="excelTable"></div>
 
-    <!-- 🔥 THÊM -->
     <button id="unlockBtn" class="secondary">🔓 Mở đăng ký</button>
     <button id="lockBtn" class="secondary">🔒 Khóa đăng ký</button>
 
@@ -182,23 +179,25 @@ const db = getDatabase(app);
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
-/* 🔥 THÊM BIẾN */
-let manualLock = false;
+/* 🔥 FIX CHUẨN */
+let manualLock = null;
 
-/* 🔥 LOAD LOCK */
 async function loadLock(){
   const snap = await get(ref(db,"settings/lock"));
-  manualLock = snap.exists() ? snap.val() : false;
+  manualLock = snap.exists() ? snap.val() : null;
 }
 
-/* LOCK */
 function isRegistrationLocked(){
-  if(manualLock) return true;
+
+  if(manualLock === true) return true;
+  if(manualLock === false) return false;
 
   const n=new Date();
   const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
+
   if(d===5 && (h>20 || (h===20 && m>=0))) return true;
   if(d===6 || d===0) return true;
+
   return false;
 }
 
@@ -210,9 +209,15 @@ async function updateStatus(){
 
   lockStatus.style.fontWeight="600";
 
-  if(manualLock){
-    lockStatus.textContent="⛔ Đã bị quản lý khóa";
+  if(manualLock === true){
+    lockStatus.textContent="⛔ Bị quản lý khóa";
     lockStatus.style.color="#dc2626";
+    return;
+  }
+
+  if(manualLock === false){
+    lockStatus.textContent="🟢 Đang mở (quản lý)";
+    lockStatus.style.color="#16a34a";
     return;
   }
 
@@ -227,7 +232,7 @@ async function updateStatus(){
 
 updateStatus();
 
-/* COUNTDOWN giữ nguyên */
+/* COUNTDOWN */
 const cdCard=document.getElementById("countdownCard");
 const cdTime=document.getElementById("countdownTime");
 const submitBtn=document.getElementById("submitBtn");
@@ -264,7 +269,7 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* FORM giữ nguyên */
+/* FORM */
 const form=document.getElementById("form");
 DAYS.forEach(d=>{
   form.innerHTML+=`
@@ -276,8 +281,10 @@ DAYS.forEach(d=>{
   `;
 });
 
-/* SUBMIT giữ nguyên */
+/* SUBMIT */
 document.getElementById("submitBtn").onclick=async()=>{
+  await loadLock();
+
   const ten=document.getElementById("name").value.trim();
   const store=document.getElementById("store").value;
 
@@ -300,7 +307,7 @@ document.getElementById("submitBtn").onclick=async()=>{
   alert("Đã gửi đăng ký ca làm");
 };
 
-/* MANAGER giữ nguyên + thêm */
+/* MANAGER */
 document.getElementById("managerBtn").onclick=()=>{
   document.getElementById("managerBox").classList.remove("hidden");
 };
@@ -385,48 +392,24 @@ document.getElementById("lockBtn").onclick=async()=>{
   location.reload();
 };
 
-/* EXCEL giữ nguyên */
+/* EXCEL */
 function renderExcelTable(data){
   const container=document.getElementById("excelTable");
   const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 
   ["QuyChe","DenDo"].forEach(store=>{
-
     if(!data[store]) return;
 
-    let html=`
-    <div style="margin-top:30px">
-      <h2 style="color:${store==="QuyChe"?"#16a34a":"#2563eb"}">
-        📊 ${store==="QuyChe"?"Quy Chế":"Đền Đô"} - Bảng phân ca
-      </h2>
-
-      <div style="overflow:auto">
-      <table style="border-collapse:collapse;min-width:1400px;width:100%">
-        <tr>
-    `;
-
-    DAYS.forEach(day=>{
-      html+=`<th colspan="4" style="background:#fde047;border:1px solid #999">${day}</th>`;
-    });
-
+    let html=`<h3>${store}</h3><table border="1"><tr>`;
+    DAYS.forEach(d=>html+=`<th colspan="4">${d}</th>`);
     html+="</tr><tr>";
-
-    DAYS.forEach(()=>{
-      html+=`
-        <th style="border:1px solid #999">Buổi</th>
-        <th style="border:1px solid #999">Tên</th>
-        <th style="border:1px solid #999">Ca</th>
-        <th style="border:1px solid #999">Công việc</th>
-      `;
-    });
-
+    DAYS.forEach(()=>html+="<th>Buổi</th><th>Tên</th><th>Ca</th><th>CV</th>");
     html+="</tr>";
 
     const structured={};
 
     Object.entries(data[store]).forEach(([ten,obj])=>{
-      const lich=obj.lich||{};
-      Object.entries(lich).forEach(([day,shift])=>{
+      Object.entries(obj.lich||{}).forEach(([day,shift])=>{
         structured[day]??={Sáng:[],Chiều:[],Tối:[]};
 
         if(shift==="C1") structured[day].Sáng.push(ten);
@@ -453,29 +436,19 @@ function renderExcelTable(data){
 
     ["Sáng","Chiều","Tối"].forEach(session=>{
       html+="<tr>";
-
       DAYS.forEach(day=>{
         const list=structured[day]?.[session]||[];
-
         html+=`
-        <td style="border:1px solid #ccc;background:#f1f5f9">${session}</td>
-        <td style="border:1px solid #ccc">${list.join("<br>")}</td>
-        <td style="border:1px solid #ccc">
-          ${session==="Sáng"?"C1":session==="Chiều"?"C2":"C3"}
-        </td>
-        <td style="border:1px solid #ccc">
-          ${session==="Sáng"?"Thu ngân / Pha chế":
-            session==="Chiều"?"Pha chế / Phục vụ":
-            "Phục vụ"}
-        </td>
+        <td>${session}</td>
+        <td>${list.join("<br>")}</td>
+        <td>${session==="Sáng"?"C1":session==="Chiều"?"C2":"C3"}</td>
+        <td>${session==="Sáng"?"Thu ngân":session==="Chiều"?"Pha chế":"Phục vụ"}</td>
         `;
       });
-
       html+="</tr>";
     });
 
-    html+="</table></div></div>";
-
+    html+="</table><br>";
     container.innerHTML+=html;
   });
 }
@@ -488,7 +461,7 @@ document.getElementById("clearBtn").onclick=async()=>{
   }
 };
 
-/* POPUP giữ nguyên */
+/* POPUP */
 const popup=document.getElementById("thankPopup");
 const closeBtn=document.getElementById("closeBtn");
 closeBtn.onclick=()=>popup.style.display="none";
