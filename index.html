@@ -127,7 +127,6 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
 
     <input id="name" placeholder="Nhập tên nhân viên">
 
-    <!-- CHỌN CƠ SỞ -->
     <select id="store">
       <option value="">Chọn cơ sở làm việc</option>
       <option value="QuyChe">Quy Chế</option>
@@ -147,6 +146,7 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
     <button id="loginManager">Đăng nhập quản lý</button>
 
     <div id="summary"></div>
+    <div id="excelTable"></div>
 
     <button id="clearBtn" class="secondary">
       Xóa toàn bộ lịch tuần này
@@ -156,13 +156,10 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
   <footer>© 2026 An Quy Chế • Developed by Đào Đăng Tùng</footer>
 </div>
 
-<!-- POPUP -->
 <div id="thankPopup" class="popup">
   <div class="popupContent">
     <h3>💖 Tri ân nhân viên</h3>
-    <p>
-nà ná na na a Độ mixue
-    </p>
+    <p>nà ná na na a Độ mixue</p>
     <button id="closeBtn">Thank you baeeeee</button>
   </div>
 </div>
@@ -197,7 +194,7 @@ if(isRegistrationLocked()){
   lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
   lockStatus.style.color="#b91c1c";
 }else{
-  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 7";
+  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
   lockStatus.style.color="#14532d";
 }
 
@@ -274,7 +271,7 @@ document.getElementById("submitBtn").onclick=async()=>{
   alert("Đã gửi đăng ký ca làm");
 };
 
-/* MANAGER FIX RÕ RÀNG */
+/* MANAGER */
 document.getElementById("managerBtn").onclick=()=>{
   document.getElementById("managerBox").classList.remove("hidden");
 };
@@ -284,7 +281,10 @@ document.getElementById("loginManager").onclick=async()=>{
     return alert("Mã PIN không đúng");
 
   const summary=document.getElementById("summary");
+  const excel=document.getElementById("excelTable");
+
   summary.innerHTML="";
+  excel.innerHTML="";
 
   const snap=await get(ref(db,"dangKy"));
   if(!snap.exists()){
@@ -339,7 +339,104 @@ document.getElementById("loginManager").onclick=async()=>{
     });
 
   });
+
+  renderExcelTable(data);
 };
+
+/* BẢNG EXCEL */
+function renderExcelTable(data){
+  const container=document.getElementById("excelTable");
+  const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
+
+  ["QuyChe","DenDo"].forEach(store=>{
+
+    if(!data[store]) return;
+
+    let html=`
+    <div style="margin-top:30px">
+      <h2 style="color:${store==="QuyChe"?"#16a34a":"#2563eb"}">
+        📊 ${store==="QuyChe"?"Quy Chế":"Đền Đô"} - Bảng phân ca
+      </h2>
+
+      <div style="overflow:auto">
+      <table style="border-collapse:collapse;min-width:1400px;width:100%">
+        <tr>
+    `;
+
+    DAYS.forEach(day=>{
+      html+=`<th colspan="4" style="background:#fde047;border:1px solid #999">${day}</th>`;
+    });
+
+    html+="</tr><tr>";
+
+    DAYS.forEach(()=>{
+      html+=`
+        <th style="border:1px solid #999">Buổi</th>
+        <th style="border:1px solid #999">Tên</th>
+        <th style="border:1px solid #999">Ca</th>
+        <th style="border:1px solid #999">Công việc</th>
+      `;
+    });
+
+    html+="</tr>";
+
+    const structured={};
+
+    Object.entries(data[store]).forEach(([ten,obj])=>{
+      const lich=obj.lich||{};
+      Object.entries(lich).forEach(([day,shift])=>{
+        structured[day]??={Sáng:[],Chiều:[],Tối:[]};
+
+        if(shift==="C1") structured[day].Sáng.push(ten);
+        else if(shift==="C2") structured[day].Chiều.push(ten);
+        else if(shift==="C3") structured[day].Tối.push(ten);
+        else if(shift==="2C(C1+C2)"){
+          structured[day].Sáng.push(ten);
+          structured[day].Chiều.push(ten);
+        }
+        else if(shift==="2C(C2+C3)"){
+          structured[day].Chiều.push(ten);
+          structured[day].Tối.push(ten);
+        }
+        else if(shift==="F1"){
+          structured[day].Sáng.push(ten);
+          structured[day].Chiều.push(ten);
+        }
+        else if(shift==="F2"){
+          structured[day].Chiều.push(ten);
+          structured[day].Tối.push(ten);
+        }
+      });
+    });
+
+    ["Sáng","Chiều","Tối"].forEach(session=>{
+      html+="<tr>";
+
+      DAYS.forEach(day=>{
+        const list=structured[day]?.[session]||[];
+
+        html+=`
+        <td style="border:1px solid #ccc;background:#f1f5f9">${session}</td>
+        <td style="border:1px solid #ccc">${list.join("<br>")}</td>
+        <td style="border:1px solid #ccc">
+          ${session==="Sáng"?"C1":session==="Chiều"?"C2":"C3"}
+        </td>
+        <td style="border:1px solid #ccc">
+          ${session==="Sáng"?"Thu ngân / Pha chế":
+            session==="Chiều"?"Pha chế / Phục vụ":
+            "Phục vụ"}
+        </td>
+        `;
+      });
+
+      html+="</tr>";
+    });
+
+    html+="</table></div></div>";
+
+    container.innerHTML+=html;
+  });
+}
 
 /* CLEAR */
 document.getElementById("clearBtn").onclick=async()=>{
@@ -350,9 +447,8 @@ document.getElementById("clearBtn").onclick=async()=>{
 };
 
 /* POPUP */
-const popup = document.getElementById("thankPopup");
-const closeBtn = document.getElementById("closeBtn");
-
+const popup=document.getElementById("thankPopup");
+const closeBtn=document.getElementById("closeBtn");
 closeBtn.onclick=()=>popup.style.display="none";
 window.onload=()=>popup.style.display="flex";
 </script>
