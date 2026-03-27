@@ -148,7 +148,6 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
     <div id="summary"></div>
     <div id="excelTable"></div>
 
-    <!-- 🔥 THÊM -->
     <button id="unlockBtn" class="secondary">🔓 Mở đăng ký</button>
     <button id="lockBtn" class="secondary">🔒 Khóa đăng ký</button>
 
@@ -182,23 +181,25 @@ const db = getDatabase(app);
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
-/* 🔥 THÊM BIẾN */
-let manualLock = false;
+/* 🔥 FIX */
+let manualLock = null;
 
-/* 🔥 LOAD LOCK */
 async function loadLock(){
   const snap = await get(ref(db,"settings/lock"));
-  manualLock = snap.exists() ? snap.val() : false;
+  manualLock = snap.exists() ? snap.val() : null;
 }
 
-/* LOCK */
 function isRegistrationLocked(){
-  if(manualLock) return true;
+
+  if(manualLock === true) return true;
+  if(manualLock === false) return false;
 
   const n=new Date();
   const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
+
   if(d===5 && (h>20 || (h===20 && m>=0))) return true;
   if(d===6 || d===0) return true;
+
   return false;
 }
 
@@ -210,9 +211,15 @@ async function updateStatus(){
 
   lockStatus.style.fontWeight="600";
 
-  if(manualLock){
-    lockStatus.textContent="⛔ Đã bị quản lý khóa";
+  if(manualLock === true){
+    lockStatus.textContent="⛔ Bị quản lý khóa";
     lockStatus.style.color="#dc2626";
+    return;
+  }
+
+  if(manualLock === false){
+    lockStatus.textContent="🟢 Đang mở (quản lý)";
+    lockStatus.style.color="#16a34a";
     return;
   }
 
@@ -224,10 +231,9 @@ async function updateStatus(){
     lockStatus.style.color="#14532d";
   }
 }
-
 updateStatus();
 
-/* COUNTDOWN giữ nguyên */
+/* COUNTDOWN */
 const cdCard=document.getElementById("countdownCard");
 const cdTime=document.getElementById("countdownTime");
 const submitBtn=document.getElementById("submitBtn");
@@ -242,11 +248,21 @@ function getLockTime(){
 }
 const lockTime=getLockTime();
 
-function updateCountdown(){
+async function updateCountdown(){
+  await loadLock();
+
   const now=new Date();
   const diff=lockTime-now;
 
   if(diff<=0){
+
+    if(manualLock === false){
+      cdTime.innerText="ĐANG MỞ (quản lý)";
+      cdCard.className="countdown";
+      submitBtn.disabled=false;
+      return;
+    }
+
     cdTime.innerText="ĐÃ KHÓA";
     cdCard.className="countdown danger";
     submitBtn.disabled=true;
@@ -264,7 +280,7 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* FORM giữ nguyên */
+/* FORM */
 const form=document.getElementById("form");
 DAYS.forEach(d=>{
   form.innerHTML+=`
@@ -278,6 +294,8 @@ DAYS.forEach(d=>{
 
 /* SUBMIT giữ nguyên */
 document.getElementById("submitBtn").onclick=async()=>{
+  await loadLock();
+
   const ten=document.getElementById("name").value.trim();
   const store=document.getElementById("store").value;
 
@@ -300,7 +318,7 @@ document.getElementById("submitBtn").onclick=async()=>{
   alert("Đã gửi đăng ký ca làm");
 };
 
-/* MANAGER giữ nguyên + thêm */
+/* MANAGER giữ nguyên */
 document.getElementById("managerBtn").onclick=()=>{
   document.getElementById("managerBox").classList.remove("hidden");
 };
@@ -372,7 +390,7 @@ document.getElementById("loginManager").onclick=async()=>{
   renderExcelTable(data);
 };
 
-/* 🔓 🔒 */
+/* 🔓 🔒 giữ nguyên */
 document.getElementById("unlockBtn").onclick=async()=>{
   await set(ref(db,"settings/lock"),false);
   alert("Đã mở đăng ký");
@@ -385,7 +403,7 @@ document.getElementById("lockBtn").onclick=async()=>{
   location.reload();
 };
 
-/* EXCEL giữ nguyên */
+/* EXCEL FIX TÊN */
 function renderExcelTable(data){
   const container=document.getElementById("excelTable");
   const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
@@ -459,7 +477,18 @@ function renderExcelTable(data){
 
         html+=`
         <td style="border:1px solid #ccc;background:#f1f5f9">${session}</td>
-        <td style="border:1px solid #ccc">${list.join("<br>")}</td>
+        <td style="border:1px solid #ccc">
+          ${list.map(n=>{
+            const arr=n.split(" ");
+            const mid=Math.ceil(arr.length/2);
+            return `
+              <div style="padding:4px 0;border-bottom:1px dashed #ccc;line-height:1.3">
+                ${arr.slice(0,mid).join(" ")}<br>
+                ${arr.slice(mid).join(" ")}
+              </div>
+            `;
+          }).join("")}
+        </td>
         <td style="border:1px solid #ccc">
           ${session==="Sáng"?"C1":session==="Chiều"?"C2":"C3"}
         </td>
@@ -480,7 +509,7 @@ function renderExcelTable(data){
   });
 }
 
-/* CLEAR */
+/* CLEAR giữ nguyên */
 document.getElementById("clearBtn").onclick=async()=>{
   if(confirm("Xóa toàn bộ đăng ký tuần này?")){
     await remove(ref(db,"dangKy"));
