@@ -148,6 +148,10 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
     <div id="summary"></div>
     <div id="excelTable"></div>
 
+    <!-- 🔥 THÊM -->
+    <button id="unlockBtn" class="secondary">🔓 Mở đăng ký</button>
+    <button id="lockBtn" class="secondary">🔒 Khóa đăng ký</button>
+
     <button id="clearBtn" class="secondary">
       Xóa toàn bộ lịch tuần này
     </button>
@@ -178,8 +182,19 @@ const db = getDatabase(app);
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
+/* 🔥 THÊM BIẾN */
+let manualLock = false;
+
+/* 🔥 LOAD LOCK */
+async function loadLock(){
+  const snap = await get(ref(db,"settings/lock"));
+  manualLock = snap.exists() ? snap.val() : false;
+}
+
 /* LOCK */
 function isRegistrationLocked(){
+  if(manualLock) return true;
+
   const n=new Date();
   const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
   if(d===5 && (h>20 || (h===20 && m>=0))) return true;
@@ -189,16 +204,30 @@ function isRegistrationLocked(){
 
 /* STATUS */
 const lockStatus=document.getElementById("lockStatus");
-lockStatus.style.fontWeight="600";
-if(isRegistrationLocked()){
-  lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
-  lockStatus.style.color="#b91c1c";
-}else{
-  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
-  lockStatus.style.color="#14532d";
+
+async function updateStatus(){
+  await loadLock();
+
+  lockStatus.style.fontWeight="600";
+
+  if(manualLock){
+    lockStatus.textContent="⛔ Đã bị quản lý khóa";
+    lockStatus.style.color="#dc2626";
+    return;
+  }
+
+  if(isRegistrationLocked()){
+    lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
+    lockStatus.style.color="#b91c1c";
+  }else{
+    lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
+    lockStatus.style.color="#14532d";
+  }
 }
 
-/* COUNTDOWN */
+updateStatus();
+
+/* COUNTDOWN giữ nguyên */
 const cdCard=document.getElementById("countdownCard");
 const cdTime=document.getElementById("countdownTime");
 const submitBtn=document.getElementById("submitBtn");
@@ -235,7 +264,7 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* FORM */
+/* FORM giữ nguyên */
 const form=document.getElementById("form");
 DAYS.forEach(d=>{
   form.innerHTML+=`
@@ -247,7 +276,7 @@ DAYS.forEach(d=>{
   `;
 });
 
-/* SUBMIT */
+/* SUBMIT giữ nguyên */
 document.getElementById("submitBtn").onclick=async()=>{
   const ten=document.getElementById("name").value.trim();
   const store=document.getElementById("store").value;
@@ -271,7 +300,7 @@ document.getElementById("submitBtn").onclick=async()=>{
   alert("Đã gửi đăng ký ca làm");
 };
 
-/* MANAGER */
+/* MANAGER giữ nguyên + thêm */
 document.getElementById("managerBtn").onclick=()=>{
   document.getElementById("managerBox").classList.remove("hidden");
 };
@@ -343,7 +372,20 @@ document.getElementById("loginManager").onclick=async()=>{
   renderExcelTable(data);
 };
 
-/* BẢNG EXCEL */
+/* 🔓 🔒 */
+document.getElementById("unlockBtn").onclick=async()=>{
+  await set(ref(db,"settings/lock"),false);
+  alert("Đã mở đăng ký");
+  location.reload();
+};
+
+document.getElementById("lockBtn").onclick=async()=>{
+  await set(ref(db,"settings/lock"),true);
+  alert("Đã khóa đăng ký");
+  location.reload();
+};
+
+/* EXCEL giữ nguyên */
 function renderExcelTable(data){
   const container=document.getElementById("excelTable");
   const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
@@ -446,7 +488,7 @@ document.getElementById("clearBtn").onclick=async()=>{
   }
 };
 
-/* POPUP */
+/* POPUP giữ nguyên */
 const popup=document.getElementById("thankPopup");
 const closeBtn=document.getElementById("closeBtn");
 closeBtn.onclick=()=>popup.style.display="none";
