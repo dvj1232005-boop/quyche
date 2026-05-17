@@ -409,8 +409,7 @@
                 <p>Quý Khách thân mến,</p>
                 <p>Chúng tôi xin thông báo về việc tạm ngưng phục vụ cho hoạt động đăng kí ca làm như sau:</p>
                 <ul>
-                    <li>Thời gian nghỉ: Từ ngày <strong>28.05.2026</strong> đến ngày <strong>31.05.2026</strong></li>
-                    <li>Thời gian quay trở lại phục vụ: Ngày <strong>01.06.2026</strong></li>
+                    <li>Thời gian nghỉ: Từ ngày <strong>28.05.2026</strong> đến khi có thông báo mới nhất.</li>
                 </ul>
                 <p>Kính chúc Quý Khách cuối tuần nhiều niềm vui!</p>
                 <p><strong>WorkShift Pro.</strong></p>
@@ -422,8 +421,7 @@
                 <p>Dear Valued Customer,</p>
                 <p>We are closed for the shift registration activities as followed:</p>
                 <ul>
-                    <li>Closing: from <strong>May 28th, 2026</strong> until <strong>May 31st, 2026</strong></li>
-                    <li>Reopening: on <strong>June 1st, 2026</strong></li>
+                    <li>Closing: from <strong>May 28th, 2026</strong> until further notice.</li>
                 </ul>
                 <p>We wish you have a nice weekend!</p>
                 <p><strong>WorkShift Pro Group.</strong></p>
@@ -674,7 +672,7 @@
         ko: {
             realtime: "실시간 동기화:", title: "근무 교대 등록", subtitle: "내부 일정 시스템 | An Cafe & QuyChe Network", employeeId: "직원 신원", placeholder: "예: Dang Tung...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.",
             dayFullName_T2: "월요일", dayFullName_T3: "화요일", dayFullName_T4: "수요일", dayFullName_T5: "목요일", dayFullName_T6: "금요일", dayFullName_T7: "토요일", dayFullName_CN: "일요일",
-            dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
+            dayShort_T2: "월", 단축_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
             off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
             supportTitle: "알림 센터", 
             supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다."
@@ -1015,6 +1013,9 @@
     swipeZone.addEventListener('pointerup', (e) => { if (!isSwiping) return; isSwiping = false; swipeZone.releasePointerCapture(e.pointerId); });
 
     function loginAdmin() {
+        // THÔNG BÁO LỜI NHẮN ĐẶC BIỆT KHI ĐĂNG NHẬP THÀNH CÔNG VÀO ADMIN
+        alert("Cảm ơn em Phương Anh, dù làm với e Phanh k được bao lâu nhưng chúc e Phanh sau này thành công và phát triển trên công việc tiếp theo mà e đã chọn nhé, đừng để rụt cổ như e Linh e nhé kkkk");
+        
         showToast("Welcome", "success"); document.getElementById("loginSection").classList.add("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); fetchAndRenderAdminData();
     }
 
