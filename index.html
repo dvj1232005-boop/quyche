@@ -362,8 +362,7 @@
 
 <!-- THẺ AUDIO CHỨA NHẠC NỀN -->
 <audio id="bgMusic" loop>
-    <!-- THAY LINK NHẠC CỦA BẠN VÀO ĐÂY -->
-    <source src="LINK_NHAC_CUA_BAN.mp3" type="audio/mpeg">
+    <!-- Source mặc định trống, chờ bạn tải lên từ Dashboard -->
 </audio>
 
 <canvas id="bg-canvas"></canvas>
@@ -565,6 +564,17 @@
                 </div>
             </div>
 
+            <!-- KHU VỰC THÊM NHẠC TỪ THIẾT BỊ -->
+            <div style="background: var(--bg-glass-heavy); border: 1px solid var(--border-glass); border-radius: 24px; padding: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-soft);">
+                <div style="width: 48px; height: 48px; background: var(--primary-light); color: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                </div>
+                <div style="flex: 1; overflow: hidden;">
+                    <div style="font-weight: 800; font-size: 14px; margin-bottom: 8px; color: var(--text-main);" data-i18n="localMusicTitle">Chọn nhạc từ thiết bị</div>
+                    <input type="file" id="localMusicInput" accept="audio/*" style="width: 100%; font-size: 12px; color: var(--text-muted); font-family: inherit; cursor: pointer;">
+                </div>
+            </div>
+
             <div id="priorityAdminContainer"></div>
 
             <div class="table-container">
@@ -594,7 +604,7 @@
     // --- 0. MULTI-LANGUAGE SYSTEM (I18N) ---
     const i18n = {
         vi: {
-            realtime: "Đồng bộ realtime:", title: "Đăng Ký Ca Làm", employeeId: "Định danh nhân sự", placeholder: "Ví dụ: AnCafe...", schedule: "Đăng ký lịch làm việc (Tuần này)", confirmBtn: "Xác Nhận Đăng Ký", managerBtn: "Truy Cập Khu Vực Quản Lý", secureAccess: "Secure Access", highPrivilege: "Hệ thống phân quyền cấp cao", dashboard: "DASHBOARD", lockSys: "Khóa Hệ Thống", totalEmp: "Tổng Nhân Sự", totalShifts: "Ca Đăng Ký", openShift: "Mở Lịch", lock: "Khóa", export: "Xuất File", cleanup: "Dọn Dẹp", designed: "Designed & Engineered by", rights: "All rights reserved.",
+            realtime: "Đồng bộ realtime:", title: "Đăng Ký Ca Làm", employeeId: "Định danh nhân sự", placeholder: "Ví dụ: AnCafe...", schedule: "Đăng ký lịch làm việc (Tuần này)", confirmBtn: "Xác Nhận Đăng Ký", managerBtn: "Truy Cập Khu Vực Quản Lý", secureAccess: "Secure Access", highPrivilege: "Hệ thống phân quyền cấp cao", dashboard: "DASHBOARD", lockSys: "Khóa Hệ Thống", totalEmp: "Tổng Nhân Sự", totalShifts: "Ca Đăng Ký", openShift: "Mở Lịch", lock: "Khóa", export: "Xuất File", cleanup: "Dọn Dẹp", designed: "Designed & Engineered by", rights: "All rights reserved.", localMusicTitle: "Chọn nhạc từ thiết bị",
             dayFullName_T2: "Thứ 2", dayFullName_T3: "Thứ 3", dayFullName_T4: "Thứ 4", dayFullName_T5: "Thứ 5", dayFullName_T6: "Thứ 6", dayFullName_T7: "Thứ 7", dayFullName_CN: "Chủ Nhật",
             dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
             off: "OFF", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
@@ -603,7 +613,7 @@
             dayTitle: "Ngày", listTitle: "Danh sách nhân sự đăng ký"
         },
         en: {
-            realtime: "Realtime sync:", title: "Shift Registration", employeeId: "Employee Identity", placeholder: "Example: AnCafe...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.",
+            realtime: "Realtime sync:", title: "Shift Registration", employeeId: "Employee Identity", placeholder: "Example: AnCafe...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.", localMusicTitle: "Choose music from device",
             dayFullName_T2: "Monday", dayFullName_T3: "Tuesday", dayFullName_T4: "Wednesday", dayFullName_T5: "Thursday", dayFullName_T6: "Friday", dayFullName_T7: "Saturday", dayFullName_CN: "Sunday",
             dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
             off: "OFF", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
@@ -612,7 +622,7 @@
             dayTitle: "Date", listTitle: "Registered Staff"
         },
         zh: {
-            realtime: "同步实时:", title: "排班注册", employeeId: "员工身份", placeholder: "示例：AnCafe...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.",
+            realtime: "同步实时:", title: "排班注册", employeeId: "员工身份", placeholder: "示例：AnCafe...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.", localMusicTitle: "从设备选择音乐",
             dayFullName_T2: "星期一", dayFullName_T3: "星期二", dayFullName_T4: "星期三", dayFullName_T5: "星期四", dayFullName_T6: "星期五", dayFullName_T7: "星期六", dayFullName_CN: "星期日",
             dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
             off: "OFF", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
@@ -621,7 +631,7 @@
             dayTitle: "日期", listTitle: "员工名单"
         },
         ko: {
-            realtime: "실시간 동기화:", title: "근무 교대 등록", employeeId: "직원 신원", placeholder: "예: AnCafe...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.",
+            realtime: "실시간 동기화:", title: "근무 교대 등록", employeeId: "직원 신원", placeholder: "예: AnCafe...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.", localMusicTitle: "기기에서 음악 선택",
             dayFullName_T2: "월요일", dayFullName_T3: "화요일", dayFullName_T4: "수요일", dayFullName_T5: "목요일", dayFullName_T6: "금요일", dayFullName_T7: "토요일", dayFullName_CN: "일요일",
             dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
             off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
@@ -630,7 +640,7 @@
             dayTitle: "날짜", listTitle: "직원 명단"
         },
         ja: {
-            realtime: "リアルタイム同期:", title: "シフト登録", employeeId: "従業員ID", placeholder: "例：AnCafe...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.",
+            realtime: "リアルタイム同期:", title: "シフト登録", employeeId: "従業員ID", placeholder: "例：AnCafe...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.", localMusicTitle: "デバイスから音楽を選択",
             dayFullName_T2: "月曜日", dayFullName_T3: "火曜日", dayFullName_T4: "水曜日", dayFullName_T5: "木曜日", dayFullName_T6: "金曜日", dayFullName_T7: "土曜日", dayFullName_CN: "日曜日",
             dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
             off: "OFF", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
@@ -1185,21 +1195,49 @@
     updateLanguageUI();
 
     // =========================================================
-    // 16. HỆ THỐNG PHÁT NHẠC NỀN (AUTO-PLAY TRÊN TƯƠNG TÁC)
+    // 16. HỆ THỐNG PHÁT NHẠC NỀN & UPLOAD TỪ THIẾT BỊ
     // =========================================================
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
     const musicOnIcon = document.getElementById('musicOnIcon');
     const musicOffIcon = document.getElementById('musicOffIcon');
+    const localMusicInput = document.getElementById('localMusicInput');
     
-    // Đặt âm lượng mặc định 30% cho dễ chịu
     if (bgMusic) bgMusic.volume = 0.3;
 
     let isMusicPlaying = false;
     let userHasInteracted = false;
 
+    // Xử lý khi tải file nhạc từ thiết bị (Trong Dashboard)
+    localMusicInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            bgMusic.src = fileURL;
+            
+            // Tự động phát khi chọn xong
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicOffIcon.classList.add('hidden');
+                musicOnIcon.classList.remove('hidden');
+                musicBtn.classList.add('music-active');
+                musicBtn.style.color = "var(--primary)";
+                showToast("Đã tải nhạc: " + file.name, "success");
+            }).catch(err => {
+                console.log('Lỗi phát nhạc:', err);
+                showToast("Không thể tự động phát, hãy nhấn nút loa", "warning");
+            });
+        }
+    });
+
     // Hàm Bật/Tắt nhạc thủ công
     function toggleMusic() {
+        // Kiểm tra xem đã có nhạc chưa
+        if (!bgMusic.src || bgMusic.src === window.location.href) {
+            showToast("Vui lòng vào Khu vực Quản lý chọn nhạc trước!", "warning");
+            return;
+        }
+
         if (isMusicPlaying) {
             bgMusic.pause();
             musicOnIcon.classList.add('hidden');
@@ -1218,27 +1256,11 @@
 
     // Sự kiện click nút Music
     musicBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Ngăn sự kiện click bị nổi bọt
-        userHasInteracted = true; // Đánh dấu đã tương tác
+        e.stopPropagation(); 
+        userHasInteracted = true;
         toggleMusic();
     });
 
-    // Hàm tự động bật nhạc khi có tương tác đầu tiên bất kỳ
-    function handleFirstInteraction() {
-        if (!userHasInteracted) {
-            userHasInteracted = true;
-            toggleMusic();
-        }
-        // Gỡ bỏ Listener để không bị lặp lại ở các lần click sau
-        ['click', 'touchstart', 'keydown'].forEach(evt => {
-            document.removeEventListener(evt, handleFirstInteraction);
-        });
-    }
-
-    // Đăng ký Listener toàn cục cho cú chạm/click/phím đầu tiên
-    ['click', 'touchstart', 'keydown'].forEach(evt => {
-        document.addEventListener(evt, handleFirstInteraction, { once: true });
-    });
 </script>
 
 </body>
