@@ -108,6 +108,10 @@
         .theme-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-shrink: 0; }
         .theme-toggle:active { transform: scale(0.9) rotate(15deg); }
 
+        /* Animation cho Nút Phát Nhạc */
+        .music-active svg { animation: note-bounce 1.2s ease-in-out infinite alternate; color: var(--primary); }
+        @keyframes note-bounce { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-2px) scale(1.1); } }
+
         @media (max-width: 600px) {
             .header { flex-direction: column; gap: 16px; align-items: stretch; }
             .brand-group { width: 100%; justify-content: space-between; align-items: center; }
@@ -282,7 +286,7 @@
         .stat-label { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; position: relative; z-index: 2; }
         .bento-icon { position: absolute; top: 50%; right: -10px; transform: translateY(-50%) scale(3.5); color: var(--primary); opacity: 0.05; pointer-events: none; z-index: 1; }
 
-        .action-dock { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 28px; border: 1px solid var(--border-glass); box-shadow: inset 0 4px 15px rgba(0,0,0,0.3); display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+        .action-dock { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 28px; border: 1px solid var(--border-glass); box-shadow: inset 0 4px 15px rgba(0,0,0,0.3); display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
         .dock-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px 8px; border-radius: 20px; background: var(--bg-glass); color: var(--text-main); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; border: 1px solid transparent; position: relative; overflow: hidden; text-align: center; }
         .dock-btn::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; border-radius: 3px; background: currentColor; opacity: 0; transition: 0.3s; }
         .dock-btn:hover { background: var(--bg-glass-heavy); }
@@ -356,6 +360,12 @@
 
 <body>
 
+<!-- THẺ AUDIO CHỨA NHẠC NỀN -->
+<audio id="bgMusic" loop>
+    <!-- Bạn có thể thay link MP3 khác vào đây -->
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+</audio>
+
 <canvas id="bg-canvas"></canvas>
 <div class="mesh-blob blob-1"></div>
 <div class="mesh-blob blob-2"></div>
@@ -380,6 +390,21 @@
         </div>
         
         <div class="header-controls">
+            <!-- NÚT ĐIỀU KHIỂN NHẠC BẬT/TẮT -->
+            <button class="theme-toggle" id="musicBtn" aria-label="Toggle Music" style="color: var(--text-muted);">
+                <svg id="musicOnIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+                <svg id="musicOffIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+            </button>
+
             <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -538,20 +563,9 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> 
                     <span data-i18n="cleanup">Dọn Dẹp</span>
                 </div>
-                
-                <!-- 2 Nút Mới -->
-                <div class="dock-btn" id="bannerBtn" style="color: #a855f7;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> 
-                    <span data-i18n="setBanner">Banner</span>
-                </div>
-                <div class="dock-btn" id="voiceBtn" style="color: #f59e0b;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg> 
-                    <span data-i18n="uploadVoice">Voice MP3</span>
-                </div>
             </div>
-            
-            <input type="file" id="bannerInput" accept="image/*" class="hidden">
-            <input type="file" id="voiceInput" accept="audio/mp3, audio/mpeg" class="hidden">
+
+            <div id="priorityAdminContainer"></div>
 
             <div class="table-container">
                 <div id="excelTable" class="table-wrapper"></div>
@@ -561,7 +575,7 @@
 </div>
 
 <footer>
-    © 2026 An Café WorkShift <span class="pro-text">Pro</span> Enterprise.<br>
+    © bản quyền 2026 DangTung. WorkShift <span class="pro-text">Pro</span> Enterprise.<br>
     <span data-i18n="designed">Designed & Engineered by</span> <strong>Dang Tung</strong>. <span data-i18n="rights">All rights reserved.</span>
 </footer>
 
@@ -586,7 +600,7 @@
             off: "OFF", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
             supportTitle: "Trung Tâm Thông Báo", 
             supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
-            dayTitle: "Ngày", listTitle: "Danh sách nhân sự đăng ký", setBanner: "Đổi Banner", uploadVoice: "Tải Voice"
+            dayTitle: "Ngày", listTitle: "Danh sách nhân sự đăng ký"
         },
         en: {
             realtime: "Realtime sync:", title: "Shift Registration", employeeId: "Employee Identity", placeholder: "Example: AnCafe...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.",
@@ -595,7 +609,7 @@
             off: "OFF", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
             supportTitle: "Notification Center", 
             supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>. We will address and resolve them immediately.",
-            dayTitle: "Date", listTitle: "Registered Staff", setBanner: "Set Banner", uploadVoice: "Upload Voice"
+            dayTitle: "Date", listTitle: "Registered Staff"
         },
         zh: {
             realtime: "同步实时:", title: "排班注册", employeeId: "员工身份", placeholder: "示例：AnCafe...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.",
@@ -604,7 +618,7 @@
             off: "OFF", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
             supportTitle: "通知中心", 
             supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>。我们将立即处理并解决。",
-            dayTitle: "日期", listTitle: "员工名单", setBanner: "设置横幅", uploadVoice: "上传语音"
+            dayTitle: "日期", listTitle: "员工名单"
         },
         ko: {
             realtime: "실시간 동기화:", title: "근무 교대 등록", employeeId: "직원 신원", placeholder: "예: AnCafe...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.",
@@ -613,7 +627,7 @@
             off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
             supportTitle: "알림 센터", 
             supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
-            dayTitle: "날짜", listTitle: "직원 명단", setBanner: "배너 설정", uploadVoice: "음성 업로드"
+            dayTitle: "날짜", listTitle: "직원 명단"
         },
         ja: {
             realtime: "リアルタイム同期:", title: "シフト登録", employeeId: "従業員ID", placeholder: "例：AnCafe...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.",
@@ -622,7 +636,7 @@
             off: "OFF", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
             supportTitle: "通知センター", 
             supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
-            dayTitle: "日付", listTitle: "スタッフリスト", setBanner: "バナー設定", uploadVoice: "音声アップロード"
+            dayTitle: "日付", listTitle: "スタッフリスト"
         }
     };
 
@@ -768,14 +782,12 @@
             charIndex++;
         }
 
-        let typeSpeed = isDeletingSlogan ? 30 : 60; // Tốc độ xóa và tốc độ gõ
+        let typeSpeed = isDeletingSlogan ? 30 : 60;
 
         if (!isDeletingSlogan && charIndex === currentSlogan.length) {
-            // Khi gõ xong 1 câu, dừng lại 2 giây để người dùng đọc
             typeSpeed = 2000;
             isDeletingSlogan = true;
         } else if (isDeletingSlogan && charIndex === 0) {
-            // Khi xóa xong, dừng lại 0.5s rồi chuyển câu tiếp theo
             isDeletingSlogan = false;
             sloganIndex = (sloganIndex + 1) % sloganTexts.length;
             typeSpeed = 500;
@@ -783,7 +795,6 @@
 
         setTimeout(typeWriterEffect, typeSpeed);
     }
-    // Khởi chạy hiệu ứng sau khi load 1s
     setTimeout(typeWriterEffect, 1000);
 
 
@@ -802,7 +813,7 @@
     closeSupportBtn.addEventListener('click', () => { supportModal.classList.add('hidden'); });
     supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.add('hidden'); });
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (CUSTOM DROPDOWN UI MỚI) ---
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
         const fullDayName = t('dayFullName_' + dayName); const shortDayName = t('dayShort_' + dayName); const offText = t('off');
@@ -863,7 +874,7 @@
         }
     });
 
-    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG (UI CAO CẤP MỚI) ---
+    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG ---
     let manualLock = null;
     onValue(ref(db, "settings/lock"), snap => { manualLock = snap.exists() ? snap.val() : null; updateStatusUI(); });
 
@@ -904,7 +915,7 @@
         }
     }
 
-    // --- 9. XỬ LÝ SỰ KIỆN GỬI FORM LÊN FIREBASE ---
+    // --- 9. XỬ LÝ SỰ KIỆN GỬI FORM ---
     document.getElementById("submitBtn").onclick = async () => {
         const nameInput = document.getElementById("name"); const employeeName = nameInput.value.trim();
         if(!employeeName) { nameInput.focus(); return showToast(t('placeholder'), "warning"); }
@@ -940,7 +951,7 @@
         }
     };
 
-    // --- 10. ĐIỀU HƯỚNG GIỮA KHU VỰC USER VÀ MANAGER ---
+    // --- 10. ĐIỀU HƯỚNG MANAGER ---
     document.getElementById("managerBtn").onclick = () => {
         document.getElementById("userCard").classList.add("hidden"); document.getElementById("managerBox").classList.remove("hidden"); initSwipeTrail();
     };
@@ -950,7 +961,7 @@
         document.getElementById("userCard").classList.remove("hidden"); document.getElementById("loginSection").classList.remove("hidden");
     };
 
-    // --- 11. XỬ LÝ VUỐT NGANG ẨN & VỆT KÉO ---
+    // --- 11. VUỐT ĐĂNG NHẬP ---
     let startX = 0; let isSwiping = false; let swipeTriggered = false; let trailPoints = [];
     const swipeZone = document.getElementById('swipeZone'); const trailCanvas = document.getElementById('swipeTrailCanvas'); const tCtx = trailCanvas.getContext('2d');
 
@@ -997,7 +1008,7 @@
         showToast("Welcome", "success"); document.getElementById("loginSection").classList.add("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); fetchAndRenderAdminData();
     }
 
-    // --- 12. LOGIC DASHBOARD QUẢN TRỊ VIÊN ---
+    // --- 12. LOGIC DASHBOARD QUẢN TRỊ ---
     let rawExcelDataExport = ""; 
     async function fetchAndRenderAdminData() {
         const tableContainer = document.getElementById("excelTable"); 
@@ -1009,29 +1020,68 @@
                 tableContainer.innerHTML = `<div style="padding: 40px; color: var(--text-muted); text-align: center; font-weight: 600;">${t('emptyData')}</div>`; 
                 document.getElementById("totalUsers").innerText = "0"; 
                 document.getElementById("totalShifts").innerText = "0"; 
+                document.getElementById("priorityAdminContainer").innerHTML = "";
                 return;
             }
             
             const data = snapshot.val() || {}; 
             
-            // LOGIC LỌC TÊN ƯU TIÊN VÀ SẮP XẾP LÊN ĐẦU
             const isSpecialAdmin = (name) => {
                 const n = name.toLowerCase();
                 return n.includes('tùng') || n.includes('tung');
             };
             
-            const sortedNames = Object.keys(data).sort((a, b) => {
-                const aAdmin = isSpecialAdmin(a);
-                const bAdmin = isSpecialAdmin(b);
-                if (aAdmin && !bAdmin) return -1;
-                if (!aAdmin && bAdmin) return 1;
-                return a.localeCompare(b);
-            });
+            const allNames = Object.keys(data).sort((a, b) => a.localeCompare(b));
+            const adminNames = allNames.filter(isSpecialAdmin);
             
-            let countUsers = sortedNames.length; 
+            let countUsers = allNames.length; 
             let countShifts = 0;
             
-            let htmlTable = `<table><thead><tr><th style="width: 100px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">${t('listTitle') || 'Danh sách nhân sự đăng ký'}</th></tr></thead><tbody>`;
+            const priorityContainer = document.getElementById("priorityAdminContainer");
+            if (adminNames.length > 0) {
+                let adminHtml = `<div style="background: linear-gradient(145deg, var(--bg-glass-heavy) 0%, rgba(220, 38, 38, 0.05) 100%); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 24px; padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px var(--primary-glow); position: relative; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--primary); opacity: 0.1; filter: blur(30px); border-radius: 50%;"></div>
+                    <h3 style="color: var(--primary); margin-bottom: 16px; font-size: 16px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-weight: 800; position: relative; z-index: 2;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        Lịch Làm Việc Quản Lý
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2;">`;
+
+                adminNames.forEach(adminName => {
+                    const adminData = data[adminName];
+                    const lichData = adminData?.lich || {};
+                    let hasShifts = false;
+                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+
+                    DAYS.forEach(day => {
+                        if (lichData[day]) {
+                            hasShifts = true;
+                            const shiftInfoObj = SHIFTS.find(s => s.id === lichData[day]);
+                            const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
+                            shiftsHtml += `<div style="background: var(--bg-glass-heavy); padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border-glass); display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-soft);">
+                                <span style="font-weight: 800; font-size: 12px; color: var(--text-main); text-transform: uppercase;">${t('dayShort_' + day)}</span>
+                                <span class="shift-badge ${cssBadgeClass}" style="box-shadow: none; border: none; padding: 0;">${lichData[day]}</span>
+                            </div>`;
+                        }
+                    });
+                    shiftsHtml += `</div>`;
+
+                    if (hasShifts) {
+                        adminHtml += `
+                            <div>
+                                <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px; color: var(--primary);">${adminName} <span style="font-size: 9px; background: var(--primary); color: white; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 6px; letter-spacing: 0.5px;">ADMIN</span></div>
+                                ${shiftsHtml}
+                            </div>
+                        `;
+                    }
+                });
+                adminHtml += `</div></div>`;
+                priorityContainer.innerHTML = adminHtml;
+            } else {
+                priorityContainer.innerHTML = '';
+            }
+
+            let htmlTable = `<table><thead><tr><th style="width: 100px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
             rawExcelDataExport = `${t('dayTitle') || 'Ngày'}\t${t('listTitle') || 'Danh sách nhân sự đăng ký'}\n`;
             
             DAYS.forEach(day => {
@@ -1039,29 +1089,19 @@
                 let dayShiftsHTML = [];
                 let dayShiftsExport = [];
                 
-                sortedNames.forEach(employeeName => {
+                allNames.forEach(employeeName => {
                     const employeeData = data[employeeName] || {};
                     const lichData = (employeeData && typeof employeeData === 'object') ? employeeData.lich : null;
                     const shiftRegistered = lichData ? lichData[day] : null;
                     
                     if (shiftRegistered) {
                         countShifts++;
-                        const shiftInfoObj = SHIFTS.find(s => s.id === shiftRegistered);
-                        const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
+                        dayShiftsExport.push(`${employeeName} (${shiftRegistered})`);
                         
-                        // Tag ui style cho từng nhân viên đăng ký ca
-                        const isAdmin = isSpecialAdmin(employeeName);
-                        if (isAdmin) {
-                            dayShiftsHTML.push(`
-                                <div style="display: inline-flex; align-items: center; background: var(--primary-light); padding: 4px 8px; border-radius: 8px; margin: 4px 8px 4px 0; border: 1px solid rgba(239, 68, 68, 0.4); box-shadow: 0 0 10px var(--primary-glow);">
-                                    <div style="display: inline-flex; align-items: flex-start; margin-right: 8px;">
-                                        <span style="font-weight: 800; color: var(--primary);">${employeeName}</span>
-                                        <span style="font-size: 8px; font-weight: 800; background: var(--primary); color: white; padding: 2px 4px; border-radius: 4px; margin-left: 4px; margin-top: -2px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Admin</span>
-                                    </div>
-                                    <span class="shift-badge ${cssBadgeClass}" style="transform: scale(0.9); padding: 4px 8px;">${shiftRegistered}</span>
-                                </div>
-                            `);
-                        } else {
+                        if (!isSpecialAdmin(employeeName)) {
+                            const shiftInfoObj = SHIFTS.find(s => s.id === shiftRegistered);
+                            const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
+                            
                             dayShiftsHTML.push(`
                                 <div style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 8px; margin: 4px 8px 4px 0; border: 1px solid var(--border-glass);">
                                     <span style="font-weight: 700; margin-right: 8px;">${employeeName}</span>
@@ -1069,8 +1109,6 @@
                                 </div>
                             `);
                         }
-                        
-                        dayShiftsExport.push(`${employeeName} (${shiftRegistered})`);
                     }
                 });
                 
@@ -1100,43 +1138,6 @@
     document.getElementById("lockBtn").onclick = async () => { if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), true); showToast("Locked", "warning"); } };
     document.getElementById("clearBtn").onclick = async () => {
         if(confirm("DANGER: Are you sure?")) { const validationPin = prompt("Enter PIN:"); if(validationPin === "2005") { await remove(ref(db,"dangKy")); showToast("Cleared", "success"); fetchAndRenderAdminData(); } else { showToast("Invalid PIN", "error"); } }
-    };
-
-    // --- UPLOAD BANNER & VOICE MP3 LOGIC ---
-    document.getElementById("bannerBtn").onclick = () => {
-        document.getElementById("bannerInput").click();
-    };
-    
-    document.getElementById("voiceBtn").onclick = () => {
-        document.getElementById("voiceInput").click();
-    };
-
-    document.getElementById("bannerInput").onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            showToast("Đang xử lý Banner...", "success");
-            console.log("Banner file selected:", file.name);
-            
-            // TODO: Khởi tạo Storage của Firebase và upload tại đây
-            // const storageRef = ref(storage, 'banners/' + file.name);
-            // uploadBytes(storageRef, file).then(...);
-            
-            e.target.value = ''; // Reset input để có thể chọn lại cùng file
-        }
-    };
-
-    document.getElementById("voiceInput").onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            showToast("Đang tải lên Voice MP3...", "success");
-            console.log("Voice file selected:", file.name);
-            
-            // TODO: Khởi tạo Storage của Firebase và upload tại đây
-            // const storageRef = ref(storage, 'voices/' + file.name);
-            // uploadBytes(storageRef, file).then(...);
-            
-            e.target.value = ''; // Reset input
-        }
     };
 
     // --- 14. HÀM TIỆN ÍCH (UTILITIES) ---
@@ -1182,6 +1183,62 @@
         } requestAnimationFrame(updatePhysics);
     }
     updateLanguageUI();
+
+    // =========================================================
+    // 16. HỆ THỐNG PHÁT NHẠC NỀN (AUTO-PLAY TRÊN TƯƠNG TÁC)
+    // =========================================================
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicOnIcon = document.getElementById('musicOnIcon');
+    const musicOffIcon = document.getElementById('musicOffIcon');
+    
+    // Đặt âm lượng mặc định 30% cho dễ chịu
+    if (bgMusic) bgMusic.volume = 0.3;
+
+    let isMusicPlaying = false;
+    let userHasInteracted = false;
+
+    // Hàm Bật/Tắt nhạc thủ công
+    function toggleMusic() {
+        if (isMusicPlaying) {
+            bgMusic.pause();
+            musicOnIcon.classList.add('hidden');
+            musicOffIcon.classList.remove('hidden');
+            musicBtn.classList.remove('music-active');
+            musicBtn.style.color = "var(--text-muted)";
+        } else {
+            bgMusic.play().catch(e => console.log('Audio play failed:', e));
+            musicOffIcon.classList.add('hidden');
+            musicOnIcon.classList.remove('hidden');
+            musicBtn.classList.add('music-active');
+            musicBtn.style.color = "var(--primary)";
+        }
+        isMusicPlaying = !isMusicPlaying;
+    }
+
+    // Sự kiện click nút Music
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Ngăn sự kiện click bị nổi bọt
+        userHasInteracted = true; // Đánh dấu đã tương tác
+        toggleMusic();
+    });
+
+    // Hàm tự động bật nhạc khi có tương tác đầu tiên bất kỳ
+    function handleFirstInteraction() {
+        if (!userHasInteracted) {
+            userHasInteracted = true;
+            toggleMusic();
+        }
+        // Gỡ bỏ Listener để không bị lặp lại ở các lần click sau
+        ['click', 'touchstart', 'keydown'].forEach(evt => {
+            document.removeEventListener(evt, handleFirstInteraction);
+        });
+    }
+
+    // Đăng ký Listener toàn cục cho cú chạm/click/phím đầu tiên
+    ['click', 'touchstart', 'keydown'].forEach(evt => {
+        document.addEventListener(evt, handleFirstInteraction, { once: true });
+    });
 </script>
 
 </body>
