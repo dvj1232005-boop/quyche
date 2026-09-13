@@ -7,375 +7,1215 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="WorkShift Pro">
-    <meta name="theme-color" content="#020617">
+    <meta name="theme-color" content="#03130d">
     
-    <title>WorkShift Pro Enterprise | Final</title>
+    <title>WorkShift Pro Enterprise | Cozy Christmas Edition</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
 
     <style>
         /* =========================================================
-           01. DESIGN SYSTEM & CSS VARIABLES
+           01. CHRISTMAS DESIGN SYSTEM & TOKENS
         ========================================================= */
-        :root[data-theme="light"] {
-            --primary: #dc2626; --primary-hover: #b91c1c; --primary-light: #fef2f2; --primary-glow: rgba(220, 38, 38, 0.3);
-            --bg-base: #f8fafc; --bg-glass: rgba(255, 255, 255, 0.75); --bg-glass-heavy: rgba(255, 255, 255, 0.95);
-            --text-main: #0f172a; --text-muted: #64748b;
-            --border-glass: rgba(0, 0, 0, 0.08); --input-bg: rgba(241, 245, 249, 0.8);
-            --success: #10b981; --success-bg: rgba(16, 185, 129, 0.1);
-            --warning: #f59e0b; --warning-bg: rgba(245, 158, 11, 0.1);
-            --danger: #ef4444;  --danger-bg: rgba(239, 68, 68, 0.1);
-            --info: #3b82f6;    --info-bg: rgba(59, 130, 246, 0.1);
-            --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.07); --shadow-card: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-            --canvas-dot: #cbd5e1; --canvas-line: rgba(203, 213, 225, 0.4);
-            --blob-1: #8b5cf6; --blob-2: #ec4899;
+        :root[data-theme="dark"], :root[data-theme="light"] {
+            --bg-night: #03130d;
+            --bg-night-gradient: radial-gradient(circle at 50% 12%, #123d29 0%, #062116 45%, #020d08 100%);
+            
+            --xmas-red-dark: #6d0a0d;
+            --xmas-red: #a7181c;
+            --xmas-red-glow: #e02424;
+            --xmas-red-light: #fef2f2;
+            
+            --pine-green-deep: #051a11;
+            --pine-green: #0a2f1e;
+            --pine-green-card: #0c3824;
+            --pine-green-light: #165338;
+            --pine-border: rgba(52, 211, 153, 0.22);
+            
+            --gold-base: #f59e0b;
+            --gold-light: #fde68a;
+            --gold-glow: rgba(245, 158, 11, 0.45);
+            --gold-border: rgba(245, 158, 11, 0.4);
+            --gold-gradient: linear-gradient(135deg, #ffe082 0%, #d97706 100%);
+            
+            --snow-white: #ffffff;
+            --snow-soft: #e2e8f0;
+            --snow-cap-shadow: rgba(3, 19, 13, 0.45);
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --input-bg: rgba(6, 33, 22, 0.85);
+            
+            --primary: #ef4444;
+            --primary-hover: #dc2626;
+            --primary-light: rgba(239, 68, 68, 0.15);
+            --primary-glow: rgba(239, 68, 68, 0.5);
+            
+            --success: #34d399;
+            --success-bg: rgba(16, 185, 129, 0.2);
+            --warning: #fbbf24;
+            --warning-bg: rgba(245, 158, 11, 0.2);
+            --danger: #f87171;
+            --danger-bg: rgba(239, 68, 68, 0.2);
+            --info: #60a5fa;
+            --info-bg: rgba(59, 130, 246, 0.2);
+            
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+            --canvas-dot: #ffffff;
+            --canvas-line: rgba(255, 255, 255, 0.15);
+            
+            --candy-cane-pattern: repeating-linear-gradient(45deg, #ffffff 0px, #ffffff 12px, #dc2626 12px, #dc2626 24px);
         }
 
-        :root[data-theme="dark"] {
-            --primary: #ef4444; --primary-hover: #f87171; --primary-light: rgba(239, 68, 68, 0.15); --primary-glow: rgba(239, 68, 68, 0.6);
-            --bg-base: #020617; --bg-glass: rgba(15, 23, 42, 0.6); --bg-glass-heavy: rgba(15, 23, 42, 0.85);
-            --text-main: #f8fafc; --text-muted: #94a3b8;
-            --border-glass: rgba(255, 255, 255, 0.1); --input-bg: rgba(30, 41, 59, 0.6);
-            --success: #34d399; --success-bg: rgba(16, 185, 129, 0.15);
-            --warning: #fbbf24; --warning-bg: rgba(245, 158, 11, 0.15);
-            --danger: #f87171;  --danger-bg: rgba(239, 68, 68, 0.15);
-            --info: #60a5fa;    --info-bg: rgba(59, 130, 246, 0.15);
-            --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.4); --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            --canvas-dot: #334155; --canvas-line: rgba(51, 65, 85, 0.5);
-            --blob-1: #6366f1; --blob-2: #f43f5e;
+        /* Tương thích Light Mode nhưng vẫn giữ sắc thái ấm áp của Giáng sinh */
+        :root[data-theme="light"] {
+            --bg-night: #0a2618;
+            --bg-night-gradient: radial-gradient(circle at 50% 12%, #1b4f36 0%, #0d3522 50%, #061e13 100%);
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --canvas-dot: #fde68a;
         }
 
         /* =========================================================
-           02. RESET & BASE
+           02. BASE RESETS & SCROLLBAR
         ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-base); color: var(--text-main);
-            transition: background-color 0.5s ease, color 0.5s ease;
-            min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; position: relative;
-            -webkit-tap-highlight-color: transparent; -webkit-font-smoothing: antialiased;
+            background: var(--bg-night);
+            background-image: var(--bg-night-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
         }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
         input, select, textarea, button, input[type="text"] {
-            font-size: 16px !important; touch-action: manipulation;
+            font-size: 16px !important;
+            touch-action: manipulation;
         }
 
         /* =========================================================
-           03. BACKGROUND EFFECTS
+           03. ATMOSPHERIC SCENERY (VILLAGE, MOON & SNOW)
         ========================================================= */
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
-        .mesh-blob { position: fixed; border-radius: 50%; filter: blur(120px); -webkit-filter: blur(120px); z-index: 0; opacity: 0.35; animation: blob-bounce 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
-        .blob-1 { top: -10%; left: -10%; width: 55vw; height: 55vw; background: var(--blob-1); animation-delay: 0s; }
-        .blob-2 { bottom: -20%; right: -10%; width: 50vw; height: 50vw; background: var(--blob-2); animation-delay: -5s; }
-
-        @keyframes blob-bounce {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(5%, 10%) scale(1.1); }
-            100% { transform: translate(-5%, -5%) scale(0.9); }
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
         }
 
+        /* Trăng tròn sáng vằng vặc với silhouette xe tuần lộc Santa */
+        .scenery-sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .xmas-moon {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 124px;
+            height: 124px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fffdf0 0%, #fef08a 60%, rgba(254, 240, 138, 0.4) 100%);
+            box-shadow: 0 0 50px rgba(254, 240, 138, 0.8), 0 0 100px rgba(253, 224, 71, 0.4);
+            opacity: 0.92;
+        }
+        .santa-sleigh {
+            position: absolute;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-40%);
+            width: 150px;
+            height: 48px;
+            pointer-events: none;
+            opacity: 0.88;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            animation: sleighBob 5s ease-in-out infinite alternate;
+        }
+        @keyframes sleighBob {
+            0% { transform: translateX(-42%) translateY(0px) rotate(-2deg); }
+            100% { transform: translateX(-38%) translateY(6px) rotate(2deg); }
+        }
+
+        /* Làng tuyết & Rừng thông phủ tuyết phía dưới chân trang */
+        .scenery-village {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 240px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+            background-repeat: repeat-x;
+            background-position: bottom center;
+            background-size: cover;
+        }
+        .scenery-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+        .glow-1 { top: 10%; left: -10%; width: 50vw; height: 50vw; background: #047857; }
+        .glow-2 { bottom: 10%; right: -10%; width: 60vw; height: 60vw; background: #b91c1c; }
+
+        /* Khung chứa ứng dụng Mobile-first */
         .app-wrapper {
-            position: relative; z-index: 10; display: flex; flex-direction: column; min-height: 100vh; width: 100%; max-width: 700px; margin: 0 auto; padding: 0 16px;
-            padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom));
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            max-width: 580px;
+            margin: 0 auto;
+            padding: 0 14px;
+            padding-top: max(14px, env(safe-area-inset-top));
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
         }
 
         /* =========================================================
-           04. HEADER & BRANDING
+           04. HEADER BAR (CHRISMTAS ICONS & CAPSULES)
         ========================================================= */
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; gap: 16px; flex-wrap: wrap; }
-        .brand-group { display: flex; flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
-        
-        .brand-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; transition: transform 0.2s; }
-        .brand-logo:active { transform: scale(0.95); }
-        .brand-logo-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-        .brand-logo-title { font-weight: 800; font-size: 19px; letter-spacing: 0.5px; line-height: 1; text-transform: uppercase; color: var(--text-main); }
-        .brand-logo-sub { font-size: 9px; font-weight: 800; color: var(--primary); letter-spacing: 1px; line-height: 1; text-transform: uppercase; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 16px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .brand-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .brand-logo:active { transform: scale(0.96); }
 
-        .update-ticker { font-size: 11px; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px; background: var(--bg-glass); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); justify-content: center; }
-        .update-pulse { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: blink 1.5s infinite; flex-shrink: 0; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        .header-controls { display: flex; align-items: center; gap: 10px; }
-        
-        .lang-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); height: 38px; padding: 0 28px 0 14px; border-radius: 19px; font-weight: 700; font-family: inherit; font-size: 13px !important; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); outline: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: 0.3s; }
-        .lang-toggle:focus { border-color: var(--primary); }
-
-        .theme-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-shrink: 0; }
-        .theme-toggle:active { transform: scale(0.9) rotate(15deg); }
-
-        /* Animation cho Nút Phát Nhạc */
-        .music-active svg { animation: note-bounce 1.2s ease-in-out infinite alternate; color: var(--primary); }
-        @keyframes note-bounce { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-2px) scale(1.1); } }
-
-        @media (max-width: 600px) {
-            .header { flex-direction: column; gap: 16px; align-items: stretch; }
-            .brand-group { width: 100%; justify-content: space-between; align-items: center; }
-            .header-controls { width: 100%; justify-content: space-between; gap: 8px; }
-            .update-ticker { flex: 1; height: 44px; }
+        .brand-logo-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 14px rgba(255,255,255,0.4);
+            border: 2px solid var(--gold-base);
+        }
+        .brand-logo-badge svg { width: 22px; height: 22px; }
+        .brand-logo-badge .mini-santa-hat {
+            position: absolute;
+            top: -10px;
+            left: -8px;
+            width: 24px;
+            height: 24px;
+            transform: rotate(-18deg);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
         }
 
-        /* =========================================================
-           05. GLASS CARD & LINK HẤP DẪN & TYPEWRITER EFFECT
-        ========================================================= */
-        .card { background: var(--bg-glass-heavy); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border-radius: 32px; padding: 36px 28px; box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.1); border: 1px solid var(--border-glass); margin-bottom: 24px; animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; transform: translateY(30px); }
-        @keyframes scaleIn { to { opacity: 1; transform: translateY(0); } }
-        .card-header { text-align: center; margin-bottom: 32px; }
-        .card-title { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
-        
-        .ancafe-link {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            color: var(--primary); font-weight: 800; text-decoration: none; font-size: 14px;
-            padding: 8px 24px; border-radius: 20px;
-            background: var(--primary-light); border: 1px solid rgba(239, 68, 68, 0.2);
-            box-shadow: 0 4px 15px var(--primary-glow); 
+        .brand-logo-text { display: flex; flex-direction: column; }
+        .brand-logo-title {
+            font-weight: 900;
+            font-size: 17px;
+            letter-spacing: 0.8px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        }
+        .brand-logo-sub {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--gold-light);
+            letter-spacing: 1.2px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Language Toggle Pill */
+        .lang-toggle {
+            background: rgba(6, 33, 22, 0.85);
+            border: 1px solid var(--pine-border);
+            color: #ffffff;
+            height: 36px;
+            padding: 0 26px 0 12px;
+            border-radius: 18px;
+            font-weight: 800;
+            font-size: 13px !important;
+            cursor: pointer;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f59e0b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 9px center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+        .lang-toggle:focus { border-color: var(--gold-base); }
+
+        /* Christmas Bell Ring & Theme Buttons */
+        .theme-toggle {
+            background: rgba(6, 33, 22, 0.85);
+            border: 1px solid var(--pine-border);
+            color: var(--gold-light);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            margin-top: 8px; margin-bottom: 12px;
+            position: relative;
         }
-        .ancafe-link:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px var(--primary-glow); }
-        .ancafe-link:active { transform: translateY(0) scale(0.95); }
+        .theme-toggle:active { transform: scale(0.92); }
+        .theme-toggle.bell-btn-custom {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-color: #ef4444;
+            color: #ffffff;
+            box-shadow: 0 0 14px rgba(239, 68, 68, 0.5);
+        }
+        .bell-ring svg { animation: bellSwing 2.5s ease-in-out infinite; transform-origin: top center; }
+        @keyframes bellSwing {
+            0%, 100% { transform: rotate(0); }
+            10% { transform: rotate(18deg); }
+            20% { transform: rotate(-14deg); }
+            30% { transform: rotate(8deg); }
+            40% { transform: rotate(-6deg); }
+            50% { transform: rotate(0); }
+        }
 
-        /* Typewriter Effect CSS */
+        /* Realtime Emerald Capsule Bar */
+        .realtime-pill-bar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .update-ticker {
+            background: linear-gradient(90deg, rgba(8, 42, 28, 0.95) 0%, rgba(13, 62, 42, 0.95) 50%, rgba(8, 42, 28, 0.95) 100%);
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            padding: 8px 18px;
+            border-radius: 24px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #ffffff;
+            backdrop-filter: blur(12px);
+        }
+        .update-pulse {
+            width: 7px;
+            height: 7px;
+            background: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #34d399;
+            animation: pulseGlow 1.8s infinite;
+        }
+        @keyframes pulseGlow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+
+        /* =========================================================
+           05. MAIN CHRISTMAS CARD (RED VELVET & CANDY BORDER)
+        ========================================================= */
+        .card {
+            background: var(--pine-green-card);
+            border-radius: 28px;
+            border: 1px solid var(--pine-border);
+            padding: 24px 18px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-card);
+            position: relative;
+        }
+
+        /* Thẻ đỏ nhung Giáng sinh có viền kẹo gậy & tuyết phủ */
+        .xmas-hero-card {
+            background: radial-gradient(circle at 50% 20%, #991418 0%, #700a0d 65%, #490406 100%);
+            border-radius: 26px;
+            padding: 24px 16px;
+            position: relative;
+            margin-bottom: 22px;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55), inset 0 2px 10px rgba(255,255,255,0.15);
+            /* Candy Cane Border Simulation */
+            border: 5px solid transparent;
+            background-clip: padding-box;
+            outline: 5px solid transparent;
+        }
+        .xmas-hero-card::before {
+            content: '';
+            position: absolute;
+            top: -7px; left: -7px; right: -7px; bottom: -7px;
+            background: var(--candy-cane-pattern);
+            border-radius: 30px;
+            z-index: -1;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Lớp tuyết 3D đọng trên mép trên và mép dưới */
+        .snow-crest-top {
+            position: absolute;
+            top: -13px;
+            left: 12px;
+            right: 12px;
+            height: 18px;
+            background-repeat: repeat-x;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' fill='%23ffffff'%3E%3Cpath d='M0,0 Q15,18 30,8 Q45,20 60,10 Q75,19 90,8 Q105,18 120,0 Z'/%3E%3C/svg%3E");
+            background-size: 80px 18px;
+            filter: drop-shadow(0 3px 2px var(--snow-cap-shadow));
+            pointer-events: none;
+            z-index: 4;
+        }
+        .snow-crest-bottom {
+            position: absolute;
+            bottom: -11px;
+            left: 12px;
+            right: 12px;
+            height: 16px;
+            background-repeat: repeat-x;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 18' fill='%23ffffff'%3E%3Cpath d='M0,18 Q15,2 30,10 Q45,0 60,8 Q75,1 90,10 Q105,2 120,18 Z'/%3E%3C/svg%3E");
+            background-size: 80px 16px;
+            filter: drop-shadow(0 -2px 2px var(--snow-cap-shadow));
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        /* Mũ Noel trên góc Card */
+        .corner-santa-hat {
+            position: absolute;
+            top: -24px;
+            right: -10px;
+            width: 58px;
+            height: 58px;
+            z-index: 6;
+            pointer-events: none;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
+            animation: hatTilt 4s ease-in-out infinite alternate;
+        }
+        @keyframes hatTilt { 0% { transform: rotate(0deg); } 100% { transform: rotate(5deg); } }
+
+        /* Hộp quà & Người tuyết trang trí góc card */
+        .gift-decor-left {
+            position: absolute;
+            bottom: -10px;
+            left: -6px;
+            width: 62px;
+            height: 62px;
+            z-index: 6;
+            pointer-events: none;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.6));
+        }
+        .snowman-decor-right {
+            position: absolute;
+            bottom: -12px;
+            right: -4px;
+            width: 68px;
+            height: 76px;
+            z-index: 6;
+            pointer-events: none;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));
+            animation: snowmanWiggle 6s ease-in-out infinite;
+        }
+        @keyframes snowmanWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(3deg) scale(1.02); }
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+        .card-title {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 0 20px rgba(254, 240, 138, 0.3);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .snowflake-icon {
+            color: rgba(255,255,255,0.7);
+            animation: spinSlow 12s linear infinite;
+        }
+        @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+        /* Link ancafe.vn viền vàng đôi kiểu ảnh tham chiếu */
+        .ancafe-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #fffbeb;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 13.5px;
+            padding: 10px 24px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(120, 16, 20, 0.95) 0%, rgba(85, 9, 12, 0.95) 100%);
+            border: 2px solid #f59e0b;
+            box-shadow: 0 0 16px var(--gold-glow), inset 0 0 8px rgba(245, 158, 11, 0.3);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 4px;
+            margin-bottom: 8px;
+        }
+        .ancafe-link:hover { transform: scale(1.03); box-shadow: 0 0 22px rgba(245, 158, 11, 0.7); }
+        .ancafe-link:active { transform: scale(0.96); }
+
         .slogan-container {
-            display: flex; justify-content: center; align-items: center;
-            min-height: 24px; width: 100%; margin-bottom: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 20px;
+            width: 100%;
         }
         .slogan-text {
-            font-size: 13.5px; font-weight: 600; color: var(--text-muted); font-style: italic;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #fde68a;
+            font-style: italic;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
         .type-cursor {
-            font-size: 14px; color: var(--primary); font-weight: 800;
-            margin-left: 2px; animation: blinkCursor 0.7s infinite;
+            font-size: 13px;
+            color: #ffffff;
+            font-weight: 800;
+            margin-left: 2px;
+            animation: blinkCursor 0.7s infinite;
         }
-        @keyframes blinkCursor {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* =========================================================
-           06. PREMIUM STATUS PANEL
+           06. LOCK STATUS PILL (PREMIUM CHRISTMAS BADGE)
         ========================================================= */
+        #lockStatus {
+            margin-bottom: 22px;
+            position: relative;
+        }
         .status-panel {
-            display: flex; align-items: center; justify-content: center; gap: 20px;
-            padding: 20px 24px; border-radius: 24px; margin-bottom: 32px;
-            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
-            box-shadow: var(--shadow-soft); text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 14px 20px;
+            border-radius: 22px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            /* Viền kẹo giáng sinh mảnh */
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            outline: 3px solid transparent;
         }
-        
-        .status-panel::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            animation: scan 3s linear infinite; pointer-events: none;
+        .status-panel::before {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            background: var(--candy-cane-pattern);
+            border-radius: 25px;
+            z-index: -1;
         }
-        @keyframes scan { 0% { left: -100%; } 100% { left: 200%; } }
 
-        .status-panel.sys-open {
-            border-color: rgba(16, 185, 129, 0.4); background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), transparent);
-            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.1), inset 0 0 0 1px rgba(16, 185, 129, 0.15);
-        }
         .status-panel.sys-locked {
-            border-color: rgba(239, 68, 68, 0.4); background: linear-gradient(145deg, rgba(239, 68, 68, 0.1), transparent);
-            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.1), inset 0 0 0 1px rgba(239, 68, 68, 0.15);
+            background: linear-gradient(135deg, #7c0a0d 0%, #4a0406 100%);
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+        .status-panel.sys-open {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+            border-color: rgba(52, 211, 153, 0.5);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
         }
 
         .st-icon-box {
-            position: relative; width: 56px; height: 56px; border-radius: 20px;
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+        }
+        .sys-locked .st-icon-box {
+            background: #b91c1c;
+            border: 2px solid #f87171;
+            color: #ffffff;
+        }
+        .sys-open .st-icon-box {
+            background: #059669;
+            border: 2px solid #34d399;
+            color: #ffffff;
+        }
+
+        .st-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            animation: boxPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+            z-index: -1;
+        }
+        .sys-open .st-pulse { background: rgba(52, 211, 153, 0.6); }
+        .sys-locked .st-pulse { background: rgba(248, 113, 113, 0.6); }
+        @keyframes boxPing { 75%, 100% { transform: scale(1.5); opacity: 0; } }
+
+        .st-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+        .st-title { font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.8px; color: #ffffff; }
+        .st-desc { font-size: 12px; font-weight: 600; color: #fde68a; }
+
+        /* =========================================================
+           07. EMPLOYEE INPUT WITH CHRISTMAS TREE
+        ========================================================= */
+        .input-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .input-label svg { color: var(--gold-base); }
+        
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 24px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 16px 48px 16px 46px;
+            border-radius: 20px;
+            border: 2px solid var(--pine-border);
+            background: rgba(4, 25, 17, 0.9);
+            color: #ffffff;
+            font-family: inherit;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-control::placeholder { color: #64748b; font-weight: 500; }
+        .form-control:focus {
+            background: rgba(6, 38, 26, 0.95);
+            border-color: #34d399;
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.35);
+            outline: none;
+        }
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-base);
+            pointer-events: none;
+        }
+        /* Cây thông nhỏ trang trí bên phải thanh input */
+        .input-tree-decor {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* =========================================================
+           08. WEEKLY SCHEDULE CARDS (PINE GREEN + FAIRY LIGHTS)
+        ========================================================= */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+
+        .day-card {
+            background: linear-gradient(180deg, #093322 0%, #052015 100%);
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            border-radius: 18px;
+            padding: 14px 12px;
+            position: relative;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+            transition: all 0.3s ease;
+        }
+        .day-card:hover { transform: translateY(-2px); border-color: var(--gold-base); }
+
+        /* Lớp tuyết đọng mini trên đỉnh mỗi card ngày */
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 8px;
+            right: 8px;
+            height: 9px;
+            background-repeat: repeat-x;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10' fill='%23ffffff'%3E%3Cpath d='M0,0 Q10,10 20,4 Q30,10 40,5 Q50,9 60,0 Z'/%3E%3C/svg%3E");
+            background-size: 40px 9px;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+            pointer-events: none;
             z-index: 2;
         }
-        .sys-open .st-icon-box { background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: var(--success); box-shadow: 0 0 25px rgba(16, 185, 129, 0.3); }
-        .sys-locked .st-icon-box { background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: var(--danger); box-shadow: 0 0 25px rgba(239, 68, 68, 0.3); }
 
-        .st-pulse { position: absolute; width: 100%; height: 100%; border-radius: inherit; animation: boxPing 2s cubic-bezier(0, 0, 0.2, 1) infinite; z-index: -1; }
-        .sys-open .st-pulse { background: rgba(16, 185, 129, 0.6); }
-        .sys-locked .st-pulse { background: rgba(239, 68, 68, 0.6); }
-        @keyframes boxPing { 75%, 100% { transform: scale(1.6); opacity: 0; } }
-
-        .st-info { display: flex; flex-direction: column; gap: 4px; z-index: 2; text-align: left; }
-        .st-title { font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; }
-        .sys-open .st-title { color: var(--success); text-shadow: 0 0 10px rgba(16, 185, 129, 0.4); } 
-        .sys-locked .st-title { color: var(--danger); text-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
-        .st-desc { font-size: 13px; font-weight: 600; color: var(--text-muted); line-height: 1.2; letter-spacing: 0.3px;}
-
-        /* =========================================================
-           07. FORMS & DROPDOWN UI
-        ========================================================= */
-        .input-wrapper { position: relative; margin-bottom: 24px; }
-        .input-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        .input-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; transition: 0.3s; }
-        .form-control { width: 100%; padding: 18px 20px 18px 52px; border-radius: 18px; border: 2px solid var(--border-glass); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-weight: 600; transition: 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); -webkit-appearance: none; appearance: none; }
-        .form-control:focus { background: var(--bg-glass-heavy); border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); outline: none; }
-        .form-control:focus + .input-icon { color: var(--primary); }
-
-        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 32px; }
-        
-        .day-card { 
-            background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 16px; 
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); 
-            position: relative; z-index: 1;
+        /* Dây đèn nhấp nháy fairy lights */
+        .fairy-lights {
+            position: absolute;
+            top: 2px;
+            left: 6px;
+            right: 6px;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+            z-index: 3;
         }
-        .day-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
-        .day-card:focus-within { border-color: var(--primary); background: var(--bg-glass-heavy); box-shadow: 0 8px 24px var(--primary-glow); }
-        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 800; font-size: 13px; color: var(--text-main); }
-        .day-badge { font-size: 10px; padding: 4px 8px; border-radius: 6px; background: var(--border-glass); color: var(--text-muted); }
+        .fairy-bulb {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #fde047;
+            box-shadow: 0 0 6px #fde047;
+            animation: bulbTwinkle 2s infinite alternate;
+        }
+        .fairy-bulb:nth-child(2) { background: #f87171; box-shadow: 0 0 6px #f87171; animation-delay: 0.5s; }
+        .fairy-bulb:nth-child(3) { background: #34d399; box-shadow: 0 0 6px #34d399; animation-delay: 1s; }
+        .fairy-bulb:nth-child(4) { background: #60a5fa; box-shadow: 0 0 6px #60a5fa; animation-delay: 1.5s; }
+        @keyframes bulbTwinkle { 0% { opacity: 0.3; } 100% { opacity: 1; } }
 
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            color: #ffffff;
+        }
+        /* Tag hộp quà đỏ cho T2, T3... */
+        .day-badge {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: #ffffff;
+            border: 1px solid rgba(254, 202, 202, 0.4);
+            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* Custom Dropdown phong cách ngọc bích thông */
         .custom-dropdown { position: relative; width: 100%; font-family: inherit; }
         .dropdown-selected {
-            width: 100%; padding: 14px 16px; border-radius: 14px; 
-            border: 2px solid transparent; background: var(--input-bg); 
-            color: var(--text-main); font-weight: 800; font-size: 14px; 
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); user-select: none;
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            background: rgba(3, 20, 13, 0.85);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 13.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            user-select: none;
         }
         .dropdown-selected:active { transform: scale(0.97); }
-        .dropdown-selected .select-arrow { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); color: var(--text-muted); }
-        
-        .custom-dropdown.open .dropdown-selected { border-color: var(--primary); background: var(--bg-glass-heavy); box-shadow: 0 4px 20px var(--primary-light); }
-        .custom-dropdown.open .select-arrow { transform: rotate(180deg); color: var(--primary); }
-        
+        .dropdown-selected .select-arrow {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: var(--gold-base);
+        }
+        .custom-dropdown.open .dropdown-selected {
+            border-color: var(--gold-base);
+            box-shadow: 0 0 12px var(--gold-glow);
+        }
+        .custom-dropdown.open .select-arrow { transform: rotate(180deg); }
+
         .dropdown-options {
-            position: absolute; top: calc(100% + 8px); left: 0; right: 0;
-            background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
-            border-radius: 16px; padding: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-            z-index: 100; max-height: 220px; overflow-y: auto;
-            opacity: 0; visibility: hidden; transform: translateY(-10px) scale(0.95);
-            transform-origin: top center; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #082a1c;
+            border: 1px solid var(--gold-border);
+            border-radius: 14px;
+            padding: 6px;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.8);
+            z-index: 100;
+            max-height: 200px;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .custom-dropdown.open .dropdown-options { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-        
-        .dropdown-option { padding: 12px 16px; font-weight: 700; font-size: 14px; color: var(--text-main); border-radius: 10px; cursor: pointer; transition: 0.2s; margin-bottom: 4px; }
-        .dropdown-option:last-child { margin-bottom: 0; }
-        .dropdown-option:hover, .dropdown-option:active { background: var(--primary-light); color: var(--primary); padding-left: 20px; }
-        
-        .dropdown-options::-webkit-scrollbar { width: 5px; }
-        .dropdown-options::-webkit-scrollbar-thumb { background: var(--border-glass); border-radius: 10px; }
+        .dropdown-option {
+            padding: 10px 12px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 2px;
+        }
+        .dropdown-option:hover {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--gold-light);
+            padding-left: 16px;
+        }
 
-        .dropdown-selected.sel-c1 { background: var(--info-bg); color: var(--info); border-color: rgba(59, 130, 246, 0.4); }
-        .dropdown-selected.sel-c2 { background: var(--warning-bg); color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
-        .dropdown-selected.sel-c3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; border-color: rgba(168, 85, 247, 0.4); }
-        .dropdown-selected.sel-f  { background: var(--danger-bg); color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
-        .dropdown-selected.sel-double { background: var(--primary-light); color: var(--primary); border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 0 10px var(--primary-glow); }
-
-        /* =========================================================
-           08. BUTTONS & ACTIONS
-        ========================================================= */
-        .btn { width: 100%; padding: 18px; border-radius: 18px; font-family: inherit; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: white; box-shadow: 0 10px 20px -5px var(--primary-glow); }
-        .btn-primary:active:not(:disabled) { transform: scale(0.96); box-shadow: 0 4px 10px -5px var(--primary-glow); }
-        .btn-primary:disabled { opacity: 0.6; filter: grayscale(0.5); cursor: not-allowed; }
-        .btn-outline { background: transparent; border: 2px solid var(--border-glass); color: var(--text-main); margin-top: 12px; }
-        .btn-outline:active { transform: scale(0.96); background: var(--border-glass); }
-
-        /* =========================================================
-           09. BENTO DASHBOARD & TABLE
-        ========================================================= */
-        .dashboard-container { position: relative; }
-        .dashboard-container::before { content: ''; position: absolute; top: -20px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.5; }
-        .dashboard-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px dashed var(--border-glass); }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
-        .bento-card { background: linear-gradient(145deg, var(--bg-glass-heavy) 0%, rgba(15, 23, 42, 0.4) 100%); border: 1px solid var(--border-glass); border-radius: 24px; padding: 24px; box-shadow: var(--shadow-soft), inset 0 0 20px rgba(0,0,0,0.2); position: relative; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: transform 0.3s ease, box-shadow 0.3s ease; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 20px 20px; }
-        .bento-card::after { content: ''; position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); border-top-left-radius: 24px; opacity: 0.5; }
-        .bento-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 0 0 1px var(--primary-glow); }
-        .stat-val { font-size: 42px; font-weight: 800; color: var(--text-main); font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 8px; text-shadow: 0 0 15px var(--primary-glow); position: relative; z-index: 2; }
-        .stat-label { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; position: relative; z-index: 2; }
-        .bento-icon { position: absolute; top: 50%; right: -10px; transform: translateY(-50%) scale(3.5); color: var(--primary); opacity: 0.05; pointer-events: none; z-index: 1; }
-
-        .action-dock { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 28px; border: 1px solid var(--border-glass); box-shadow: inset 0 4px 15px rgba(0,0,0,0.3); display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
-        .dock-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px 8px; border-radius: 20px; background: var(--bg-glass); color: var(--text-main); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; border: 1px solid transparent; position: relative; overflow: hidden; text-align: center; }
-        .dock-btn::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; border-radius: 3px; background: currentColor; opacity: 0; transition: 0.3s; }
-        .dock-btn:hover { background: var(--bg-glass-heavy); }
-        .dock-btn:active { transform: scale(0.92); }
-        .dock-btn.success { color: var(--success); } .dock-btn.warning { color: var(--warning); } .dock-btn.info { color: var(--info); } .dock-btn.danger { color: var(--danger); }
-        .dock-btn:hover::before { opacity: 1; box-shadow: 0 0 10px currentColor; }
-        .dock-btn svg { width: 24px; height: 24px; filter: drop-shadow(0 0 5px currentColor); }
-
-        .table-container { border-radius: 24px; border: 1px solid var(--border-glass); background: var(--bg-glass); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: relative; }
-        .table-wrapper { overflow-x: auto; max-height: 400px; -webkit-overflow-scrolling: touch; }
-        .table-wrapper::-webkit-scrollbar { display: none; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th { background: rgba(0,0,0,0.4); color: var(--text-muted); font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; padding: 18px 12px; text-align: center; border-bottom: 2px solid var(--primary); white-space: nowrap; position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        th:first-child { text-align: left; left: 0; z-index: 20; background: rgba(0,0,0,0.6); box-shadow: 2px 0 5px rgba(0,0,0,0.2); }
-        td { padding: 16px 12px; text-align: center; border-bottom: 1px solid var(--border-glass); font-weight: 600; white-space: nowrap; transition: background 0.2s; }
-        tr:hover td { background: rgba(255,255,255,0.05); }
-        td:first-child { text-align: left; position: sticky; left: 0; background: var(--bg-glass-heavy); z-index: 5; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 12px; box-shadow: 2px 0 5px rgba(0,0,0,0.05); border-left: 3px solid transparent; transition: 0.2s; }
-        tr:hover td:first-child { border-left: 3px solid var(--primary); }
-
-        .shift-badge { display: inline-flex; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 11px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .badge-c1 { background: var(--info-bg); color: var(--info); border: 1px solid rgba(59, 130, 246, 0.3); } .badge-c2 { background: var(--warning-bg); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); } .badge-c3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); } .badge-f { background: var(--danger-bg); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3); } .badge-double { background: var(--primary-bg); color: var(--primary); border: 1px solid rgba(220, 38, 38, 0.4); box-shadow: 0 0 10px var(--primary-light);} .badge-none { background: transparent; color: var(--border-glass); box-shadow: none;}
-
-        .swipe-auth-zone { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; touch-action: none; cursor: grab; background: transparent; border-radius: 32px; transition: background 0.3s ease; }
-        .swipe-auth-zone:active { cursor: grabbing; }
-        .btn-exit { background: transparent; border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); padding: 8px 16px; border-radius: 12px; font-weight: 800; font-size: 12px; text-transform: uppercase; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: 0.3s; }
-        .btn-exit:hover { background: var(--danger-bg); box-shadow: 0 0 15px var(--danger-bg); }
-
-        .toast-container { position: fixed; top: max(24px, env(safe-area-inset-top)); right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
-        .toast { background: var(--bg-glass-heavy); color: var(--text-main); padding: 14px 20px; border-radius: 16px; font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-card), 0 0 0 1px var(--border-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transform: translateX(120%); opacity: 0; transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .toast.show { transform: translateX(0); opacity: 1; }
-        .toast-icon { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; }
-        .toast-success .toast-icon { background: var(--success-bg); color: var(--success); } .toast-error .toast-icon { background: var(--danger-bg); color: var(--danger); } .toast-warning .toast-icon { background: var(--warning-bg); color: var(--warning); }
-        .hidden { display: none !important; }
-        .skeleton { background: linear-gradient(90deg, var(--input-bg) 25%, var(--border-glass) 50%, var(--input-bg) 75%); background-size: 200% 100%; animation: skeletonLoad 1.5s infinite; border-radius: 8px; }
-        @keyframes skeletonLoad { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-        footer { text-align: center; padding: 30px 0 40px; font-size: 13px; color: var(--text-muted); font-weight: 500; z-index: 10; position: relative; line-height: 1.6; letter-spacing: 0.3px; }
-        footer strong { color: var(--primary); font-weight: 800; }
-        footer span.pro-text { color: var(--primary); font-weight: 700; }
-
-        @media (max-width: 600px) {
-            .card { padding: 28px 20px; border-radius: 28px; }
-            .card-title { font-size: 24px; }
-            .bento-grid { gap: 12px; }
-            .bento-card { padding: 16px; border-radius: 20px; }
-            .stat-val { font-size: 32px; }
-            .action-dock { gap: 8px; padding: 10px; }
-            .dock-btn { padding: 12px 4px; border-radius: 16px; font-size: 10px; }
-            .toast-container { left: 16px; right: 16px; align-items: center; }
-            .toast { width: 100%; transform: translateY(-100px); }
-            .toast.show { transform: translateY(0); }
+        /* Phối màu ca theo phong cách Giáng sinh */
+        .dropdown-selected.sel-c1 { background: rgba(59, 130, 246, 0.25); color: #93c5fd; border-color: #60a5fa; }
+        .dropdown-selected.sel-c2 { background: rgba(245, 158, 11, 0.25); color: #fde68a; border-color: #fbbf24; }
+        .dropdown-selected.sel-c3 { background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border-color: #c084fc; }
+        .dropdown-selected.sel-f  { background: rgba(239, 68, 68, 0.3); color: #fca5a5; border-color: #f87171; }
+        .dropdown-selected.sel-double {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.35) 0%, rgba(245, 158, 11, 0.35) 100%);
+            color: #ffffff;
+            border-color: #f59e0b;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
         /* =========================================================
-           10. SUPPORT MODAL & BELL ANIMATION
+           09. BUTTONS (GOLD & CHRISTMAS CRIMSON)
         ========================================================= */
-        .bell-ring svg { animation: ring 2.5s ease-in-out infinite; transform-origin: top center; }
-        @keyframes ring { 0% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-10deg); } 30% { transform: rotate(5deg); } 40% { transform: rotate(-5deg); } 50% { transform: rotate(0); } 100% { transform: rotate(0); } }
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 14.5px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+            color: #ffffff;
+            border: 2px solid #f87171;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(220, 38, 38, 0.65); }
+        .btn-primary:active:not(:disabled) { transform: scale(0.97); }
+        .btn-primary:disabled { opacity: 0.6; filter: grayscale(0.5); cursor: not-allowed; }
 
-        .support-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .btn-outline {
+            background: rgba(6, 33, 22, 0.8);
+            border: 2px solid var(--gold-border);
+            color: var(--gold-light);
+            margin-top: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .btn-outline:active { transform: scale(0.97); background: rgba(12, 56, 36, 0.9); }
+
+        /* =========================================================
+           10. MANAGER DASHBOARD (ROYAL CHRISTMAS PALACE)
+        ========================================================= */
+        .dashboard-container { position: relative; }
+        .dashboard-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px dashed rgba(245, 158, 11, 0.3);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .bento-card {
+            background: linear-gradient(145deg, #093322 0%, #051d13 100%);
+            border: 1px solid var(--gold-border);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 24px; height: 24px;
+            border-top: 2px solid var(--gold-base);
+            border-left: 2px solid var(--gold-base);
+            border-top-left-radius: 20px;
+        }
+        .stat-val {
+            font-size: 38px;
+            font-weight: 900;
+            color: #fde68a;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
+            margin-bottom: 6px;
+            text-shadow: 0 0 15px var(--gold-glow);
+        }
+        .stat-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: #34d399;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        .bento-icon {
+            position: absolute;
+            top: 50%;
+            right: -6px;
+            transform: translateY(-50%) scale(3);
+            color: var(--gold-base);
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .action-dock {
+            background: rgba(3, 20, 13, 0.9);
+            padding: 10px;
+            border-radius: 22px;
+            border: 1px solid var(--pine-border);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .dock-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 6px;
+            border-radius: 16px;
+            background: #093322;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+        }
+        .dock-btn:hover { background: #0e442d; border-color: var(--gold-base); }
+        .dock-btn:active { transform: scale(0.94); }
+        .dock-btn.success { color: #34d399; }
+        .dock-btn.warning { color: #fbbf24; }
+        .dock-btn.info { color: #60a5fa; }
+        .dock-btn.danger { color: #f87171; }
+        .dock-btn svg { width: 22px; height: 22px; }
+
+        /* Bảng dữ liệu quản trị Noel */
+        .table-container {
+            border-radius: 20px;
+            border: 1px solid var(--pine-border);
+            background: #062317;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .table-wrapper { overflow-x: auto; max-height: 400px; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th {
+            background: #093322;
+            color: var(--gold-light);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            padding: 16px 10px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold-base);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        th:first-child { text-align: left; left: 0; z-index: 20; background: #052015; }
+        td {
+            padding: 14px 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        tr:hover td { background: rgba(255,255,255,0.04); }
+        td:first-child {
+            text-align: left;
+            position: sticky;
+            left: 0;
+            background: #08291b;
+            z-index: 5;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .shift-badge {
+            display: inline-flex;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .badge-c1 { background: rgba(59, 130, 246, 0.25); color: #93c5fd; border: 1px solid #60a5fa; }
+        .badge-c2 { background: rgba(245, 158, 11, 0.25); color: #fde68a; border: 1px solid #fbbf24; }
+        .badge-c3 { background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border: 1px solid #c084fc; }
+        .badge-f { background: rgba(239, 68, 68, 0.25); color: #fca5a5; border: 1px solid #f87171; }
+        .badge-double { background: #991b1b; color: #ffffff; border: 1px solid #f59e0b; }
+
+        .btn-exit {
+            background: transparent;
+            border: 1px solid #f87171;
+            color: #f87171;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .swipe-auth-zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            touch-action: none;
+            cursor: grab;
+            background: transparent;
+            border-radius: 28px;
+        }
+
+        /* =========================================================
+           11. MODAL & TOASTS & FOOTER
+        ========================================================= */
+        .support-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
         .support-modal:not(.hidden) { opacity: 1; visibility: visible; }
-        .support-modal-content { background: var(--bg-glass-heavy); border: 1px solid var(--border-glass); border-radius: 28px; padding: 32px 24px; width: 90%; max-width: 380px; text-align: center; position: relative; transform: translateY(30px); transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: var(--shadow-card), 0 0 0 1px inset rgba(255,255,255,0.1); }
-        .support-modal:not(.hidden) .support-modal-content { transform: translateY(0); }
-        .support-close { position: absolute; top: 16px; right: 16px; background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-muted); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
-        .support-close:active { transform: scale(0.9); }
-        .support-icon-wrapper { width: 56px; height: 56px; background: var(--info-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 0 20px var(--info-bg); }
-        .support-modal h3 { margin-bottom: 12px; color: var(--text-main); font-weight: 800; font-size: 18px; }
-        .support-modal p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500; }
+        .support-modal-content {
+            background: radial-gradient(circle at 50% 20%, #7f1215 0%, #4c0709 100%);
+            border: 2px solid var(--gold-base);
+            border-radius: 26px;
+            padding: 28px 22px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px var(--gold-glow);
+        }
+        .support-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: #ffffff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .support-icon-wrapper {
+            width: 54px;
+            height: 54px;
+            background: #b91c1c;
+            border: 2px solid #f87171;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
+        }
+
+        .toast-container {
+            position: fixed;
+            top: max(20px, env(safe-area-inset-top));
+            right: 16px;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+        .toast {
+            background: linear-gradient(135deg, #093322 0%, #052015 100%);
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--gold-border);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            transform: translateX(120%);
+            opacity: 0;
+            transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .toast.show { transform: translateX(0); opacity: 1; }
+        .toast-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .toast-success .toast-icon { background: #059669; color: #fff; }
+        .toast-error .toast-icon { background: #b91c1c; color: #fff; }
+        .toast-warning .toast-icon { background: #d97706; color: #fff; }
+
+        .hidden { display: none !important; }
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: skeletonLoad 1.5s infinite;
+            border-radius: 12px;
+        }
+        @keyframes skeletonLoad { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        footer {
+            text-align: center;
+            padding: 24px 0 32px;
+            font-size: 12.5px;
+            color: #94a3b8;
+            font-weight: 600;
+            z-index: 10;
+            line-height: 1.6;
+        }
+        footer strong { color: var(--gold-base); }
+        footer span.pro-text { color: #f87171; font-weight: 800; }
     </style>
 </head>
 
 <body>
 
-<!-- THẺ AUDIO CHỨA NHẠC NỀN -->
-<audio id="bgMusic" loop>
-    <!-- Source mặc định trống, chờ bạn tải lên từ Dashboard -->
-</audio>
-
+<!-- Lớp phong cảnh Giáng sinh: Bầu trời trăng sao, cỗ xe tuần lộc Santa & Tuyết rơi -->
 <canvas id="bg-canvas"></canvas>
-<div class="mesh-blob blob-1"></div>
-<div class="mesh-blob blob-2"></div>
+<div class="scenery-sky">
+    <div class="xmas-moon"></div>
+    <!-- Silhouette Santa Claus & Reindeer Sleigh -->
+    <svg class="santa-sleigh" viewBox="0 0 200 60" fill="#082a1c">
+        <path d="M190,20 C185,18 178,22 172,25 C165,22 155,20 148,25 C140,22 132,24 125,30 C122,25 110,22 102,28 C95,25 85,28 78,35 C70,30 55,32 45,40 C38,36 28,38 20,48 C15,46 10,48 5,52 C2,53 1,55 0,56 L200,56 C198,42 195,30 190,20 Z" opacity="0.3"/>
+        <path d="M18,34 Q22,26 28,30 Q34,26 38,32 L40,32 Q45,28 50,34 L54,34 Q60,30 65,36 L70,36 C76,32 82,35 88,40 L100,40 Q106,30 114,35 Q120,24 128,32 C132,32 136,36 142,42 L130,44 C120,44 116,42 110,46 C95,44 85,42 70,44 C50,44 35,42 20,44 Z" fill="#03150e"/>
+        <circle cx="126" cy="26" r="4" fill="#03150e"/>
+        <path d="M110,46 Q130,46 145,40 Q150,46 140,50 Q118,52 105,48 Z" fill="#03150e"/>
+    </svg>
+</div>
+
+<div class="scenery-glow glow-1"></div>
+<div class="scenery-glow glow-2"></div>
 
 <div class="app-wrapper" id="app">
+    <!-- Header Điều khiển & Thương hiệu An Café -->
     <header class="header">
         <div class="brand-group">
             <div class="brand-logo" style="gap: 10px;">
+                <div class="brand-logo-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#a7181c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
+                    <!-- Mũ Santa trên logo -->
+                    <svg class="mini-santa-hat" viewBox="0 0 40 40">
+                        <path d="M8,30 Q20,8 32,24 Q30,16 34,14" fill="#dc2626"/>
+                        <circle cx="35" cy="14" r="4" fill="#ffffff"/>
+                        <rect x="6" y="27" width="28" height="7" rx="3.5" fill="#ffffff"/>
+                    </svg>
+                </div>
                 <div class="brand-logo-text">
                     <span class="brand-logo-title">AN CAFÉ</span>
-                    <span class="brand-logo-sub">WorkShift Pro</span>
+                    <span class="brand-logo-sub">WORKSHIFT PRO</span>
                 </div>
             </div>
             
@@ -389,38 +1229,20 @@
         </div>
         
         <div class="header-controls">
-            <!-- NÚT ĐIỀU KHIỂN NHẠC BẬT/TẮT -->
-            <button class="theme-toggle" id="musicBtn" aria-label="Toggle Music" style="color: var(--text-muted);">
-                <svg id="musicOnIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 18V5l12-2v13"></path>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <circle cx="18" cy="16" r="3"></circle>
-                </svg>
-                <svg id="musicOffIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 18V5l12-2v13"></path>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <circle cx="18" cy="16" r="3"></circle>
-                    <line x1="1" y1="1" x2="23" y2="23"></line>
-                </svg>
-            </button>
-
-            <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Nút Chuông Noel đỏ -->
+            <button class="theme-toggle bell-btn-custom bell-ring" id="supportBtn" aria-label="Support">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                     <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                 </svg>
             </button>
 
-            <div class="update-ticker" id="timeTicker">
-                <div class="update-pulse"></div> 
-                <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
-            </div>
-
+            <!-- Toggle Theme -->
             <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
-                <svg id="moonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <svg id="sunIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="sunIcon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -435,68 +1257,131 @@
         </div>
     </header>
 
+    <!-- Đồng bộ Realtime Capsule -->
+    <div class="realtime-pill-bar">
+        <div class="update-ticker" id="timeTicker">
+            <div class="update-pulse"></div> 
+            <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
+        </div>
+    </div>
+
+    <!-- Hộp thoại Hỗ trợ Modal Noel -->
     <div id="supportModal" class="support-modal hidden">
         <div class="support-modal-content">
             <button class="support-close" id="closeSupportBtn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
             <div class="support-icon-wrapper">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
             </div>
-            <h3 data-i18n="supportTitle">Trung Tâm Thông Báo</h3>
-            <p data-i18n="supportDesc" style="margin-bottom: 0; padding-bottom: 10px; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500;">
-                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: var(--primary); font-size: 15px;">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
+            <h3 data-i18n="supportTitle" style="color: #ffffff; font-weight: 900; margin-bottom: 10px;">Trung Tâm Thông Báo</h3>
+            <p data-i18n="supportDesc" style="margin-bottom: 0; padding-bottom: 8px; font-size: 13px; color: #fde68a; line-height: 1.6; font-weight: 500;">
+                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: #ffffff; font-size: 14px;">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
             </p>
         </div>
     </div>
 
     <div id="toastContainer" class="toast-container"></div>
 
-    <main class="card" id="userCard">
-        <div class="card-header">
-            <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
+    <!-- MAIN VIEW: ĐĂNG KÝ CA LÀM (CHRISTMAS RED CARD + CANDY CANE BORDER) -->
+    <main class="card" id="userCard" style="background: transparent; border: none; padding: 0; box-shadow: none;">
+        
+        <!-- Bảng hiệu Đỏ Nhung Giáng Sinh -->
+        <div class="xmas-hero-card">
+            <!-- Tuyết đọng mép trên & dưới -->
+            <div class="snow-crest-top"></div>
+            <div class="snow-crest-bottom"></div>
             
-            <a href="https://ancafe.vn" target="_blank" class="ancafe-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    <polyline points="15 3 21 3 21 9"></polyline>
-                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                Khám phá ancafe.vn
-            </a>
-            
-            <div class="slogan-container">
-                <span id="typewriter-text" class="slogan-text"></span><span class="type-cursor">|</span>
-            </div>
+            <!-- Mũ Santa góc trên -->
+            <svg class="corner-santa-hat" viewBox="0 0 60 60">
+                <path d="M12,48 Q32,10 52,38 Q48,24 55,20" fill="#dc2626"/>
+                <circle cx="56" cy="20" r="6" fill="#ffffff" filter="drop-shadow(0 2px 3px rgba(0,0,0,0.3))"/>
+                <rect x="8" y="44" width="46" height="12" rx="6" fill="#ffffff" filter="drop-shadow(0 2px 3px rgba(0,0,0,0.3))"/>
+            </svg>
 
+            <!-- Hộp quà bên trái -->
+            <svg class="gift-decor-left" viewBox="0 0 60 60">
+                <rect x="10" y="24" width="38" height="30" rx="4" fill="#dc2626"/>
+                <rect x="6" y="16" width="46" height="10" rx="3" fill="#ef4444"/>
+                <rect x="25" y="16" width="8" height="38" fill="#f59e0b"/>
+                <!-- Nơ vàng -->
+                <path d="M29,16 C22,8 14,14 26,16 Z" fill="#fbbf24"/>
+                <path d="M29,16 C36,8 44,14 32,16 Z" fill="#fbbf24"/>
+            </svg>
+
+            <!-- Người tuyết Snowman bên phải -->
+            <svg class="snowman-decor-right" viewBox="0 0 80 90">
+                <circle cx="40" cy="62" r="24" fill="#ffffff"/>
+                <circle cx="40" cy="30" r="16" fill="#ffffff"/>
+                <!-- Mắt & Miệng cười -->
+                <circle cx="34" cy="28" r="2" fill="#0f172a"/>
+                <circle cx="46" cy="28" r="2" fill="#0f172a"/>
+                <polygon points="40,32 40,36 48,34" fill="#f97316"/>
+                <!-- Khăn quàng đỏ -->
+                <path d="M28,40 Q40,46 52,40 L50,56 L44,54 L44,43 Z" fill="#dc2626"/>
+                <!-- Mũ len đỏ chóp trắng -->
+                <path d="M28,18 Q40,4 52,18 Z" fill="#dc2626"/>
+                <circle cx="40" cy="6" r="4" fill="#ffffff"/>
+                <rect x="26" y="16" width="28" height="5" rx="2.5" fill="#ffffff"/>
+            </svg>
+
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="snowflake-icon">❄</span>
+                    <span data-i18n="title">Đăng Ký Ca Làm</span>
+                    <span class="snowflake-icon">❄</span>
+                </h2>
+                
+                <a href="https://ancafe.vn" target="_blank" class="ancafe-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Khám phá ancafe.vn &gt;
+                </a>
+                
+                <div class="slogan-container">
+                    <span id="typewriter-text" class="slogan-text"></span><span class="type-cursor">|</span>
+                </div>
+            </div>
         </div>
         
+        <!-- Khối Báo Trạng Thái Hệ Thống (Mở / Khóa) -->
         <div id="lockStatus">
-            <div class="skeleton" style="width: 100%; height: 96px; border-radius: 24px; margin-bottom: 32px;"></div>
+            <div class="skeleton" style="width: 100%; height: 74px; border-radius: 20px;"></div>
         </div>
 
-        <div style="margin-bottom: 24px;">
+        <!-- Nhập Định Danh Nhân Sự -->
+        <div>
             <label class="input-label">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 <span data-i18n="employeeId">Định danh nhân sự</span>
             </label>
-            <div class="input-wrapper" style="margin-bottom: 0;">
-                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <div class="input-wrapper">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
                 <input type="text" id="name" class="form-control" placeholder="Ví dụ: AnCafe..." data-i18n-placeholder="placeholder" autocomplete="off">
+                <!-- Cây thông Noel nhỏ trang trí -->
+                <svg class="input-tree-decor" viewBox="0 0 24 24">
+                    <polygon points="12,2 17,9 14,9 19,16 5,16 10,9 7,9" fill="#15803d"/>
+                    <rect x="10" y="16" width="4" height="4" fill="#78350f"/>
+                    <circle cx="12" cy="2" r="1.5" fill="#fde047"/>
+                </svg>
             </div>
         </div>
 
-        <div style="margin-bottom: 32px;">
-            <label class="input-label" style="margin-bottom: 12px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Lưới Đăng Ký Lịch Làm Việc (Tuần này) -->
+        <div style="margin-bottom: 24px;">
+            <label class="input-label">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
                     <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -504,28 +1389,33 @@
                 </svg>
                 <span data-i18n="schedule">Đăng ký lịch làm việc (Tuần này)</span>
             </label>
-            <div id="form" class="calendar-grid" style="margin-bottom: 0;">
-                </div>
+            <div id="form" class="calendar-grid">
+                <!-- Javascript sẽ render động các card ngày Noel tại đây -->
+            </div>
         </div>
 
         <button id="submitBtn" class="btn btn-primary" data-i18n="confirmBtn">Xác Nhận Đăng Ký</button>
         <button id="managerBtn" class="btn btn-outline" data-i18n="managerBtn">Truy Cập Khu Vực Quản Lý</button>
     </main>
 
-    <main class="card hidden" id="managerBox" style="position: relative; min-height: 250px; display: flex; flex-direction: column; justify-content: center;">
-        <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <!-- MANAGER / ADMIN BOX -->
+    <main class="card hidden" id="managerBox" style="position: relative; min-height: 260px; display: flex; flex-direction: column; justify-content: center; background: #08291b; border: 2px solid var(--gold-border);">
+        <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 0;">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
-                <h2 class="card-title" style="color: var(--primary);" data-i18n="secureAccess">Secure Access</h2>
-                <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
+                <h2 class="card-title" style="color: var(--gold-base);" data-i18n="secureAccess">Secure Access</h2>
+                <div class="card-subtitle" style="font-size: 13px; font-weight: 700; color: #34d399;" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
+                <div style="font-size: 12px; color: #fde68a; margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span>👉 Vuốt ngang sang phải để mở khóa</span>
+                </div>
             </div>
-            <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: 32px;"></canvas>
+            <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: 26px;"></canvas>
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
         <div id="adminPanel" class="hidden dashboard-container">
             <div class="dashboard-header-flex">
                 <div>
-                    <h2 class="card-title" style="font-size: 20px; margin:0; text-align: left; display: flex; align-items: center; gap: 8px;">
+                    <h2 class="card-title" style="font-size: 18px; margin:0; text-align: left; display: flex; align-items: center; gap: 8px; color: #fde68a;">
                         <span data-i18n="dashboard">DASHBOARD</span>
                     </h2>
                 </div>
@@ -564,19 +1454,10 @@
                 </div>
             </div>
 
-            <!-- KHU VỰC THÊM NHẠC TỪ THIẾT BỊ -->
-            <div style="background: var(--bg-glass-heavy); border: 1px solid var(--border-glass); border-radius: 24px; padding: 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-soft);">
-                <div style="width: 48px; height: 48px; background: var(--primary-light); color: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
-                </div>
-                <div style="flex: 1; overflow: hidden;">
-                    <div style="font-weight: 800; font-size: 14px; margin-bottom: 8px; color: var(--text-main);" data-i18n="localMusicTitle">Chọn nhạc từ thiết bị</div>
-                    <input type="file" id="localMusicInput" accept="audio/*" style="width: 100%; font-size: 12px; color: var(--text-muted); font-family: inherit; cursor: pointer;">
-                </div>
-            </div>
-
+            <!-- Khu vực hiển thị Lịch ưu tiên của Quản lý -->
             <div id="priorityAdminContainer"></div>
 
+            <!-- Bảng hiển thị ca toàn bộ nhân viên -->
             <div class="table-container">
                 <div id="excelTable" class="table-wrapper"></div>
             </div>
@@ -585,7 +1466,7 @@
 </div>
 
 <footer>
-    © bản quyền 2026 DangTung. WorkShift <span class="pro-text">Pro</span> Enterprise.<br>
+    ©2026 DangTung<span class="pro-text">Pro</span> Enterprise.<br>
     <span data-i18n="designed">Designed & Engineered by</span> <strong>Dang Tung</strong>. <span data-i18n="rights">All rights reserved.</span>
 </footer>
 
@@ -604,48 +1485,48 @@
     // --- 0. MULTI-LANGUAGE SYSTEM (I18N) ---
     const i18n = {
         vi: {
-            realtime: "Đồng bộ realtime:", title: "Đăng Ký Ca Làm", employeeId: "Định danh nhân sự", placeholder: "Ví dụ: AnCafe...", schedule: "Đăng ký lịch làm việc (Tuần này)", confirmBtn: "Xác Nhận Đăng Ký", managerBtn: "Truy Cập Khu Vực Quản Lý", secureAccess: "Secure Access", highPrivilege: "Hệ thống phân quyền cấp cao", dashboard: "DASHBOARD", lockSys: "Khóa Hệ Thống", totalEmp: "Tổng Nhân Sự", totalShifts: "Ca Đăng Ký", openShift: "Mở Lịch", lock: "Khóa", export: "Xuất File", cleanup: "Dọn Dẹp", designed: "Designed & Engineered by", rights: "All rights reserved.", localMusicTitle: "Chọn nhạc từ thiết bị",
+            realtime: "Đồng bộ realtime:", title: "Đăng Ký Ca Làm", employeeId: "Định danh nhân sự", placeholder: "Ví dụ: AnCafe...", schedule: "Đăng ký lịch làm việc (Tuần này)", confirmBtn: "Xác Nhận Đăng Ký", managerBtn: "Truy Cập Khu Vực Quản Lý", secureAccess: "Secure Access", highPrivilege: "Hệ thống phân quyền cấp cao", dashboard: "DASHBOARD", lockSys: "Khóa Hệ Thống", totalEmp: "Tổng Nhân Sự", totalShifts: "Ca Đăng Ký", openShift: "Mở Lịch", lock: "Khóa", export: "Xuất File", cleanup: "Dọn Dẹp", designed: "Designed & Engineered by", rights: "All rights reserved.",
             dayFullName_T2: "Thứ 2", dayFullName_T3: "Thứ 3", dayFullName_T4: "Thứ 4", dayFullName_T5: "Thứ 5", dayFullName_T6: "Thứ 6", dayFullName_T7: "Thứ 7", dayFullName_CN: "Chủ Nhật",
             dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
             off: "OFF", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
             supportTitle: "Trung Tâm Thông Báo", 
-            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
+            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
             dayTitle: "Ngày", listTitle: "Danh sách nhân sự đăng ký"
         },
         en: {
-            realtime: "Realtime sync:", title: "Shift Registration", employeeId: "Employee Identity", placeholder: "Example: AnCafe...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.", localMusicTitle: "Choose music from device",
+            realtime: "Realtime sync:", title: "Shift Registration", employeeId: "Employee Identity", placeholder: "Example: AnCafe...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.",
             dayFullName_T2: "Monday", dayFullName_T3: "Tuesday", dayFullName_T4: "Wednesday", dayFullName_T5: "Thursday", dayFullName_T6: "Friday", dayFullName_T7: "Saturday", dayFullName_CN: "Sunday",
             dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
             off: "OFF", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
             supportTitle: "Notification Center", 
-            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>. We will address and resolve them immediately.",
+            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong>. We will address and resolve them immediately.",
             dayTitle: "Date", listTitle: "Registered Staff"
         },
         zh: {
-            realtime: "同步实时:", title: "排班注册", employeeId: "员工身份", placeholder: "示例：AnCafe...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.", localMusicTitle: "从设备选择音乐",
+            realtime: "同步实时:", title: "排班注册", employeeId: "员工身份", placeholder: "示例：AnCafe...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.",
             dayFullName_T2: "星期一", dayFullName_T3: "星期二", dayFullName_T4: "星期三", dayFullName_T5: "星期四", dayFullName_T6: "星期五", dayFullName_T7: "星期六", dayFullName_CN: "星期日",
             dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
             off: "OFF", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
             supportTitle: "通知中心", 
-            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>。我们将立即处理并解决。",
+            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong>。我们将立即处理并解决。",
             dayTitle: "日期", listTitle: "员工名单"
         },
         ko: {
-            realtime: "실시간 동기화:", title: "근무 교대 등록", employeeId: "직원 신원", placeholder: "예: AnCafe...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.", localMusicTitle: "기기에서 음악 선택",
+            realtime: "실시간 동기화:", title: "근무 교대 등록", employeeId: "직원 신원", placeholder: "예: AnCafe...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.",
             dayFullName_T2: "월요일", dayFullName_T3: "화요일", dayFullName_T4: "수요일", dayFullName_T5: "목요일", dayFullName_T6: "금요일", dayFullName_T7: "토요일", dayFullName_CN: "일요일",
             dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
             off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
             supportTitle: "알림 센터", 
-            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
+            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
             dayTitle: "날짜", listTitle: "직원 명단"
         },
         ja: {
-            realtime: "リアルタイム同期:", title: "シフト登録", employeeId: "従業員ID", placeholder: "例：AnCafe...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.", localMusicTitle: "デバイスから音楽を選択",
+            realtime: "リアルタイム同期:", title: "シフト登録", employeeId: "従業員ID", placeholder: "例：AnCafe...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.",
             dayFullName_T2: "月曜日", dayFullName_T3: "火曜日", dayFullName_T4: "水曜日", dayFullName_T5: "木曜日", dayFullName_T6: "金曜日", dayFullName_T7: "土曜日", dayFullName_CN: "日曜日",
             dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
             off: "OFF", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
             supportTitle: "通知センター", 
-            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
+            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
             dayTitle: "日付", listTitle: "スタッフリスト"
         }
     };
@@ -708,72 +1589,94 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 4. MODULE CANVAS MẠNG NHỆN TƯƠNG TÁC ---
-    const canvas = document.getElementById('bg-canvas'); const ctx = canvas.getContext('2d'); let particlesArray;
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+    // --- 4. MODULE CANVAS TUYẾT RƠI CHÂN THỰC (CHRISTMAS SNOWFALL) ---
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let snowflakes = [];
 
-    let mouse = { x: null, y: null, radius: 100 };
-    window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; });
-    window.addEventListener('touchend', () => { mouse.x = undefined; mouse.y = undefined; });
-    window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
-    window.addEventListener('mouseout', () => { mouse.x = undefined; mouse.y = undefined; });
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-    class Particle {
-        constructor(x, y, dx, dy, size, color) { this.x = x; this.y = y; this.dx = dx; this.dy = dy; this.size = size; this.color = color; }
-        draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false); ctx.fillStyle = this.color; ctx.fill(); }
+    class Snowflake {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * -canvas.height;
+            this.size = (Math.random() * 2.8) + 1.2;
+            this.speedY = (Math.random() * 1.2) + 0.6;
+            this.speedX = (Math.random() * 0.8) - 0.4;
+            this.opacity = (Math.random() * 0.6) + 0.3;
+            this.swing = Math.random() * Math.PI * 2;
+            this.swingSpeed = Math.random() * 0.02 + 0.01;
+        }
         update() {
-            if(this.x > canvas.width || this.x < 0) this.dx = -this.dx; if(this.y > canvas.height || this.y < 0) this.dy = -this.dy;
-            let dist = Math.sqrt((mouse.x - this.x) ** 2 + (mouse.y - this.y) ** 2);
-            if(dist < mouse.radius + this.size) {
-                if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 1.5; if(mouse.x > this.x && this.x > this.size * 10) this.x -= 1.5;
-                if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 1.5; if(mouse.y > this.y && this.y > this.size * 10) this.y -= 1.5;
+            this.swing += this.swingSpeed;
+            this.x += this.speedX + Math.sin(this.swing) * 0.5;
+            this.y += this.speedY;
+            if (this.y > canvas.height || this.x < 0 || this.x > canvas.width) {
+                this.reset();
+                this.y = -10;
             }
-            this.x += this.dx; this.y += this.dy; this.draw();
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
+            ctx.fill();
         }
     }
 
     function initCanvas() {
-        particlesArray = []; let noOfParticles = (canvas.height * canvas.width) / 10000;
-        for(let i = 0; i < noOfParticles; i++) {
-            let size = (Math.random() * 2) + 1; let color = getComputedStyle(document.documentElement).getPropertyValue('--canvas-dot').trim();
-            particlesArray.push(new Particle(Math.random() * (innerWidth - size * 2) + size * 2, Math.random() * (innerHeight - size * 2) + size * 2, (Math.random() * 0.4) - 0.2, (Math.random() * 0.4) - 0.2, size, color));
+        snowflakes = [];
+        const count = Math.floor((canvas.width * canvas.height) / 12000) + 40;
+        for (let i = 0; i < count; i++) {
+            const flake = new Snowflake();
+            flake.y = Math.random() * canvas.height;
+            snowflakes.push(flake);
         }
     }
 
     function animateCanvas() {
-        requestAnimationFrame(animateCanvas); ctx.clearRect(0, 0, innerWidth, innerHeight);
-        let lineColor = getComputedStyle(document.documentElement).getPropertyValue('--canvas-line').trim();
-        for(let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            for(let j = i; j < particlesArray.length; j++) {
-                if(((particlesArray[i].x - particlesArray[j].x) ** 2 + (particlesArray[i].y - particlesArray[j].y) ** 2) < (canvas.width / 7) * (canvas.height / 7)) {
-                    ctx.beginPath(); ctx.strokeStyle = lineColor; ctx.lineWidth = 1; ctx.moveTo(particlesArray[i].x, particlesArray[i].y); ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
-                }
-            }
+        requestAnimationFrame(animateCanvas);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < snowflakes.length; i++) {
+            snowflakes[i].update();
+            snowflakes[i].draw();
         }
     }
-    initCanvas(); animateCanvas();
+    initCanvas();
+    animateCanvas();
 
     // --- 5. MODULE QUẢN LÝ GIAO DIỆN LIGHT/DARK THEME ---
-    const themeBtn = document.getElementById('themeBtn'); const html = document.documentElement;
-    const savedTheme = localStorage.getItem('theme') || 'dark'; html.setAttribute('data-theme', savedTheme); updateThemeIcon(savedTheme);
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
 
     themeBtn.onclick = () => {
         const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme); initCanvas(); 
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
     };
 
     function updateThemeIcon(theme) {
-        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark'); document.getElementById('sunIcon').classList.toggle('hidden', theme === 'light');
+        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark');
+        document.getElementById('sunIcon').classList.toggle('hidden', theme === 'light');
     }
 
-    // --- TYPEWRITER EFFECT LOGIC CHO SLOGAN ---
+    // --- TYPEWRITER EFFECT CHO SLOGAN GIÁNG SINH ---
     const sloganTexts = [
         "\"Nơi chốn thoải mái. Cảm giác thân thuộc.\"",
-        "\"Hương vị đậm đà. Khởi nguồn sáng tạo.\"",
-        "\"Góc nhỏ an yên giữa lòng thành phố.\"",
+        "\"Giáng sinh ấm áp. Hương vị cà phê trọn vẹn.\"",
+        "\"Góc nhỏ an yên giữa mùa đông lạnh giá.\"",
         "\"Thưởng thức cà phê. Kết nối đam mê.\""
     ];
     let sloganIndex = 0;
@@ -783,7 +1686,6 @@
 
     function typeWriterEffect() {
         const currentSlogan = sloganTexts[sloganIndex];
-        
         if (isDeletingSlogan) {
             typewriterElement.textContent = currentSlogan.substring(0, charIndex - 1);
             charIndex--;
@@ -792,41 +1694,54 @@
             charIndex++;
         }
 
-        let typeSpeed = isDeletingSlogan ? 30 : 60;
+        let typeSpeed = isDeletingSlogan ? 25 : 55;
 
         if (!isDeletingSlogan && charIndex === currentSlogan.length) {
-            typeSpeed = 2000;
+            typeSpeed = 2200;
             isDeletingSlogan = true;
         } else if (isDeletingSlogan && charIndex === 0) {
             isDeletingSlogan = false;
             sloganIndex = (sloganIndex + 1) % sloganTexts.length;
             typeSpeed = 500;
         }
-
         setTimeout(typeWriterEffect, typeSpeed);
     }
     setTimeout(typeWriterEffect, 1000);
 
-
     // --- 6. HỆ THỐNG TOAST THÔNG BÁO ---
     function showToast(msg, type = 'success') {
-        const container = document.getElementById('toastContainer'); const toast = document.createElement('div'); toast.className = `toast toast-${type}`;
-        const icons = { success: '<polyline points="20 6 9 17 4 12"></polyline>', error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>', warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>' };
-        toast.innerHTML = `<div class="toast-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
-        container.appendChild(toast); void toast.offsetWidth; toast.classList.add('show');
-        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); }, 3000);
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        const icons = {
+            success: '<polyline points="20 6 9 17 4 12"></polyline>',
+            error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
+            warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'
+        };
+        toast.innerHTML = `<div class="toast-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
+        container.appendChild(toast);
+        void toast.offsetWidth;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 400);
+        }, 3000);
     }
 
     // --- 6.5 LOGIC MODAL THÔNG BÁO HỖ TRỢ ---
-    const supportBtn = document.getElementById('supportBtn'); const supportModal = document.getElementById('supportModal'); const closeSupportBtn = document.getElementById('closeSupportBtn');
+    const supportBtn = document.getElementById('supportBtn');
+    const supportModal = document.getElementById('supportModal');
+    const closeSupportBtn = document.getElementById('closeSupportBtn');
     supportBtn.addEventListener('click', () => { supportModal.classList.remove('hidden'); supportBtn.classList.remove('bell-ring'); });
     closeSupportBtn.addEventListener('click', () => { supportModal.classList.add('hidden'); });
     supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.add('hidden'); });
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM ---
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (CUSTOM DROPDOWN UI MỚI PHONG CÁCH NOEL) ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
-        const fullDayName = t('dayFullName_' + dayName); const shortDayName = t('dayShort_' + dayName); const offText = t('off');
+        const fullDayName = t('dayFullName_' + dayName);
+        const shortDayName = t('dayShort_' + dayName);
+        const offText = t('off');
         const gridSpanStyle = dayName === 'CN' ? 'grid-column: 1 / -1;' : '';
         
         let optionsHtml = `<div class="dropdown-option" onclick="selectShift('${dayName}', '', '${offText}')">${offText}</div>`;
@@ -834,14 +1749,24 @@
         
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
+                <!-- Dây đèn nháy Giáng sinh -->
+                <div class="fairy-lights">
+                    <span class="fairy-bulb"></span>
+                    <span class="fairy-bulb"></span>
+                    <span class="fairy-bulb"></span>
+                    <span class="fairy-bulb"></span>
+                </div>
                 <div class="day-header">
                     <span id="fullDayText_${dayName}">${fullDayName}</span>
-                    <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
+                    <span class="day-badge" id="shortDayText_${dayName}">
+                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M12 8v12"></path></svg>
+                        ${shortDayName}
+                    </span>
                 </div>
                 <div class="custom-dropdown" id="dropdown_${dayName}">
                     <div class="dropdown-selected" onclick="toggleDropdown('${dayName}')">
                         <span class="selected-text" id="text_${dayName}">${offText}</span>
-                        <svg class="select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -856,7 +1781,8 @@
         document.querySelectorAll('.custom-dropdown').forEach(el => {
             if (el.id !== 'dropdown_' + dayName) { el.classList.remove('open'); el.closest('.day-card').style.zIndex = '1'; }
         });
-        const dropdown = document.getElementById('dropdown_' + dayName); const card = dropdown.closest('.day-card');
+        const dropdown = document.getElementById('dropdown_' + dayName);
+        const card = dropdown.closest('.day-card');
         if (dropdown.classList.contains('open')) { dropdown.classList.remove('open'); card.style.zIndex = '1'; } 
         else { dropdown.classList.add('open'); card.style.zIndex = '10'; }
     };
@@ -866,7 +1792,8 @@
         document.getElementById(dayName).value = value;
         document.getElementById('text_' + dayName).innerText = label;
         
-        dropdown.classList.remove('open'); dropdown.closest('.day-card').style.zIndex = '1';
+        dropdown.classList.remove('open');
+        dropdown.closest('.day-card').style.zIndex = '1';
         
         const selectedDiv = dropdown.querySelector('.dropdown-selected');
         selectedDiv.className = 'dropdown-selected';
@@ -884,64 +1811,78 @@
         }
     });
 
-    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG ---
+    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG (CHRISTMAS BADGE) ---
     let manualLock = null;
     onValue(ref(db, "settings/lock"), snap => { manualLock = snap.exists() ? snap.val() : null; updateStatusUI(); });
 
     function isSystemLocked() {
-        if(manualLock === true) return true; if(manualLock === false) return false;
-        const now = new Date(); const dayOfWeek = now.getDay(); const hours = now.getHours();
+        if(manualLock === true) return true;
+        if(manualLock === false) return false;
+        const now = new Date();
+        const dayOfWeek = now.getDay();
+        const hours = now.getHours();
         return (dayOfWeek === 5 && hours >= 20) || dayOfWeek === 6 || dayOfWeek === 0;
     }
 
     function updateStatusUI() {
-        const lockStatus = document.getElementById("lockStatus"); const submitBtn = document.getElementById("submitBtn");
+        const lockStatus = document.getElementById("lockStatus");
+        const submitBtn = document.getElementById("submitBtn");
         if (isSystemLocked()) {
             lockStatus.className = "status-panel sys-locked";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
                     <div class="st-pulse"></div>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </div>
                 <div class="st-info">
                     <span class="st-title">${t('sysLocked')}</span>
                     <span class="st-desc">${t('stopReg')}</span>
                 </div>
             `;
-            submitBtn.disabled = true; submitBtn.innerHTML = t('sysLocked');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = t('sysLocked');
         } else {
             lockStatus.className = "status-panel sys-open";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
                     <div class="st-pulse"></div>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
                 <div class="st-info">
                     <span class="st-title">${t('sysOpen')}</span>
                     <span class="st-desc">${t('sysOnline')}</span>
                 </div>
             `;
-            submitBtn.disabled = false; submitBtn.innerHTML = t('confirmBtn');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = t('confirmBtn');
         }
     }
 
-    // --- 9. XỬ LÝ SỰ KIỆN GỬI FORM ---
+    // --- 9. XỬ LÝ SỰ KIỆN GỬI FORM LÊN FIREBASE ---
     document.getElementById("submitBtn").onclick = async () => {
-        const nameInput = document.getElementById("name"); const employeeName = nameInput.value.trim();
+        const nameInput = document.getElementById("name");
+        const employeeName = nameInput.value.trim();
         if(!employeeName) { nameInput.focus(); return showToast(t('placeholder'), "warning"); }
         if(isSystemLocked()) { return showToast(t('sysLocked'), "error"); }
         
         const schedule = {}; 
-        DAYS.forEach(day => { const selectedShift = document.getElementById(day).value; if(selectedShift) schedule[day] = selectedShift; });
+        DAYS.forEach(day => {
+            const selectedShift = document.getElementById(day).value;
+            if(selectedShift) schedule[day] = selectedShift;
+        });
         if(!Object.keys(schedule).length) return showToast(t('off'), "warning");
 
-        const btn = document.getElementById("submitBtn"); const originalText = btn.innerHTML;
-        btn.innerHTML = `...`; btn.disabled = true;
+        const btn = document.getElementById("submitBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `...`;
+        btn.disabled = true;
 
         try {
             const snapshot = await get(ref(db, "dangKy/" + employeeName));
             if(snapshot.exists() && !confirm(`Định danh "${employeeName}" đã có dữ liệu. Bạn có muốn ghi đè lịch mới?`)) { 
-                btn.innerHTML = originalText; btn.disabled = false; return; 
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                return; 
             }
             
             await set(ref(db, "dangKy/" + employeeName), { lich: schedule, timestamp: Date.now() });
@@ -955,42 +1896,68 @@
             });
             
         } catch(error) { 
-            console.error("Firebase fetch error:", error); showToast("Error: " + error.message, "error"); 
+            console.error("Firebase fetch error:", error);
+            showToast("Error: " + error.message, "error"); 
         } finally { 
-            btn.innerHTML = originalText; btn.disabled = false; 
+            btn.innerHTML = originalText;
+            btn.disabled = false; 
         }
     };
 
-    // --- 10. ĐIỀU HƯỚNG MANAGER ---
+    // --- 10. ĐIỀU HƯỚNG GIỮA KHU VỰC USER VÀ MANAGER ---
     document.getElementById("managerBtn").onclick = () => {
-        document.getElementById("userCard").classList.add("hidden"); document.getElementById("managerBox").classList.remove("hidden"); initSwipeTrail();
+        document.getElementById("userCard").classList.add("hidden");
+        document.getElementById("managerBox").classList.remove("hidden");
+        initSwipeTrail();
     };
 
     document.getElementById("logoutBtn").onclick = () => {
-        document.getElementById("adminPanel").classList.add("hidden"); document.getElementById("managerBox").classList.add("hidden");
-        document.getElementById("userCard").classList.remove("hidden"); document.getElementById("loginSection").classList.remove("hidden");
+        document.getElementById("adminPanel").classList.add("hidden");
+        document.getElementById("managerBox").classList.add("hidden");
+        document.getElementById("userCard").classList.remove("hidden");
+        document.getElementById("loginSection").classList.remove("hidden");
     };
 
-    // --- 11. VUỐT ĐĂNG NHẬP ---
-    let startX = 0; let isSwiping = false; let swipeTriggered = false; let trailPoints = [];
-    const swipeZone = document.getElementById('swipeZone'); const trailCanvas = document.getElementById('swipeTrailCanvas'); const tCtx = trailCanvas.getContext('2d');
+    // --- 11. XỬ LÝ VUỐT NGANG ẨN & VỆT KÉO VÀNG GOLD LẤP LÁNH ---
+    let startX = 0;
+    let isSwiping = false;
+    let swipeTriggered = false;
+    let trailPoints = [];
+    const swipeZone = document.getElementById('swipeZone');
+    const trailCanvas = document.getElementById('swipeTrailCanvas');
+    const tCtx = trailCanvas.getContext('2d');
 
     function initSwipeTrail() {
-        swipeTriggered = false; isSwiping = false; trailPoints = []; tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height); resizeTrailCanvas();
+        swipeTriggered = false;
+        isSwiping = false;
+        trailPoints = [];
+        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+        resizeTrailCanvas();
     }
 
     function resizeTrailCanvas() {
-        const rect = swipeZone.parentElement.getBoundingClientRect(); trailCanvas.width = rect.width; trailCanvas.height = rect.height;
+        const rect = swipeZone.parentElement.getBoundingClientRect();
+        trailCanvas.width = rect.width;
+        trailCanvas.height = rect.height;
     }
     window.addEventListener('resize', resizeTrailCanvas);
 
     function drawTrail() {
-        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height); if (trailPoints.length < 2) return;
-        tCtx.beginPath(); tCtx.moveTo(trailPoints[0].x, trailPoints[0].y);
+        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+        if (trailPoints.length < 2) return;
+        tCtx.beginPath();
+        tCtx.moveTo(trailPoints[0].x, trailPoints[0].y);
         for(let i = 1; i < trailPoints.length; i++) {
-            const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2; const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2; tCtx.quadraticCurveTo(trailPoints[i-1].x, trailPoints[i-1].y, xc, yc);
+            const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2;
+            const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2;
+            tCtx.quadraticCurveTo(trailPoints[i-1].x, trailPoints[i-1].y, xc, yc);
         }
-        tCtx.strokeStyle = 'rgba(16, 185, 129, 0.8)'; tCtx.lineWidth = 6; tCtx.lineCap = 'round'; tCtx.shadowBlur = 15; tCtx.shadowColor = 'rgba(16, 185, 129, 1)'; tCtx.stroke();
+        tCtx.strokeStyle = 'rgba(251, 191, 36, 0.9)';
+        tCtx.lineWidth = 6;
+        tCtx.lineCap = 'round';
+        tCtx.shadowBlur = 16;
+        tCtx.shadowColor = '#f59e0b';
+        tCtx.stroke();
     }
 
     setInterval(() => {
@@ -999,35 +1966,51 @@
     }, 20);
 
     swipeZone.addEventListener('pointerdown', (e) => {
-        if(swipeTriggered) return; isSwiping = true; startX = e.clientX; trailPoints = []; swipeZone.setPointerCapture(e.pointerId);
+        if(swipeTriggered) return;
+        isSwiping = true;
+        startX = e.clientX;
+        trailPoints = [];
+        swipeZone.setPointerCapture(e.pointerId);
     });
 
     swipeZone.addEventListener('pointermove', (e) => {
         if (!isSwiping || swipeTriggered) return;
-        const rect = trailCanvas.getBoundingClientRect(); trailPoints.push({ x: e.clientX - rect.left, y: e.clientY - rect.top }); drawTrail();
+        const rect = trailCanvas.getBoundingClientRect();
+        trailPoints.push({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+        drawTrail();
         if (e.clientX - startX > 150) {
-            swipeTriggered = true; isSwiping = false;
-            tCtx.fillStyle = "rgba(16, 185, 129, 0.2)"; tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height); if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+            swipeTriggered = true;
+            isSwiping = false;
+            tCtx.fillStyle = "rgba(245, 158, 11, 0.25)";
+            tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height);
+            if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
             setTimeout(() => { loginAdmin(); initSwipeTrail(); }, 300);
         }
     });
 
-    swipeZone.addEventListener('pointerup', (e) => { if (!isSwiping) return; isSwiping = false; swipeZone.releasePointerCapture(e.pointerId); });
+    swipeZone.addEventListener('pointerup', (e) => {
+        if (!isSwiping) return;
+        isSwiping = false;
+        swipeZone.releasePointerCapture(e.pointerId);
+    });
 
     function loginAdmin() {
-        showToast("Welcome", "success"); document.getElementById("loginSection").classList.add("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); fetchAndRenderAdminData();
+        showToast("Welcome", "success");
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+        fetchAndRenderAdminData();
     }
 
-    // --- 12. LOGIC DASHBOARD QUẢN TRỊ ---
+    // --- 12. LOGIC DASHBOARD QUẢN TRỊ VIÊN ---
     let rawExcelDataExport = ""; 
     async function fetchAndRenderAdminData() {
         const tableContainer = document.getElementById("excelTable"); 
-        tableContainer.innerHTML = `<div style="padding: 40px; text-align: center;"><div class="skeleton" style="height: 150px; border-radius: 16px;"></div></div>`;
+        tableContainer.innerHTML = `<div style="padding: 40px; text-align: center;"><div class="skeleton" style="height: 140px; border-radius: 16px;"></div></div>`;
         
         try {
             const snapshot = await get(ref(db, "dangKy"));
             if(!snapshot.exists()) {
-                tableContainer.innerHTML = `<div style="padding: 40px; color: var(--text-muted); text-align: center; font-weight: 600;">${t('emptyData')}</div>`; 
+                tableContainer.innerHTML = `<div style="padding: 40px; color: #cbd5e1; text-align: center; font-weight: 700;">${t('emptyData')}</div>`; 
                 document.getElementById("totalUsers").innerText = "0"; 
                 document.getElementById("totalShifts").innerText = "0"; 
                 document.getElementById("priorityAdminContainer").innerHTML = "";
@@ -1047,31 +2030,35 @@
             let countUsers = allNames.length; 
             let countShifts = 0;
             
+            // XỬ LÝ KHU VỰC ƯU TIÊN CHO ADMIN TÙNG
             const priorityContainer = document.getElementById("priorityAdminContainer");
             if (adminNames.length > 0) {
-                let adminHtml = `<div style="background: linear-gradient(145deg, var(--bg-glass-heavy) 0%, rgba(220, 38, 38, 0.05) 100%); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 24px; padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px var(--primary-glow); position: relative; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
-                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--primary); opacity: 0.1; filter: blur(30px); border-radius: 50%;"></div>
-                    <h3 style="color: var(--primary); margin-bottom: 16px; font-size: 16px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-weight: 800; position: relative; z-index: 2;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        Lịch Làm Việc Quản Lý
-                    </h3>
-                    <div style="display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2;">`;
+                let adminHtml = `
+                    <div style="background: radial-gradient(circle at 50% 20%, #7f1215 0%, #4c0709 100%); border: 2px solid #f59e0b; border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
+                        <h3 style="color: #fde68a; margin-bottom: 14px; font-size: 15px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-weight: 900;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            Ưu tiên em Tùng nhé chị!!!
+                        </h3>
+                        <div style="display: flex; flex-direction: column; gap: 14px;">
+                `;
 
                 adminNames.forEach(adminName => {
                     const adminData = data[adminName];
                     const lichData = adminData?.lich || {};
                     let hasShifts = false;
-                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
 
                     DAYS.forEach(day => {
                         if (lichData[day]) {
                             hasShifts = true;
                             const shiftInfoObj = SHIFTS.find(s => s.id === lichData[day]);
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
-                            shiftsHtml += `<div style="background: var(--bg-glass-heavy); padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border-glass); display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-soft);">
-                                <span style="font-weight: 800; font-size: 12px; color: var(--text-main); text-transform: uppercase;">${t('dayShort_' + day)}</span>
-                                <span class="shift-badge ${cssBadgeClass}" style="box-shadow: none; border: none; padding: 0;">${lichData[day]}</span>
-                            </div>`;
+                            shiftsHtml += `
+                                <div style="background: #093322; padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; gap: 6px;">
+                                    <span style="font-weight: 800; font-size: 11.5px; color: #fde68a;">${t('dayShort_' + day)}</span>
+                                    <span class="shift-badge ${cssBadgeClass}" style="padding: 2px 6px; font-size: 10px;">${lichData[day]}</span>
+                                </div>
+                            `;
                         }
                     });
                     shiftsHtml += `</div>`;
@@ -1079,7 +2066,9 @@
                     if (hasShifts) {
                         adminHtml += `
                             <div>
-                                <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px; color: var(--primary);">${adminName} <span style="font-size: 9px; background: var(--primary); color: white; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 6px; letter-spacing: 0.5px;">ADMIN</span></div>
+                                <div style="font-weight: 900; font-size: 14px; margin-bottom: 6px; color: #ffffff;">
+                                    ${adminName} <span style="font-size: 9px; background: #dc2626; color: white; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 4px;">ADMIN</span>
+                                </div>
                                 ${shiftsHtml}
                             </div>
                         `;
@@ -1091,6 +2080,7 @@
                 priorityContainer.innerHTML = '';
             }
 
+            // XỬ LÝ BẢNG CHÍNH NHÂN SỰ THƯỜNG
             let htmlTable = `<table><thead><tr><th style="width: 100px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
             rawExcelDataExport = `${t('dayTitle') || 'Ngày'}\t${t('listTitle') || 'Danh sách nhân sự đăng ký'}\n`;
             
@@ -1113,16 +2103,16 @@
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
                             
                             dayShiftsHTML.push(`
-                                <div style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 8px; margin: 4px 8px 4px 0; border: 1px solid var(--border-glass);">
-                                    <span style="font-weight: 700; margin-right: 8px;">${employeeName}</span>
-                                    <span class="shift-badge ${cssBadgeClass}" style="transform: scale(0.9); padding: 4px 8px;">${shiftRegistered}</span>
+                                <div style="display: inline-flex; align-items: center; background: #093322; padding: 4px 8px; border-radius: 8px; margin: 3px 6px 3px 0; border: 1px solid rgba(52, 211, 153, 0.3);">
+                                    <span style="font-weight: 700; margin-right: 6px; color: #ffffff;">${employeeName}</span>
+                                    <span class="shift-badge ${cssBadgeClass}" style="padding: 2px 6px; font-size: 10px;">${shiftRegistered}</span>
                                 </div>
                             `);
                         }
                     }
                 });
                 
-                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: var(--text-muted); font-style: italic;">-</span>`;
+                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: #64748b; font-style: italic;">-</span>`;
                 const rawExportList = dayShiftsExport.length > 0 ? dayShiftsExport.join(', ') : '-';
                 
                 htmlTable += `<tr><td><strong>${dayName}</strong></td><td style="text-align: left; white-space: normal;">${displayList}</td></tr>`;
@@ -1142,125 +2132,106 @@
 
     // --- 13. CÁC HÀNH ĐỘNG CỦA QUẢN TRỊ VIÊN ---
     document.getElementById("copyBtn").onclick = () => {
-        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning"); navigator.clipboard.writeText(rawExcelDataExport).then(() => showToast("Copied Data", "success")).catch(() => showToast("Error Copying", "error"));
+        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning");
+        navigator.clipboard.writeText(rawExcelDataExport).then(() => showToast("Copied Data", "success")).catch(() => showToast("Error Copying", "error"));
     };
-    document.getElementById("unlockBtn").onclick = async () => { if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), false); showToast("Success", "success"); } };
-    document.getElementById("lockBtn").onclick = async () => { if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), true); showToast("Locked", "warning"); } };
+    document.getElementById("unlockBtn").onclick = async () => {
+        if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), false); showToast("Success", "success"); }
+    };
+    document.getElementById("lockBtn").onclick = async () => {
+        if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), true); showToast("Locked", "warning"); }
+    };
     document.getElementById("clearBtn").onclick = async () => {
-        if(confirm("DANGER: Are you sure?")) { const validationPin = prompt("Enter PIN:"); if(validationPin === "2005") { await remove(ref(db,"dangKy")); showToast("Cleared", "success"); fetchAndRenderAdminData(); } else { showToast("Invalid PIN", "error"); } }
+        if(confirm("DANGER: Are you sure?")) {
+            const validationPin = prompt("Enter PIN:");
+            if(validationPin === "2005") {
+                await remove(ref(db,"dangKy"));
+                showToast("Cleared", "success");
+                fetchAndRenderAdminData();
+            } else {
+                showToast("Invalid PIN", "error");
+            }
+        }
     };
 
-    // --- 14. HÀM TIỆN ÍCH (UTILITIES) ---
+    // --- 14. HÀM TIỆN ÍCH (COUNTER) ---
     function animateNumberCounter(elementId, startValue, endValue, durationMs) {
-        let element = document.getElementById(elementId); let startTimestamp = null;
+        let element = document.getElementById(elementId);
+        let startTimestamp = null;
         const step = (timestamp) => {
-            if(!startTimestamp) startTimestamp = timestamp; const progress = Math.min((timestamp - startTimestamp) / durationMs, 1);
-            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue); if(progress < 1) { window.requestAnimationFrame(step); }
-        }; window.requestAnimationFrame(step);
+            if(!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / durationMs, 1);
+            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue);
+            if(progress < 1) { window.requestAnimationFrame(step); }
+        };
+        window.requestAnimationFrame(step);
     }
 
     // =========================================================
-    // 15. EASTER EGG: PHYSICS GRAVITY FALL (KHÔNG TRỌNG LỰC)
+    // 15. EASTER EGG: PHYSICS GRAVITY FALL
     // =========================================================
-    let isGravityActive = false; let logoClickCount = 0;
+    let isGravityActive = false;
+    let logoClickCount = 0;
     const brandLogo = document.querySelector('.brand-logo');
-    brandLogo.addEventListener('click', () => { if(isGravityActive) return; logoClickCount++; if(logoClickCount >= 5) { activateGravityEasterEgg(); } setTimeout(() => { logoClickCount = 0; }, 2000); });
+    brandLogo.addEventListener('click', () => {
+        if(isGravityActive) return;
+        logoClickCount++;
+        if(logoClickCount >= 5) { activateGravityEasterEgg(); }
+        setTimeout(() => { logoClickCount = 0; }, 2000);
+    });
     
     let lastX, lastY, lastZ;
     window.addEventListener('devicemotion', (event) => {
-        if (isGravityActive) return; let accel = event.accelerationIncludingGravity; if(!accel || accel.x === null) return;
-        let deltaX = Math.abs(lastX ? accel.x - lastX : 0); let deltaY = Math.abs(lastY ? accel.y - lastY : 0); let deltaZ = Math.abs(lastZ ? accel.z - lastZ : 0);
-        if (deltaX + deltaY + deltaZ > 40) { activateGravityEasterEgg(); } lastX = accel.x; lastY = accel.y; lastZ = accel.z;
+        if (isGravityActive) return;
+        let accel = event.accelerationIncludingGravity;
+        if(!accel || accel.x === null) return;
+        let deltaX = Math.abs(lastX ? accel.x - lastX : 0);
+        let deltaY = Math.abs(lastY ? accel.y - lastY : 0);
+        let deltaZ = Math.abs(lastZ ? accel.z - lastZ : 0);
+        if (deltaX + deltaY + deltaZ > 40) { activateGravityEasterEgg(); }
+        lastX = accel.x; lastY = accel.y; lastZ = accel.z;
     });
 
     function activateGravityEasterEgg() {
-        isGravityActive = true; showToast("⚠️ GRAVITY FAILURE", "warning"); if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
-        const resetBtn = document.createElement('button'); resetBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Khóa & Khôi Phục`; resetBtn.style.cssText = "position:fixed; top: max(24px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 999999; padding: 14px 24px; border-radius: 20px; background: var(--danger); color: white; font-weight: 800; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.6); cursor: pointer; display: flex; align-items: center; font-family: inherit;"; document.body.appendChild(resetBtn); resetBtn.onclick = () => window.location.reload();
-        const elements = document.querySelectorAll('.card, .header'); const physicsElements = [];
+        isGravityActive = true;
+        showToast("⚠️ GRAVITY FAILURE", "warning");
+        if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        const resetBtn = document.createElement('button');
+        resetBtn.innerHTML = `Khôi Phục Giao Diện`;
+        resetBtn.style.cssText = "position:fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 999999; padding: 12px 24px; border-radius: 20px; background: #dc2626; color: white; font-weight: 800; border: 2px solid #f59e0b; box-shadow: 0 10px 25px rgba(0,0,0,0.6); cursor: pointer;";
+        document.body.appendChild(resetBtn);
+        resetBtn.onclick = () => window.location.reload();
+        
+        const elements = document.querySelectorAll('.card, .header, .xmas-hero-card');
+        const physicsElements = [];
         elements.forEach(el => {
-            const rect = el.getBoundingClientRect(); el.style.width = rect.width + 'px'; el.style.height = rect.height + 'px'; el.style.position = 'fixed'; el.style.top = rect.top + 'px'; el.style.left = rect.left + 'px'; el.style.margin = '0'; el.style.transition = 'none'; el.style.zIndex = '9999';
-            physicsElements.push({ el: el, x: rect.left, y: rect.top, vx: (Math.random() - 0.5) * 15, vy: -5 - Math.random() * 10, rotation: 0, vr: (Math.random() - 0.5) * 10 });
+            const rect = el.getBoundingClientRect();
+            el.style.width = rect.width + 'px';
+            el.style.height = rect.height + 'px';
+            el.style.position = 'fixed';
+            el.style.top = rect.top + 'px';
+            el.style.left = rect.left + 'px';
+            el.style.margin = '0';
+            el.style.transition = 'none';
+            el.style.zIndex = '9999';
+            physicsElements.push({ el: el, x: rect.left, y: rect.top, vx: (Math.random() - 0.5) * 12, vy: -4 - Math.random() * 8, rotation: 0, vr: (Math.random() - 0.5) * 8 });
         });
-        const gravity = 0.8; const bounce = 0.5;
+        const gravity = 0.7;
+        const bounce = 0.45;
         function updatePhysics() {
             if(!isGravityActive) return;
             physicsElements.forEach(p => {
                 p.vy += gravity; p.x += p.vx; p.y += p.vy; p.rotation += p.vr;
                 if (p.y + p.el.offsetHeight > window.innerHeight) { p.y = window.innerHeight - p.el.offsetHeight; p.vy *= -bounce; p.vx *= 0.95; p.vr *= 0.95; }
-                if (p.x < 0) { p.x = 0; p.vx *= -bounce; p.vr *= -0.8; } else if (p.x + p.el.offsetWidth > window.innerWidth) { p.x = window.innerWidth - p.el.offsetWidth; p.vx *= -bounce; p.vr *= -0.8; }
+                if (p.x < 0) { p.x = 0; p.vx *= -bounce; } else if (p.x + p.el.offsetWidth > window.innerWidth) { p.x = window.innerWidth - p.el.offsetWidth; p.vx *= -bounce; }
                 p.el.style.top = p.y + 'px'; p.el.style.left = p.x + 'px'; p.el.style.transform = `rotate(${p.rotation}deg)`;
-            }); requestAnimationFrame(updatePhysics);
-        } requestAnimationFrame(updatePhysics);
-    }
-    updateLanguageUI();
-
-    // =========================================================
-    // 16. HỆ THỐNG PHÁT NHẠC NỀN & UPLOAD TỪ THIẾT BỊ
-    // =========================================================
-    const bgMusic = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    const musicOnIcon = document.getElementById('musicOnIcon');
-    const musicOffIcon = document.getElementById('musicOffIcon');
-    const localMusicInput = document.getElementById('localMusicInput');
-    
-    if (bgMusic) bgMusic.volume = 0.3;
-
-    let isMusicPlaying = false;
-    let userHasInteracted = false;
-
-    // Xử lý khi tải file nhạc từ thiết bị (Trong Dashboard)
-    localMusicInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const fileURL = URL.createObjectURL(file);
-            bgMusic.src = fileURL;
-            
-            // Tự động phát khi chọn xong
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicOffIcon.classList.add('hidden');
-                musicOnIcon.classList.remove('hidden');
-                musicBtn.classList.add('music-active');
-                musicBtn.style.color = "var(--primary)";
-                showToast("Đã tải nhạc: " + file.name, "success");
-            }).catch(err => {
-                console.log('Lỗi phát nhạc:', err);
-                showToast("Không thể tự động phát, hãy nhấn nút loa", "warning");
             });
+            requestAnimationFrame(updatePhysics);
         }
-    });
-
-    // Hàm Bật/Tắt nhạc thủ công
-    function toggleMusic() {
-        // Kiểm tra xem đã có nhạc chưa
-        if (!bgMusic.src || bgMusic.src === window.location.href) {
-            showToast("Vui lòng vào Khu vực Quản lý chọn nhạc trước!", "warning");
-            return;
-        }
-
-        if (isMusicPlaying) {
-            bgMusic.pause();
-            musicOnIcon.classList.add('hidden');
-            musicOffIcon.classList.remove('hidden');
-            musicBtn.classList.remove('music-active');
-            musicBtn.style.color = "var(--text-muted)";
-        } else {
-            bgMusic.play().catch(e => console.log('Audio play failed:', e));
-            musicOffIcon.classList.add('hidden');
-            musicOnIcon.classList.remove('hidden');
-            musicBtn.classList.add('music-active');
-            musicBtn.style.color = "var(--primary)";
-        }
-        isMusicPlaying = !isMusicPlaying;
+        requestAnimationFrame(updatePhysics);
     }
 
-    // Sự kiện click nút Music
-    musicBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); 
-        userHasInteracted = true;
-        toggleMusic();
-    });
-
+    updateLanguageUI();
 </script>
 
 </body>
