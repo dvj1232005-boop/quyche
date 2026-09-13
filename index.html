@@ -7,83 +7,88 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="WorkShift Pro">
-    <meta name="theme-color" content="#070913">
+    <meta name="theme-color" content="#060812">
     
     <title>WorkShift Pro Enterprise | Final</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Phông chữ: Cinzel (Display RPG), Be Vietnam Pro (Hỗ trợ 100% tiếng Việt không lỗi dấu), JetBrains Mono cho số liệu -->
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Cinzel:wght@700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         /* =========================================================
-           01. DESIGN SYSTEM & PIXEL ART RPG THEME TOKENS
+           01. DESIGN TOKENS & PIXEL RPG PALETTE
         ========================================================= */
         :root[data-theme="dark"] {
-            --sky-bg: #070913;
-            --sky-gradient: linear-gradient(180deg, #050711 0%, #0d1224 50%, #151b33 100%);
+            --sky-void: #05070e;
+            --sky-top: #0a0e1c;
+            --sky-mid: #12182c;
             
-            /* Gỗ quán rượu & Đinh tán đồng */
-            --wood-outer: #0a0604;
-            --wood-frame: #2c1a11;
-            --wood-inner: #442a1b;
-            --wood-hi: #6d4429;
-            --wood-bevel: inset 2px 2px 0 #7b4f31, inset -2px -2px 0 #120b07;
+            /* Gỗ quán rượu gụ sẫm */
+            --wood-rim: #070403;
+            --wood-dark: #1b100a;
+            --wood-body: #2d1b11;
+            --wood-hi: #533321;
+            --wood-carve: #7a4c30;
             
-            --brass-gold: #f59e0b;
-            --brass-gold-hi: #fde68a;
-            --brass-gold-dark: #78350f;
+            /* Kim loại đồng thau / Vàng cổ */
+            --brass-dark: #5c3509;
+            --brass-base: #d97706;
+            --brass-hi: #fde68a;
             
             /* Cuộn giấy da cổ */
-            --parchment-base: #ebd5ad;
-            --parchment-border: #452a18;
-            --parchment-ink: #2b1709;
-            --parchment-sub: #654326;
-            --parchment-bevel: inset 2px 2px 0 #fff2d9, inset -2px -2px 0 #8f653b;
+            --parch-deep: #74512e;
+            --parch-border: #442a17;
+            --parch-base: #ebd5ad;
+            --parch-light: #fff2d9;
+            --parch-ink: #2a1608;
+            --parch-faded: #624326;
             
-            /* Năng lượng & Phép thuật */
+            /* Đá phiến ngục tối */
+            --stone-rim: #080a11;
+            --stone-dark: #121624;
+            --stone-body: #1c2237;
+            --stone-hi: #303b5f;
+            
+            /* Nguyên tố ma thuật */
             --mana-cyan: #38bdf8;
-            --mana-glow: rgba(56, 189, 248, 0.45);
+            --mana-glow: rgba(56, 189, 248, 0.4);
             --amethyst: #c084fc;
             --emerald: #34d399;
             --crimson: #e11d48;
             --crimson-dark: #881337;
-            --crimson-glow: rgba(225, 29, 72, 0.55);
+            --crimson-glow: rgba(225, 29, 72, 0.5);
             
-            /* Đá phiến ngục tối */
-            --stone-base: #131726;
-            --stone-border: #090b14;
-            --stone-hi: #2b334d;
-            --stone-bevel: inset 2px 2px 0 #283049, inset -2px -2px 0 #07080f;
-            
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            
-            --pixel-shadow: 0 4px 0 #000;
-            --pixel-shadow-sm: 0 2px 0 #000;
-            --pixel-shadow-lg: 0 6px 0 #000;
+            --pixel-hard: 0 4px 0 #000;
+            --pixel-hard-lg: 0 6px 0 #000;
         }
 
         :root[data-theme="light"] {
-            --sky-bg: #141b2d;
-            --sky-gradient: linear-gradient(180deg, #101626 0%, #1e2942 50%, #293859 100%);
+            --sky-void: #0f1526;
+            --sky-top: #161e36;
+            --sky-mid: #222e50;
             
-            --wood-outer: #0e0a07;
-            --wood-frame: #362217;
-            --wood-inner: #503322;
-            --wood-hi: #7c4f33;
-            --wood-bevel: inset 2px 2px 0 #8e5c3c, inset -2px -2px 0 #1b110a;
+            --wood-rim: #0c0805;
+            --wood-dark: #24160e;
+            --wood-body: #3c2417;
+            --wood-hi: #643d27;
+            --wood-carve: #8b5637;
             
-            --brass-gold: #fbbf24;
-            --brass-gold-hi: #fef08a;
-            --brass-gold-dark: #92400e;
+            --brass-dark: #78350f;
+            --brass-base: #f59e0b;
+            --brass-hi: #fef3c7;
             
-            --parchment-base: #f5e4c6;
-            --parchment-border: #4d301c;
-            --parchment-ink: #1f1107;
-            --parchment-sub: #573921;
-            --parchment-bevel: inset 2px 2px 0 #fff6e6, inset -2px -2px 0 #9e7346;
+            --parch-deep: #855e37;
+            --parch-border: #4a2e19;
+            --parch-base: #f4e3c4;
+            --parch-light: #fff9ee;
+            --parch-ink: #201004;
+            --parch-faded: #54371e;
+            
+            --stone-rim: #0e121e;
+            --stone-dark: #1a2033;
+            --stone-body: #252e4a;
+            --stone-hi: #3e4c77;
             
             --mana-cyan: #0284c7;
             --mana-glow: rgba(2, 132, 199, 0.35);
@@ -93,29 +98,21 @@
             --crimson-dark: #991b1b;
             --crimson-glow: rgba(220, 38, 38, 0.4);
             
-            --stone-base: #1e263d;
-            --stone-border: #0c101c;
-            --stone-hi: #374468;
-            --stone-bevel: inset 2px 2px 0 #3a476b, inset -2px -2px 0 #090c17;
-            
-            --text-main: #ffffff;
-            --text-muted: #cbd5e1;
-            
-            --pixel-shadow: 0 4px 0 #000;
-            --pixel-shadow-sm: 0 2px 0 #000;
-            --pixel-shadow-lg: 0 6px 0 #000;
+            --pixel-hard: 0 4px 0 #000;
+            --pixel-hard-lg: 0 6px 0 #000;
         }
 
         /* =========================================================
-           02. RESET & PIXEL TYPOGRAPHY RHYTHM
+           02. BASE SETUP & WORLD BUILDING BACKGROUND
         ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; image-rendering: pixelated; }
         html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
+        
         body {
             font-family: 'Be Vietnam Pro', sans-serif;
-            background: var(--sky-gradient);
-            background-color: var(--sky-bg);
-            color: var(--text-main);
+            background: linear-gradient(180deg, var(--sky-void) 0%, var(--sky-top) 40%, var(--sky-mid) 100%);
+            background-color: var(--sky-void);
+            color: #f8fafc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -125,20 +122,23 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .rpg-title { font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: 0.5px; }
-        .mono { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
-
-        input, select, textarea, button {
-            font-family: inherit;
-            font-size: 16px !important;
-            touch-action: manipulation;
+        /* Lớp rặng cây & lâu đài ma thuật mờ xa ở đáy */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0; left: 0; width: 100vw; height: 180px;
+            background-repeat: repeat-x;
+            background-position: bottom center;
+            background-size: 320px 140px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='140' viewBox='0 0 320 140'%3E%3Cpath fill='%23050811' fill-opacity='0.7' d='M0,140 L0,100 L15,100 L20,70 L25,100 L45,100 L55,50 L65,100 L85,100 L95,65 L105,100 L140,100 L150,40 L155,40 L160,20 L165,40 L170,40 L180,100 L210,100 L220,60 L230,100 L260,100 L270,45 L280,100 L300,100 L305,75 L310,100 L320,100 L320,140 Z'/%3E%3C/svg%3E");
+            z-index: 1; pointer-events: none;
         }
 
-        /* Canvas Bầu Trời Đêm Quán Trọ */
         #bg-canvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none;
+            z-index: 2; pointer-events: none;
         }
+
         .mesh-blob { display: none !important; }
 
         .app-wrapper {
@@ -149,6 +149,13 @@
             padding-bottom: max(16px, env(safe-area-inset-bottom));
         }
 
+        .rpg-font { font-family: 'Cinzel', serif; font-weight: 900; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+
+        input, select, textarea, button {
+            font-family: inherit; font-size: 16px !important; touch-action: manipulation;
+        }
+
         /* =========================================================
            03. MAGICAL TAVERN SIGNBOARD HEADER
         ========================================================= */
@@ -157,19 +164,21 @@
             padding: 4px 0 10px 0; width: 100%;
         }
 
-        /* Khung tranh trang trí Quán Rượu */
-        .tavern-header-shelf {
-            background: var(--wood-frame);
-            border: 3px solid var(--wood-outer);
-            box-shadow: var(--wood-bevel), var(--pixel-shadow);
+        .tavern-signboard {
+            background: var(--wood-body);
+            border: 4px solid var(--wood-rim);
+            box-shadow: inset 2px 2px 0 var(--wood-carve), inset -2px -2px 0 var(--wood-dark), var(--pixel-hard);
             padding: 8px 10px;
             display: flex; justify-content: space-between; align-items: center;
             position: relative;
         }
-        .tavern-header-shelf::before {
-            content: ''; position: absolute; top: -5px; left: 4px; right: 4px; height: 3px;
-            background: repeating-linear-gradient(90deg, #f59e0b 0, #f59e0b 6px, #78350f 6px, #78350f 12px);
+        /* Móc xích treo biển hiệu */
+        .tavern-signboard::before, .tavern-signboard::after {
+            content: ''; position: absolute; top: -8px; width: 6px; height: 8px;
+            background: #475569; border: 2px solid #000;
         }
+        .tavern-signboard::before { left: 16px; }
+        .tavern-signboard::after { right: 16px; }
 
         .brand-group { display: flex; align-items: center; gap: 8px; }
         .brand-logo {
@@ -178,68 +187,62 @@
         }
         .brand-logo:active { transform: translateY(2px); }
 
-        .tavern-sign-crest {
-            width: 38px; height: 38px; background: #120904;
-            border: 2px solid var(--brass-gold);
-            box-shadow: inset 1px 1px 0 var(--brass-gold-hi), inset -1px -1px 0 #000;
+        .guild-crest-frame {
+            width: 40px; height: 40px; background: #130a05;
+            border: 2px solid var(--brass-base);
+            box-shadow: inset 1px 1px 0 var(--brass-hi), inset -1px -1px 0 #000;
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
 
         .brand-logo-text { display: flex; flex-direction: column; }
         .brand-logo-title {
             font-family: 'Cinzel', serif; font-weight: 900; font-size: 16px;
-            line-height: 1.1; color: var(--brass-gold-hi);
+            line-height: 1.1; color: var(--brass-hi);
             text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
         }
         .brand-logo-sub {
-            font-size: 10px; font-weight: 800; color: var(--brass-gold);
+            font-size: 10px; font-weight: 800; color: var(--brass-base);
             line-height: 1.2; letter-spacing: 1px; text-transform: uppercase;
         }
 
-        .tavern-controls { display: flex; align-items: center; gap: 6px; }
+        .tavern-tools { display: flex; align-items: center; gap: 6px; }
 
-        /* Alliance Banner Selector */
         .lang-toggle {
-            background: #150d08;
-            border: 2px solid var(--brass-gold);
-            color: var(--brass-gold-hi);
-            height: 32px; padding: 0 4px;
+            background: #140b06; border: 2px solid var(--brass-base);
+            color: var(--brass-hi); height: 32px; padding: 0 4px;
             font-weight: 800; font-size: 12px !important;
             cursor: pointer; outline: none; appearance: none; -webkit-appearance: none;
             box-shadow: inset 1px 1px 0 var(--wood-hi), inset -1px -1px 0 #000;
             text-align: center;
         }
 
-        /* Control Stones */
         .theme-toggle {
-            background: #150d08;
-            border: 2px solid var(--brass-gold);
-            color: var(--brass-gold-hi);
-            width: 32px; height: 32px;
+            background: #140b06; border: 2px solid var(--brass-base);
+            color: var(--brass-hi); width: 32px; height: 32px;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; flex-shrink: 0;
             box-shadow: inset 1px 1px 0 var(--wood-hi), inset -1px -1px 0 #000;
         }
         .theme-toggle:active { transform: translateY(2px); box-shadow: none; }
 
-        .bell-ring svg { animation: bell-wiggle 1.8s infinite steps(2); transform-origin: top center; }
-        @keyframes bell-wiggle {
+        .bell-ring svg { animation: tavern-bell 1.8s infinite steps(2); transform-origin: top center; }
+        @keyframes tavern-bell {
             0%, 100% { transform: rotate(0deg); }
-            20% { transform: rotate(15deg); }
-            40% { transform: rotate(-15deg); }
-            60% { transform: rotate(10deg); }
-            80% { transform: rotate(-10deg); }
+            20% { transform: rotate(14deg); }
+            40% { transform: rotate(-14deg); }
+            60% { transform: rotate(8deg); }
+            80% { transform: rotate(-8deg); }
         }
 
-        /* Chrono Mana Crystal Status Bar */
+        /* Chrono Mana Status Panel */
         .header-controls {
             display: flex; justify-content: center; align-items: center; width: 100%;
         }
         .update-ticker {
             width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
-            background: var(--stone-base);
+            background: var(--stone-dark);
             border: 2px solid var(--stone-hi);
-            box-shadow: var(--stone-bevel), var(--pixel-shadow-sm);
+            box-shadow: inset 2px 2px 0 #28334e, inset -2px -2px 0 #06080e, var(--pixel-hard);
             padding: 5px 10px;
             color: var(--mana-cyan); font-size: 12px; font-weight: 800;
         }
@@ -251,38 +254,43 @@
         @keyframes crystal-flash { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.25; } }
 
         /* =========================================================
-           04. GUILD QUEST BOARD (#userCard)
+           04. MAIN HERO: GUILD QUEST BOARD (#userCard)
         ========================================================= */
         .card {
-            background: var(--wood-frame);
-            border: 4px solid var(--wood-outer);
-            box-shadow: var(--wood-bevel), var(--pixel-shadow-lg);
+            background: var(--wood-body);
+            border: 4px solid var(--wood-rim);
+            box-shadow: inset 2px 2px 0 var(--wood-carve), inset -2px -2px 0 var(--wood-dark), var(--pixel-hard-lg);
             padding: 10px; margin-bottom: 14px; position: relative;
         }
 
-        /* Cuộn giấy da cổ */
-        .quest-parchment-scroll {
-            background: var(--parchment-base);
-            border: 3px solid var(--parchment-border);
-            box-shadow: var(--parchment-bevel), var(--pixel-shadow);
-            padding: 14px 10px 10px; margin-bottom: 10px;
-            position: relative;
+        /* Ancient Quest Parchment Scroll */
+        .quest-scroll-container {
+            position: relative; margin-bottom: 12px;
+            padding: 0 4px;
         }
-        .quest-parchment-scroll::before, .quest-parchment-scroll::after {
-            content: '♦'; position: absolute; top: 2px; font-size: 11px; color: var(--brass-gold-dark);
+        .scroll-roll-top, .scroll-roll-bottom {
+            height: 10px; background: var(--parch-deep);
+            border: 3px solid var(--wood-rim);
+            box-shadow: inset 0 2px 0 var(--parch-light), 0 2px 0 #000;
+            position: relative; z-index: 3;
         }
-        .quest-parchment-scroll::before { left: 4px; }
-        .quest-parchment-scroll::after { right: 4px; }
+        .scroll-body {
+            background: var(--parch-base);
+            border-left: 4px solid var(--parch-border);
+            border-right: 4px solid var(--parch-border);
+            box-shadow: inset 0 0 12px rgba(92, 59, 31, 0.4);
+            padding: 12px 10px 10px;
+            position: relative; z-index: 2;
+        }
 
-        .card-header { text-align: center; margin-bottom: 2px; }
+        .card-header { text-align: center; }
         .card-title {
             font-family: 'Cinzel', serif; font-size: 20px; font-weight: 900;
-            color: var(--parchment-ink); text-transform: uppercase;
-            letter-spacing: 0.5px; margin-bottom: 8px;
+            color: var(--parch-ink); text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 6px;
             text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
         }
 
-        /* Nút nhiệm vụ Khám phá ancafe.vn */
         .ancafe-link {
             display: inline-flex; align-items: center; justify-content: center; gap: 6px;
             background: var(--crimson);
@@ -290,7 +298,7 @@
             font-size: 13px; font-weight: 900; text-decoration: none;
             padding: 6px 14px;
             border: 2px solid #000;
-            box-shadow: inset 0 2px 0 rgba(255,255,255,0.35), inset 0 -2px 0 var(--crimson-dark), var(--pixel-shadow-sm);
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.35), inset 0 -2px 0 var(--crimson-dark), 0 2px 0 #000;
             margin-bottom: 6px; transition: transform 0.08s;
         }
         .ancafe-link:active { transform: translateY(2px); box-shadow: inset 0 2px 0 #000; }
@@ -300,7 +308,7 @@
             min-height: 20px; width: 100%;
         }
         .slogan-text {
-            font-size: 11.5px; font-weight: 700; color: var(--parchment-sub);
+            font-size: 11.5px; font-weight: 700; color: var(--parch-faded);
             font-style: italic; letter-spacing: 0.2px;
         }
         .type-cursor {
@@ -314,15 +322,15 @@
         .status-panel {
             display: flex; align-items: center; gap: 10px;
             padding: 8px 10px; border: 3px solid #000; margin-bottom: 12px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.7), var(--pixel-shadow-sm);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.7), var(--pixel-hard);
         }
         .status-panel.sys-open {
             background: #082820; border-color: var(--emerald);
-            box-shadow: 0 0 8px rgba(52, 211, 153, 0.4), inset 0 0 8px rgba(0,0,0,0.8), var(--pixel-shadow-sm);
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.4), inset 0 0 8px rgba(0,0,0,0.8), var(--pixel-hard);
         }
         .status-panel.sys-locked {
             background: #2b0b14; border-color: var(--crimson);
-            box-shadow: 0 0 8px rgba(225, 29, 72, 0.4), inset 0 0 8px rgba(0,0,0,0.8), var(--pixel-shadow-sm);
+            box-shadow: 0 0 8px rgba(225, 29, 72, 0.4), inset 0 0 8px rgba(0,0,0,0.8), var(--pixel-hard);
         }
 
         .st-icon-box {
@@ -348,26 +356,26 @@
         /* =========================================================
            06. GUILD MEMBER IDENTITY (#name)
         ========================================================= */
-        .identity-box {
-            background: var(--stone-base);
-            border: 2px solid var(--wood-outer);
-            box-shadow: var(--stone-bevel), var(--pixel-shadow-sm);
-            padding: 8px; margin-bottom: 10px;
+        .identity-frame {
+            background: var(--stone-dark);
+            border: 3px solid var(--wood-rim);
+            box-shadow: inset 2px 2px 0 var(--stone-hi), var(--pixel-hard);
+            padding: 8px 10px; margin-bottom: 12px;
         }
         .input-label {
             display: flex; align-items: center; gap: 6px;
-            font-size: 11px; font-weight: 900; color: var(--brass-gold-hi);
+            font-size: 11px; font-weight: 900; color: var(--brass-hi);
             margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
             text-shadow: 1px 1px 0 #000;
         }
         .input-wrapper { position: relative; margin-bottom: 0; }
         .input-icon {
             position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
-            color: var(--brass-gold); pointer-events: none; z-index: 2;
+            color: var(--brass-base); pointer-events: none; z-index: 2;
         }
         .form-control {
             width: 100%; padding: 8px 10px 8px 34px;
-            background: #090b14;
+            background: #080a12;
             border: 2px solid var(--stone-hi);
             color: #ffffff;
             font-weight: 800; font-size: 14px !important;
@@ -375,30 +383,38 @@
             outline: none; border-radius: 0;
         }
         .form-control:focus {
-            border-color: var(--brass-gold);
-            box-shadow: 0 0 6px var(--brass-gold), inset 2px 2px 4px rgba(0,0,0,0.8);
+            border-color: var(--brass-base);
+            box-shadow: 0 0 6px var(--brass-base), inset 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         /* =========================================================
-           07. 7-DAY QUEST BOARD LƯỚI 2 CỘT (#form)
+           07. 7-DAY QUEST BOARD LƯỚI 2 CỘT & MINI PIXEL SCENES (#form)
         ========================================================= */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 6px;
+            gap: 8px;
             margin-bottom: 12px;
         }
 
         .day-card {
-            background: var(--stone-base);
-            border: 2px solid var(--stone-border);
-            box-shadow: var(--stone-bevel), var(--pixel-shadow-sm);
-            padding: 6px 6px;
-            display: flex; flex-direction: column; gap: 4px;
+            background: var(--wood-dark);
+            border: 3px solid var(--wood-rim);
+            box-shadow: inset 2px 2px 0 var(--wood-hi), inset -2px -2px 0 #070403, var(--pixel-hard);
+            padding: 6px;
+            display: flex; flex-direction: column; gap: 6px;
             position: relative; z-index: 1;
-            min-height: 84px;
+            min-height: 128px;
             justify-content: space-between;
         }
+
+        /* Đinh tán pixel 4 góc */
+        .day-card::before, .day-card::after {
+            content: ''; position: absolute; width: 4px; height: 4px;
+            background: var(--brass-base); box-shadow: 0 0 0 1px #000;
+        }
+        .day-card::before { top: 2px; left: 2px; }
+        .day-card::after { top: 2px; right: 2px; }
 
         /* Ô Chủ Nhật chiếm full chiều rộng */
         .day-card[style*="grid-column: 1 / -1"] {
@@ -406,31 +422,57 @@
             flex-direction: row;
             align-items: center;
             padding: 8px 10px;
-            min-height: 52px;
+            min-height: 72px;
         }
 
-        .day-card-art-box {
-            display: flex; align-items: center; justify-content: space-between; width: 100%;
+        /* Mini Pixel Scene Container (Kích thước lớn 48px - 54px) */
+        .scene-container {
+            position: relative; width: 100%; height: 60px;
+            background: #080c18;
+            border: 2px solid var(--wood-rim);
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
         }
-        .day-card[style*="grid-column: 1 / -1"] .day-card-art-box {
-            width: auto; gap: 10px;
+        .day-card[style*="grid-column: 1 / -1"] .scene-container {
+            width: 64px; height: 52px; flex-shrink: 0;
+        }
+
+        /* Hào quang nền của Scene */
+        .scene-aura {
+            position: absolute; width: 36px; height: 36px;
+            border-radius: 50%; filter: blur(6px); opacity: 0.4;
+            pointer-events: none;
+        }
+        .aura-t2 { background: #f59e0b; }
+        .aura-t3 { background: #38bdf8; }
+        .aura-t4 { background: #c084fc; }
+        .aura-t5 { background: #e2e8f0; }
+        .aura-t6 { background: #4ade80; }
+        .aura-t7 { background: #818cf8; }
+        .aura-cn { background: #facc15; }
+
+        .pixel-art-focal {
+            width: 50px; height: 50px; position: relative; z-index: 2;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .day-header-banner {
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%; padding: 0 2px;
+        }
+        .day-card[style*="grid-column: 1 / -1"] .day-header-banner {
+            flex-direction: column; align-items: flex-start; gap: 2px; width: auto;
         }
 
         .day-header {
-            display: flex; align-items: center; gap: 4px;
-            font-weight: 900; font-size: 12px; color: var(--brass-gold-hi);
+            font-weight: 900; font-size: 12px; color: var(--brass-hi);
             text-shadow: 1px 1px 0 #000;
         }
         .day-badge {
             font-size: 10px; font-weight: 900;
-            padding: 1px 4px; background: #0a0e1a;
+            padding: 1px 4px; background: #080b14;
             border: 1px solid var(--stone-hi); color: var(--text-muted);
-        }
-
-        /* Artwork Pixel SVG thu nhỏ trên từng ô */
-        .pixel-art-icon {
-            width: 22px; height: 22px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
         }
 
         /* =========================================================
@@ -445,24 +487,24 @@
 
         .dropdown-selected {
             width: 100%; padding: 6px 6px;
-            border: 2px solid #000; background: #0a0d18;
+            border: 2px solid #000; background: #080a14;
             color: var(--text-muted); font-weight: 900; font-size: 12px;
             display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; user-select: none;
-            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1), var(--pixel-shadow-sm);
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1), 0 2px 0 #000;
         }
         .dropdown-selected:active { transform: translateY(1px); }
-        .dropdown-selected .select-arrow { color: var(--brass-gold); flex-shrink: 0; }
+        .dropdown-selected .select-arrow { color: var(--brass-base); flex-shrink: 0; }
         
         .custom-dropdown.open .dropdown-selected {
-            border-color: var(--brass-gold);
-            box-shadow: 0 0 6px var(--brass-gold);
+            border-color: var(--brass-base);
+            box-shadow: 0 0 6px var(--brass-base);
         }
         .custom-dropdown.open .select-arrow { transform: rotate(180deg); }
 
         .dropdown-options {
             position: absolute; top: calc(100% + 3px); left: 0; right: 0;
-            background: #18110b; border: 2px solid var(--brass-gold);
+            background: #140b06; border: 2px solid var(--brass-base);
             box-shadow: 0 8px 0 #000, 0 0 12px rgba(0,0,0,0.9);
             padding: 3px; z-index: 100; max-height: 180px; overflow-y: auto;
             display: none;
@@ -471,22 +513,22 @@
 
         .dropdown-option {
             padding: 6px 8px; font-weight: 800; font-size: 12px;
-            color: var(--text-main); cursor: pointer; border-bottom: 1px dashed rgba(255,255,255,0.1);
+            color: #f8fafc; cursor: pointer; border-bottom: 1px dashed rgba(255,255,255,0.1);
         }
         .dropdown-option:last-child { border-bottom: none; }
         .dropdown-option:hover {
-            background: #3b2417; color: var(--brass-gold-hi);
-            border-left: 3px solid var(--brass-gold);
+            background: #3c2417; color: var(--brass-hi);
+            border-left: 3px solid var(--brass-base);
         }
 
-        /* Visual Identity cho từng Ca */
+        /* Identity màu ca trực */
         .dropdown-selected.sel-c1 {
             background: #08253d; color: var(--mana-cyan); border-color: var(--mana-cyan);
             box-shadow: 0 0 6px var(--mana-glow);
         }
         .dropdown-selected.sel-c2 {
-            background: #382104; color: var(--brass-gold-hi); border-color: var(--brass-gold);
-            box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+            background: #382104; color: var(--brass-hi); border-color: var(--brass-base);
+            box-shadow: 0 0 6px rgba(217, 119, 6, 0.4);
         }
         .dropdown-selected.sel-c3 {
             background: #250f38; color: var(--amethyst); border-color: var(--amethyst);
@@ -502,7 +544,7 @@
         }
 
         /* =========================================================
-           09. RPG ACTION BUTTONS (#submitBtn, #managerBtn)
+           09. ACTION BUTTONS (#submitBtn, #managerBtn)
         ========================================================= */
         .btn {
             width: 100%; padding: 12px 14px;
@@ -515,7 +557,7 @@
 
         .btn-primary {
             background: var(--crimson); color: #ffffff;
-            box-shadow: inset 0 2px 0 rgba(255,255,255,0.4), inset 0 -3px 0 var(--crimson-dark), var(--pixel-shadow);
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.4), inset 0 -3px 0 var(--crimson-dark), var(--pixel-hard);
             text-shadow: 1px 1px 0 #000;
         }
         .btn-primary:active:not(:disabled) {
@@ -528,19 +570,19 @@
         }
 
         .btn-outline {
-            background: #18110b; border: 2px solid var(--brass-gold);
-            color: var(--brass-gold-hi); margin-top: 8px;
-            box-shadow: inset 0 2px 0 var(--wood-hi), var(--pixel-shadow);
+            background: #140b06; border: 2px solid var(--brass-base);
+            color: var(--brass-hi); margin-top: 8px;
+            box-shadow: inset 0 2px 0 var(--wood-hi), var(--pixel-hard);
         }
         .btn-outline:active { transform: translateY(2px); box-shadow: none; }
 
         /* =========================================================
-           10. GUILD MASTER CHAMBER (#managerBox)
+           10. GUILD MASTER CHAMBER & LEDGER (#managerBox)
         ========================================================= */
         #managerBox {
-            background: var(--stone-base);
-            border: 4px solid var(--brass-gold-dark);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.9), var(--pixel-shadow-lg);
+            background: var(--stone-dark);
+            border: 4px solid var(--brass-dark);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9), var(--pixel-hard-lg);
             min-height: 250px;
         }
 
@@ -549,7 +591,7 @@
             align-items: center; justify-content: center; position: relative; padding: 24px 8px;
         }
         .card-subtitle {
-            font-size: 12px; font-weight: 800; color: var(--brass-gold);
+            font-size: 12px; font-weight: 800; color: var(--brass-base);
             letter-spacing: 0.5px; margin-top: 4px; text-transform: uppercase;
         }
 
@@ -564,17 +606,21 @@
             letter-spacing: 1px; animation: crystal-flash 1.2s infinite steps(1);
         }
 
-        /* Thống kê Ma Pháp */
-        .bento-grid {
+        /* Guild Crystal Stat Pods (Thay thế hoàn toàn Bento) */
+        .pedestal-chamber {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px;
         }
-        .bento-card {
-            background: #0b0e18; border: 2px solid var(--stone-hi);
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.8), var(--pixel-shadow-sm);
+        .crystal-stat-pod {
+            background: #090c16; border: 2px solid var(--stone-hi);
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8), var(--pixel-hard);
             padding: 10px 8px; text-align: center; position: relative;
         }
+        .crystal-stat-pod::before {
+            content: '◆'; position: absolute; top: 2px; left: 4px;
+            font-size: 8px; color: var(--brass-base);
+        }
         .stat-val {
-            font-size: 26px; font-weight: 900; color: var(--brass-gold-hi);
+            font-size: 26px; font-weight: 900; color: var(--brass-hi);
             font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 4px;
             text-shadow: 2px 2px 0 #000;
         }
@@ -582,46 +628,45 @@
             font-size: 10px; font-weight: 800; color: var(--text-muted);
             text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .bento-icon { display: none; }
 
         /* Tứ Đại Ngọc Ấn Lệnh */
-        .action-dock {
+        .rune-controls {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px;
         }
-        .dock-btn {
+        .rune-seal-btn {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             gap: 4px; padding: 8px 4px;
-            background: #140e09; border: 2px solid #000;
-            color: var(--text-main); font-size: 10px; font-weight: 900;
+            background: #140b06; border: 2px solid #000;
+            color: #f8fafc; font-size: 10px; font-weight: 900;
             text-transform: uppercase; cursor: pointer;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), var(--pixel-shadow-sm);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), var(--pixel-hard);
         }
-        .dock-btn:active { transform: translateY(2px); box-shadow: none; }
-        .dock-btn.success { border-color: var(--emerald); color: var(--emerald); }
-        .dock-btn.warning { border-color: var(--brass-gold); color: var(--brass-gold-hi); }
-        .dock-btn.info { border-color: var(--mana-cyan); color: var(--mana-cyan); }
-        .dock-btn.danger { border-color: var(--crimson); color: #fda4af; }
-        .dock-btn svg { width: 16px; height: 16px; }
+        .rune-seal-btn:active { transform: translateY(2px); box-shadow: none; }
+        .rune-seal-btn.success { border-color: var(--emerald); color: var(--emerald); }
+        .rune-seal-btn.warning { border-color: var(--brass-base); color: var(--brass-hi); }
+        .rune-seal-btn.info { border-color: var(--mana-cyan); color: var(--mana-cyan); }
+        .rune-seal-btn.danger { border-color: var(--crimson); color: #fda4af; }
+        .rune-seal-btn svg { width: 16px; height: 16px; }
 
-        /* Sổ Cái Biên Niên Sử */
+        /* Ancient Guild Registry Ledger (Bảng Sổ Da Biên Niên Sử) */
         .table-container {
-            border: 3px solid var(--parchment-border);
-            background: var(--parchment-base);
-            box-shadow: var(--pixel-shadow-sm); overflow: hidden;
+            border: 3px solid var(--parch-border);
+            background: var(--parch-base);
+            box-shadow: var(--pixel-hard); overflow: hidden;
         }
         .table-wrapper {
             overflow-x: auto; max-height: 300px;
         }
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
         th {
-            background: #160e08; color: var(--brass-gold-hi);
+            background: #180f08; color: var(--brass-hi);
             font-family: 'Cinzel', serif; font-size: 11px; font-weight: 900;
-            padding: 8px 6px; border-bottom: 2px solid var(--brass-gold);
+            padding: 8px 6px; border-bottom: 2px solid var(--brass-base);
             text-align: center; white-space: nowrap;
         }
         td {
-            padding: 6px 6px; border-bottom: 1px solid var(--parchment-border);
-            color: var(--parchment-ink); font-weight: 700; text-align: center;
+            padding: 6px 6px; border-bottom: 1px solid var(--parch-border);
+            color: var(--parch-ink); font-weight: 700; text-align: center;
         }
         tr:hover td { background: #dfc89f; }
 
@@ -630,7 +675,7 @@
             font-weight: 900; font-size: 10px; font-family: 'JetBrains Mono', monospace;
         }
         .badge-c1 { background: #08253d; color: var(--mana-cyan); }
-        .badge-c2 { background: #382104; color: var(--brass-gold-hi); }
+        .badge-c2 { background: #382104; color: var(--brass-hi); }
         .badge-c3 { background: #250f38; color: var(--amethyst); }
         .badge-f  { background: #380b18; color: #fda4af; }
         .badge-double { background: #420b0b; color: #fef08a; border-color: #f59e0b; }
@@ -638,9 +683,43 @@
         .btn-exit {
             background: var(--crimson-dark); border: 2px solid #000; color: #ffffff;
             padding: 5px 8px; font-size: 10px; font-weight: 900; cursor: pointer;
-            box-shadow: var(--pixel-shadow-sm);
+            box-shadow: var(--pixel-hard);
         }
         .btn-exit:active { transform: translateY(1px); }
+
+        /* Dynamic Classes cho Admin Container */
+        .decree-box {
+            background: #101422; border: 2px solid var(--crimson);
+            box-shadow: 0 0 10px rgba(225, 29, 72, 0.4), var(--pixel-hard);
+            padding: 10px; margin-bottom: 12px;
+        }
+        .decree-title {
+            color: var(--brass-hi); margin-bottom: 6px; font-size: 13px;
+            display: flex; align-items: center; gap: 6px; text-transform: uppercase;
+            font-weight: 900; font-family: 'Cinzel', serif;
+        }
+        .decree-row { display: flex; flex-direction: column; gap: 6px; }
+        .decree-name {
+            font-weight: 800; font-size: 13px; margin-bottom: 4px; color: var(--brass-hi);
+        }
+        .decree-tag {
+            font-size: 9px; background: var(--crimson); color: white; padding: 1px 4px;
+        }
+        .decree-shifts { display: flex; flex-wrap: wrap; gap: 6px; }
+        .decree-badge-wrap {
+            background: #080a12; padding: 3px 6px; border: 1px solid var(--stone-hi);
+            display: flex; align-items: center; gap: 4px;
+        }
+        .decree-day-text {
+            font-weight: 800; font-size: 10px; color: var(--brass-hi);
+        }
+        .staff-shift-tag {
+            display: inline-flex; align-items: center; background: rgba(0,0,0,0.06);
+            padding: 2px 5px; border: 1px solid var(--parch-border); margin: 2px 3px 2px 0;
+        }
+        .staff-name-text {
+            font-weight: 800; margin-right: 4px; color: var(--parch-ink);
+        }
 
         /* =========================================================
            11. MODAL & TOAST NOTIFICATIONS
@@ -653,28 +732,28 @@
         }
         .support-modal:not(.hidden) { opacity: 1; visibility: visible; }
         .support-modal-content {
-            background: var(--parchment-base); border: 4px solid var(--wood-outer);
+            background: var(--parch-base); border: 4px solid var(--wood-rim);
             padding: 16px 14px; width: 90%; max-width: 340px; text-align: center;
-            position: relative; box-shadow: var(--pixel-shadow-lg);
+            position: relative; box-shadow: var(--pixel-hard-lg);
         }
         .support-close {
             position: absolute; top: 6px; right: 6px;
-            background: #160e08; border: 2px solid var(--brass-gold);
-            color: var(--brass-gold-hi); width: 24px; height: 24px;
+            background: #140b06; border: 2px solid var(--brass-base);
+            color: var(--brass-hi); width: 24px; height: 24px;
             display: flex; align-items: center; justify-content: center; cursor: pointer;
         }
         .support-icon-wrapper {
-            width: 38px; height: 38px; background: #160e08;
-            border: 2px solid var(--brass-gold);
+            width: 38px; height: 38px; background: #140b06;
+            border: 2px solid var(--brass-base);
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 10px;
         }
         .support-modal h3 {
-            font-family: 'Cinzel', serif; color: var(--parchment-ink);
+            font-family: 'Cinzel', serif; color: var(--parch-ink);
             font-size: 15px; font-weight: 900; margin-bottom: 6px;
         }
         .support-modal p {
-            font-size: 11.5px; color: var(--parchment-sub); line-height: 1.45; font-weight: 700;
+            font-size: 11.5px; color: var(--parch-faded); line-height: 1.45; font-weight: 700;
         }
 
         .toast-container {
@@ -683,11 +762,11 @@
             pointer-events: none; align-items: center;
         }
         .toast {
-            background: #090c17; border: 2px solid var(--brass-gold);
-            color: var(--brass-gold-hi); padding: 8px 12px;
+            background: #090c17; border: 2px solid var(--brass-base);
+            color: var(--brass-hi); padding: 8px 12px;
             font-weight: 800; font-size: 12px;
             display: flex; align-items: center; gap: 8px;
-            box-shadow: var(--pixel-shadow); width: 100%; max-width: 350px;
+            box-shadow: var(--pixel-hard); width: 100%; max-width: 350px;
             transform: translateY(-40px); opacity: 0; transition: 0.18s steps(3);
         }
         .toast.show { transform: translateY(0); opacity: 1; }
@@ -697,19 +776,19 @@
         }
         .toast-success { border-color: var(--emerald); color: var(--emerald); }
         .toast-error { border-color: var(--crimson); color: #fda4af; }
-        .toast-warning { border-color: var(--brass-gold); color: var(--brass-gold-hi); }
+        .toast-warning { border-color: var(--brass-base); color: var(--brass-hi); }
 
         .hidden { display: none !important; }
         .skeleton {
-            background: #090c17; border: 2px dashed var(--stone-hi);
+            background: #080a12; border: 2px dashed var(--stone-hi);
         }
 
         footer {
             text-align: center; padding: 10px 0 20px;
-            font-size: 11px; color: var(--text-muted); font-weight: 600;
+            font-size: 11px; color: #94a3b8; font-weight: 600;
             z-index: 10; position: relative; line-height: 1.4;
         }
-        footer strong { color: var(--brass-gold-hi); }
+        footer strong { color: var(--brass-hi); }
         footer span.pro-text { color: var(--crimson); font-weight: 800; }
     </style>
 </head>
@@ -720,17 +799,17 @@
 
 <div class="app-wrapper" id="app">
     <header class="header">
-        <div class="tavern-header-shelf">
+        <div class="tavern-signboard">
             <div class="brand-group">
                 <div class="brand-logo">
-                    <div class="tavern-sign-crest">
-                        <!-- Custom Pixel Mug SVG -->
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                            <rect x="5" y="6" width="10" height="12" fill="#d97706"/>
-                            <rect x="7" y="8" width="6" height="8" fill="#fde68a"/>
-                            <path d="M15 9h3v5h-3" stroke="#f59e0b" stroke-width="2"/>
-                            <rect x="7" y="4" width="2" height="2" fill="#ffffff" opacity="0.8"/>
-                            <rect x="11" y="3" width="2" height="2" fill="#ffffff" opacity="0.8"/>
+                    <div class="guild-crest-frame">
+                        <!-- Pixel Logo Crest SVG -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="5" y="7" width="10" height="11" fill="#b45309"/>
+                            <rect x="7" y="9" width="6" height="7" fill="#fde68a"/>
+                            <path d="M15 10h3v4h-3" stroke="#f59e0b" stroke-width="2"/>
+                            <rect x="7" y="5" width="2" height="2" fill="#fff" opacity="0.8"/>
+                            <rect x="11" y="4" width="2" height="2" fill="#fff" opacity="0.8"/>
                         </svg>
                     </div>
                     <div class="brand-logo-text">
@@ -783,7 +862,7 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
             <div class="support-icon-wrapper">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brass-gold-hi)" stroke-width="2.5" stroke-linecap="square">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brass-hi)" stroke-width="2.5" stroke-linecap="square">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
             </div>
@@ -797,30 +876,35 @@
     <div id="toastContainer" class="toast-container"></div>
 
     <main class="card" id="userCard">
-        <div class="quest-parchment-scroll">
-            <div class="card-header">
-                <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
-                
-                <a href="https://ancafe.vn" target="_blank" class="ancafe-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                    Khám phá ancafe.vn
-                </a>
-                
-                <div class="slogan-container">
-                    <span id="typewriter-text" class="slogan-text"></span><span class="type-cursor">█</span>
+        <!-- Cuộn Giấy Da Nhiệm Vụ 3D -->
+        <div class="quest-scroll-container">
+            <div class="scroll-roll-top"></div>
+            <div class="scroll-body">
+                <div class="card-header">
+                    <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
+                    
+                    <a href="https://ancafe.vn" target="_blank" class="ancafe-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        Khám phá ancafe.vn
+                    </a>
+                    
+                    <div class="slogan-container">
+                        <span id="typewriter-text" class="slogan-text"></span><span class="type-cursor">█</span>
+                    </div>
                 </div>
             </div>
+            <div class="scroll-roll-bottom"></div>
         </div>
         
         <div id="lockStatus">
             <div class="skeleton" style="width: 100%; height: 54px; margin-bottom: 12px;"></div>
         </div>
 
-        <div class="identity-box">
+        <div class="identity-frame">
             <label class="input-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
                     <path d="M12 2L3 7v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7l-9-5z"/>
@@ -865,39 +949,39 @@
 
         <div id="adminPanel" class="hidden dashboard-container">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px dashed var(--stone-hi);">
-                <h2 class="card-title" style="font-size: 15px; margin: 0; text-align: left; color: var(--brass-gold-hi);">
+                <h2 class="card-title" style="font-size: 15px; margin: 0; text-align: left; color: var(--brass-hi);">
                     <span data-i18n="dashboard">DASHBOARD</span>
                 </h2>
                 <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">Khóa Hệ Thống</button>
             </div>
 
-            <div class="bento-grid">
-                <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/></svg>
+            <!-- Guild Crystal Stat Pods -->
+            <div class="pedestal-chamber">
+                <div class="crystal-stat-pod">
                     <div class="stat-val" id="totalUsers">0</div>
                     <div class="stat-label" data-i18n="totalEmp">Tổng Nhân Sự</div>
                 </div>
-                <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18"/></svg>
+                <div class="crystal-stat-pod">
                     <div class="stat-val" id="totalShifts">0</div>
                     <div class="stat-label" data-i18n="totalShifts">Ca Đăng Ký</div>
                 </div>
             </div>
 
-            <div class="action-dock">
-                <div class="dock-btn success" id="unlockBtn">
+            <!-- Tứ Đại Ngọc Ấn Lệnh -->
+            <div class="rune-controls">
+                <div class="rune-seal-btn success" id="unlockBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg> 
                     <span data-i18n="openShift">Mở Lịch</span>
                 </div>
-                <div class="dock-btn warning" id="lockBtn">
+                <div class="rune-seal-btn warning" id="lockBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> 
                     <span data-i18n="lock">Khóa</span>
                 </div>
-                <div class="dock-btn info" id="copyBtn">
+                <div class="rune-seal-btn info" id="copyBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> 
                     <span data-i18n="export">Xuất File</span>
                 </div>
-                <div class="dock-btn danger" id="clearBtn">
+                <div class="rune-seal-btn danger" id="clearBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> 
                     <span data-i18n="cleanup">Dọn Dẹp</span>
                 </div>
@@ -1029,15 +1113,15 @@
         { id: "2C(C2+C3)", label: "C2 + C3", class: "badge-double" }
     ];
 
-    // SVG Pixel Art độc quyền cho từng ngày
+    // SVG Pixel Art độc quyền cho từng ngày (Tăng kích thước lên 46px - 50px)
     const PIXEL_ART_MAP = {
-        T2: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none"><rect x="5" y="7" width="10" height="11" fill="#b45309"/><rect x="7" y="9" width="6" height="7" fill="#fde68a"/><path d="M15 10h3v4h-3" stroke="#f59e0b" stroke-width="2"/><rect x="7" y="5" width="2" height="2" fill="#fff" opacity="0.8"/></svg>`,
-        T3: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none"><rect x="4" y="6" width="16" height="12" fill="#78350f"/><rect x="6" y="8" width="5" height="8" fill="#fef3c7"/><rect x="13" y="8" width="5" height="8" fill="#fef3c7"/><rect x="11" y="6" width="2" height="12" fill="#451a03"/></svg>`,
-        T4: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none"><rect x="9" y="4" width="6" height="4" fill="#a855f7"/><path d="M6 11h12l-2 8H8l-2-8z" fill="#9333ea"/><rect x="10" y="13" width="4" height="4" fill="#f3e8ff"/></svg>`,
-        T5: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M6 18l10-10 2 2-10 10-2-2z" fill="#94a3b8"/><rect x="16" y="6" width="4" height="4" fill="#38bdf8"/><rect x="4" y="18" width="4" height="2" fill="#78350f"/></svg>`,
-        T6: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 4c4 4 4 10-2 14 6-2 8-8 2-14z" fill="#22c55e"/><path d="M12 4C8 8 8 14 14 18 8 16 6 10 12 4z" fill="#15803d"/></svg>`,
-        T7: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none"><polygon points="12,3 18,8 15,20 9,20 6,8" fill="#818cf8"/><polygon points="12,3 15,20 9,20" fill="#c7d2fe"/></svg>`,
-        CN: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M19 13a7 7 0 1 1-9-9 7 7 0 0 0 9 9z" fill="#facc15"/><rect x="16" y="5" width="2" height="2" fill="#fff"/></svg>`
+        T2: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><rect x="4" y="6" width="12" height="13" fill="#92400e"/><rect x="6" y="8" width="8" height="9" fill="#fde68a"/><path d="M16 9h4v6h-4" stroke="#d97706" stroke-width="2"/><rect x="6" y="3" width="2" height="3" fill="#fff" opacity="0.9"/><rect x="11" y="2" width="2" height="4" fill="#fff" opacity="0.9"/></svg>`,
+        T3: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><rect x="3" y="5" width="18" height="14" fill="#78350f"/><rect x="5" y="7" width="6" height="10" fill="#fef3c7"/><rect x="13" y="7" width="6" height="10" fill="#fef3c7"/><rect x="11" y="5" width="2" height="14" fill="#451a03"/><rect x="7" y="9" width="3" height="2" fill="#38bdf8"/></svg>`,
+        T4: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><rect x="9" y="3" width="6" height="4" fill="#c084fc"/><path d="M5 10h14l-2 10H7l-2-10z" fill="#9333ea"/><rect x="9" y="12" width="6" height="6" fill="#f3e8ff" opacity="0.9"/><circle cx="12" cy="15" r="2" fill="#38bdf8"/></svg>`,
+        T5: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><path d="M5 19l11-11 3 3-11 11-3-3z" fill="#cbd5e1"/><rect x="16" y="5" width="5" height="5" fill="#38bdf8"/><rect x="3" y="19" width="4" height="2" fill="#78350f"/><rect x="7" y="15" width="2" height="2" fill="#f59e0b"/></svg>`,
+        T6: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><path d="M12 3c5 5 5 13-3 18 8-3 10-10 3-18z" fill="#22c55e"/><path d="M12 3C7 8 7 16 15 21 7 18 5 11 12 3z" fill="#15803d"/><circle cx="12" cy="12" r="2" fill="#86efac"/></svg>`,
+        T7: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><polygon points="12,2 19,8 15,22 9,22 5,8" fill="#818cf8"/><polygon points="12,2 15,22 9,22" fill="#c7d2fe"/><circle cx="12" cy="12" r="2" fill="#fff"/></svg>`,
+        CN: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><path d="M19 13a8 8 0 1 1-10-10 8 8 0 0 0 10 10z" fill="#facc15"/><circle cx="8" cy="9" r="1.5" fill="#fef08a"/><rect x="16" y="4" width="2" height="2" fill="#fff"/></svg>`
     };
 
     // --- 3. MODULE ĐỒNG BỘ THỜI GIAN THỰC ---
@@ -1047,7 +1131,7 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 4. MODULE CANVAS BỤI PHÉP & SAO ĐÊM PIXEL ---
+    // --- 4. MODULE CANVAS BỤI PHÉP & SAO ĐÊM PIXEL (WORLD ENVIRONMENT) ---
     const canvas = document.getElementById('bg-canvas'); 
     const ctx = canvas.getContext('2d'); 
     let particlesArray = [];
@@ -1093,7 +1177,7 @@
 
     function initCanvas() {
         particlesArray = []; 
-        let noOfParticles = Math.min(Math.floor((canvas.height * canvas.width) / 16000), 38);
+        let noOfParticles = Math.min(Math.floor((canvas.height * canvas.width) / 15000), 40);
         for(let i = 0; i < noOfParticles; i++) {
             let size = Math.random() > 0.6 ? 3 : 2; 
             let color = Math.random() > 0.5 ? '#38bdf8' : '#fbbf24';
@@ -1212,7 +1296,7 @@
         if(e.target === supportModal) supportModal.classList.add('hidden'); 
     });
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (LƯỚI 2 CỘT + ARTWORK PIXEL ĐỘC QUYỀN) ---
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (LƯỚI 2 CỘT & MINI PIXEL SCENES) ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
         const fullDayName = t('dayFullName_' + dayName); 
@@ -1220,6 +1304,7 @@
         const offText = t('off');
         const gridSpanStyle = dayName === 'CN' ? 'grid-column: 1 / -1;' : '';
         const pixelArtSvg = PIXEL_ART_MAP[dayName] || '';
+        const auraClass = 'aura-' + dayName.toLowerCase();
         
         let optionsHtml = `<div class="dropdown-option" onclick="selectShift('${dayName}', '', '${offText}')">${offText}</div>`;
         SHIFTS.forEach(s => { 
@@ -1228,11 +1313,12 @@
         
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
-                <div class="day-card-art-box">
-                    <div class="day-header">
-                        <span class="pixel-art-icon">${pixelArtSvg}</span>
-                        <span id="fullDayText_${dayName}">${fullDayName}</span>
-                    </div>
+                <div class="scene-container">
+                    <div class="scene-aura ${auraClass}"></div>
+                    <div class="pixel-art-focal">${pixelArtSvg}</div>
+                </div>
+                <div class="day-header-banner">
+                    <span class="day-header" id="fullDayText_${dayName}">${fullDayName}</span>
                     <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
                 </div>
                 <div class="custom-dropdown" id="dropdown_${dayName}">
@@ -1508,7 +1594,7 @@
         try {
             const snapshot = await get(ref(db, "dangKy"));
             if(!snapshot.exists()) {
-                tableContainer.innerHTML = `<div style="padding: 20px; color: var(--parchment-sub); text-align: center; font-weight: 700;">${t('emptyData')}</div>`; 
+                tableContainer.innerHTML = `<div style="padding: 20px; color: var(--parch-faded); text-align: center; font-weight: 700;">${t('emptyData')}</div>`; 
                 document.getElementById("totalUsers").innerText = "0"; 
                 document.getElementById("totalShifts").innerText = "0"; 
                 document.getElementById("priorityAdminContainer").innerHTML = "";
@@ -1528,28 +1614,26 @@
             let countUsers = allNames.length; 
             let countShifts = 0;
             
-            // 1. CHIẾU THƯ QUẢN LÝ TÙNG (#priorityAdminContainer)
+            // 1. CHIẾU THƯ QUẢN LÝ TÙNG (#priorityAdminContainer - Giảm inline style)
             const priorityContainer = document.getElementById("priorityAdminContainer");
             if (adminNames.length > 0) {
-                let adminHtml = `<div style="background: #111422; border: 2px solid var(--crimson); box-shadow: 0 0 10px rgba(225, 29, 72, 0.4), var(--pixel-shadow); padding: 10px; margin-bottom: 12px;">
-                    <h3 style="color: var(--brass-gold-hi); margin-bottom: 6px; font-size: 13px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-weight: 900; font-family: 'Cinzel', serif;">
-                        ❖ Ưu tiên em Tùng nhé chị!!!
-                    </h3>
-                    <div style="display: flex; flex-direction: column; gap: 6px;">`;
+                let adminHtml = `<div class="decree-box">
+                    <h3 class="decree-title">❖ Ưu tiên em Tùng nhé chị!!!</h3>
+                    <div class="decree-row">`;
 
                 adminNames.forEach(adminName => {
                     const adminData = data[adminName];
                     const lichData = adminData?.lich || {};
                     let hasShifts = false;
-                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 6px;">`;
+                    let shiftsHtml = `<div class="decree-shifts">`;
 
                     DAYS.forEach(day => {
                         if (lichData[day]) {
                             hasShifts = true;
                             const shiftInfoObj = SHIFTS.find(s => s.id === lichData[day]);
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
-                            shiftsHtml += `<div style="background: #090c17; padding: 3px 6px; border: 1px solid var(--stone-hi); display: flex; align-items: center; gap: 4px;">
-                                <span style="font-weight: 800; font-size: 10px; color: var(--brass-gold-hi);">${t('dayShort_' + day)}</span>
+                            shiftsHtml += `<div class="decree-badge-wrap">
+                                <span class="decree-day-text">${t('dayShort_' + day)}</span>
                                 <span class="shift-badge ${cssBadgeClass}">${lichData[day]}</span>
                             </div>`;
                         }
@@ -1559,7 +1643,7 @@
                     if (hasShifts) {
                         adminHtml += `
                             <div>
-                                <div style="font-weight: 800; font-size: 13px; margin-bottom: 4px; color: var(--brass-gold-hi);">${adminName} <span style="font-size: 9px; background: var(--crimson); color: white; padding: 1px 4px;">ADMIN</span></div>
+                                <div class="decree-name">${adminName} <span class="decree-tag">ADMIN</span></div>
                                 ${shiftsHtml}
                             </div>
                         `;
@@ -1594,8 +1678,8 @@
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
                             
                             dayShiftsHTML.push(`
-                                <div style="display: inline-flex; align-items: center; background: rgba(0,0,0,0.06); padding: 2px 5px; border: 1px solid var(--parchment-border); margin: 2px 3px 2px 0;">
-                                    <span style="font-weight: 800; margin-right: 4px; color: var(--parchment-ink);">${employeeName}</span>
+                                <div class="staff-shift-tag">
+                                    <span class="staff-name-text">${employeeName}</span>
                                     <span class="shift-badge ${cssBadgeClass}">${shiftRegistered}</span>
                                 </div>
                             `);
@@ -1603,7 +1687,7 @@
                     }
                 });
                 
-                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: var(--parchment-sub); font-style: italic;">-</span>`;
+                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: var(--parch-faded); font-style: italic;">-</span>`;
                 const rawExportList = dayShiftsExport.length > 0 ? dayShiftsExport.join(', ') : '-';
                 
                 htmlTable += `<tr><td><strong>${dayName}</strong></td><td style="text-align: left; white-space: normal;">${displayList}</td></tr>`;
