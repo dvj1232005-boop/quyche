@@ -20,16 +20,17 @@
            01. DESIGN TOKENS & PIXEL RPG PALETTE
         ========================================================= */
         :root[data-theme="dark"] {
-            --sky-void: #05070e;
-            --sky-top: #0a0e1c;
-            --sky-mid: #12182c;
+            --sky-void: #04060c;
+            --sky-top: #090e1d;
+            --sky-mid: #10162a;
             
-            /* Gỗ quán rượu gụ sẫm */
-            --wood-rim: #070403;
-            --wood-dark: #1b100a;
-            --wood-body: #2d1b11;
-            --wood-hi: #533321;
-            --wood-carve: #7a4c30;
+            /* Gỗ quán rượu */
+            --wood-rim: #050302;
+            --wood-dark: #180e08;
+            --wood-body: #29170e;
+            --wood-hi: #4a2d1c;
+            --wood-carve: #6d4229;
+            --wood-bevel: inset 2px 2px 0 #7b4f31, inset -2px -2px 0 #100a06;
             
             /* Kim loại đồng thau / Vàng cổ */
             --brass-dark: #5c3509;
@@ -37,58 +38,63 @@
             --brass-hi: #fde68a;
             
             /* Cuộn giấy da cổ */
-            --parch-deep: #74512e;
-            --parch-border: #442a17;
+            --parch-deep: #694929;
+            --parch-border: #3b2413;
             --parch-base: #ebd5ad;
-            --parch-light: #fff2d9;
-            --parch-ink: #2a1608;
-            --parch-faded: #624326;
+            --parch-light: #fff3db;
+            --parch-ink: #241206;
+            --parch-faded: #5a3d22;
             
             /* Đá phiến ngục tối */
-            --stone-rim: #080a11;
-            --stone-dark: #121624;
-            --stone-body: #1c2237;
-            --stone-hi: #303b5f;
+            --stone-rim: #07090f;
+            --stone-dark: #101420;
+            --stone-body: #191e30;
+            --stone-hi: #2b3554;
             
             /* Nguyên tố ma thuật */
             --mana-cyan: #38bdf8;
-            --mana-glow: rgba(56, 189, 248, 0.4);
+            --mana-glow: rgba(56, 189, 248, 0.45);
             --amethyst: #c084fc;
             --emerald: #34d399;
             --crimson: #e11d48;
             --crimson-dark: #881337;
-            --crimson-glow: rgba(225, 29, 72, 0.5);
+            --crimson-glow: rgba(225, 29, 72, 0.55);
+            
+            /* Độ tương phản cao cho chữ phụ */
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
             
             --pixel-hard: 0 4px 0 #000;
             --pixel-hard-lg: 0 6px 0 #000;
         }
 
         :root[data-theme="light"] {
-            --sky-void: #0f1526;
-            --sky-top: #161e36;
-            --sky-mid: #222e50;
+            --sky-void: #0e1424;
+            --sky-top: #151d33;
+            --sky-mid: #212c4c;
             
-            --wood-rim: #0c0805;
-            --wood-dark: #24160e;
-            --wood-body: #3c2417;
-            --wood-hi: #643d27;
-            --wood-carve: #8b5637;
+            --wood-rim: #0a0604;
+            --wood-dark: #1f130b;
+            --wood-body: #351f14;
+            --wood-hi: #5c3722;
+            --wood-carve: #804e30;
+            --wood-bevel: inset 2px 2px 0 #8b5939, inset -2px -2px 0 #180e07;
             
             --brass-dark: #78350f;
             --brass-base: #f59e0b;
-            --brass-hi: #fef3c7;
+            --brass-hi: #fef08a;
             
-            --parch-deep: #855e37;
-            --parch-border: #4a2e19;
-            --parch-base: #f4e3c4;
-            --parch-light: #fff9ee;
-            --parch-ink: #201004;
-            --parch-faded: #54371e;
+            --parch-deep: #7a5430;
+            --parch-border: #442a17;
+            --parch-base: #f5e4c6;
+            --parch-light: #fff8eb;
+            --parch-ink: #1c0e04;
+            --parch-faded: #4d321c;
             
-            --stone-rim: #0e121e;
-            --stone-dark: #1a2033;
-            --stone-body: #252e4a;
-            --stone-hi: #3e4c77;
+            --stone-rim: #0b0e18;
+            --stone-dark: #161b2a;
+            --stone-body: #212942;
+            --stone-hi: #39466d;
             
             --mana-cyan: #0284c7;
             --mana-glow: rgba(2, 132, 199, 0.35);
@@ -97,6 +103,9 @@
             --crimson: #dc2626;
             --crimson-dark: #991b1b;
             --crimson-glow: rgba(220, 38, 38, 0.4);
+            
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
             
             --pixel-hard: 0 4px 0 #000;
             --pixel-hard-lg: 0 6px 0 #000;
@@ -110,9 +119,9 @@
         
         body {
             font-family: 'Be Vietnam Pro', sans-serif;
-            background: linear-gradient(180deg, var(--sky-void) 0%, var(--sky-top) 40%, var(--sky-mid) 100%);
+            background: linear-gradient(180deg, var(--sky-void) 0%, var(--sky-top) 35%, var(--sky-mid) 100%);
             background-color: var(--sky-void);
-            color: #f8fafc;
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -122,15 +131,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Lớp rặng cây & lâu đài ma thuật mờ xa ở đáy */
+        /* Lớp rặng núi, thành quách & lâu đài ma thuật pixel */
         body::before {
             content: '';
             position: fixed;
-            bottom: 0; left: 0; width: 100vw; height: 180px;
+            bottom: 0; left: 0; width: 100vw; height: 200px;
             background-repeat: repeat-x;
             background-position: bottom center;
-            background-size: 320px 140px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='140' viewBox='0 0 320 140'%3E%3Cpath fill='%23050811' fill-opacity='0.7' d='M0,140 L0,100 L15,100 L20,70 L25,100 L45,100 L55,50 L65,100 L85,100 L95,65 L105,100 L140,100 L150,40 L155,40 L160,20 L165,40 L170,40 L180,100 L210,100 L220,60 L230,100 L260,100 L270,45 L280,100 L300,100 L305,75 L310,100 L320,100 L320,140 Z'/%3E%3C/svg%3E");
+            background-size: 360px 160px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='160' viewBox='0 0 360 160'%3E%3Cpath fill='%23030409' fill-opacity='0.85' d='M0,160 L0,110 L20,110 L25,80 L30,110 L50,110 L60,60 L70,110 L90,110 L100,75 L110,110 L145,110 L155,45 L160,45 L165,20 L170,45 L175,45 L185,110 L220,110 L230,70 L240,110 L275,110 L285,50 L295,110 L320,110 L325,85 L330,110 L360,110 L360,160 Z'/%3E%3C/svg%3E");
             z-index: 1; pointer-events: none;
         }
 
@@ -172,7 +181,6 @@
             display: flex; justify-content: space-between; align-items: center;
             position: relative;
         }
-        /* Móc xích treo biển hiệu */
         .tavern-signboard::before, .tavern-signboard::after {
             content: ''; position: absolute; top: -8px; width: 6px; height: 8px;
             background: #475569; border: 2px solid #000;
@@ -205,11 +213,12 @@
             line-height: 1.2; letter-spacing: 1px; text-transform: uppercase;
         }
 
-        .tavern-tools { display: flex; align-items: center; gap: 6px; }
+        /* Đồng bộ điều khiển Header (tavern-tools & tavern-controls) */
+        .tavern-tools, .tavern-controls { display: flex; align-items: center; gap: 6px; }
 
         .lang-toggle {
             background: #140b06; border: 2px solid var(--brass-base);
-            color: var(--brass-hi); height: 32px; padding: 0 4px;
+            color: var(--brass-hi); height: 34px; padding: 0 6px;
             font-weight: 800; font-size: 12px !important;
             cursor: pointer; outline: none; appearance: none; -webkit-appearance: none;
             box-shadow: inset 1px 1px 0 var(--wood-hi), inset -1px -1px 0 #000;
@@ -218,7 +227,7 @@
 
         .theme-toggle {
             background: #140b06; border: 2px solid var(--brass-base);
-            color: var(--brass-hi); width: 32px; height: 32px;
+            color: var(--brass-hi); width: 34px; height: 34px;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; flex-shrink: 0;
             box-shadow: inset 1px 1px 0 var(--wood-hi), inset -1px -1px 0 #000;
@@ -243,7 +252,7 @@
             background: var(--stone-dark);
             border: 2px solid var(--stone-hi);
             box-shadow: inset 2px 2px 0 #28334e, inset -2px -2px 0 #06080e, var(--pixel-hard);
-            padding: 5px 10px;
+            padding: 6px 10px;
             color: var(--mana-cyan); font-size: 12px; font-weight: 800;
         }
         .update-pulse {
@@ -404,11 +413,10 @@
             padding: 6px;
             display: flex; flex-direction: column; gap: 6px;
             position: relative; z-index: 1;
-            min-height: 128px;
+            min-height: 132px;
             justify-content: space-between;
         }
 
-        /* Đinh tán pixel 4 góc */
         .day-card::before, .day-card::after {
             content: ''; position: absolute; width: 4px; height: 4px;
             background: var(--brass-base); box-shadow: 0 0 0 1px #000;
@@ -416,18 +424,17 @@
         .day-card::before { top: 2px; left: 2px; }
         .day-card::after { top: 2px; right: 2px; }
 
-        /* Ô Chủ Nhật chiếm full chiều rộng */
         .day-card[style*="grid-column: 1 / -1"] {
             grid-column: 1 / -1 !important;
             flex-direction: row;
             align-items: center;
             padding: 8px 10px;
-            min-height: 72px;
+            min-height: 74px;
         }
 
-        /* Mini Pixel Scene Container (Kích thước lớn 48px - 54px) */
+        /* Mini Pixel Scene Container */
         .scene-container {
-            position: relative; width: 100%; height: 60px;
+            position: relative; width: 100%; height: 62px;
             background: #080c18;
             border: 2px solid var(--wood-rim);
             box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
@@ -435,13 +442,12 @@
             overflow: hidden;
         }
         .day-card[style*="grid-column: 1 / -1"] .scene-container {
-            width: 64px; height: 52px; flex-shrink: 0;
+            width: 68px; height: 56px; flex-shrink: 0;
         }
 
-        /* Hào quang nền của Scene */
         .scene-aura {
-            position: absolute; width: 36px; height: 36px;
-            border-radius: 50%; filter: blur(6px); opacity: 0.4;
+            position: absolute; width: 40px; height: 40px;
+            border-radius: 50%; filter: blur(6px); opacity: 0.45;
             pointer-events: none;
         }
         .aura-t2 { background: #f59e0b; }
@@ -471,7 +477,7 @@
         }
         .day-badge {
             font-size: 10px; font-weight: 900;
-            padding: 1px 4px; background: #080b14;
+            padding: 1px 5px; background: #080b14;
             border: 1px solid var(--stone-hi); color: var(--text-muted);
         }
 
@@ -606,7 +612,7 @@
             letter-spacing: 1px; animation: crystal-flash 1.2s infinite steps(1);
         }
 
-        /* Guild Crystal Stat Pods (Thay thế hoàn toàn Bento) */
+        /* Guild Crystal Stat Pods (Không Bento) */
         .pedestal-chamber {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px;
         }
@@ -785,7 +791,7 @@
 
         footer {
             text-align: center; padding: 10px 0 20px;
-            font-size: 11px; color: #94a3b8; font-weight: 600;
+            font-size: 11px; color: var(--text-muted); font-weight: 600;
             z-index: 10; position: relative; line-height: 1.4;
         }
         footer strong { color: var(--brass-hi); }
@@ -819,7 +825,7 @@
                 </div>
             </div>
             
-            <div class="tavern-controls">
+            <div class="tavern-tools">
                 <select id="langSelect" class="lang-toggle">
                     <option value="vi">🇻🇳 VI</option>
                     <option value="en">🇬🇧 EN</option>
@@ -1113,7 +1119,7 @@
         { id: "2C(C2+C3)", label: "C2 + C3", class: "badge-double" }
     ];
 
-    // SVG Pixel Art độc quyền cho từng ngày (Tăng kích thước lên 46px - 50px)
+    // SVG Pixel Art độc quyền cho từng tiểu cảnh ngày
     const PIXEL_ART_MAP = {
         T2: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><rect x="4" y="6" width="12" height="13" fill="#92400e"/><rect x="6" y="8" width="8" height="9" fill="#fde68a"/><path d="M16 9h4v6h-4" stroke="#d97706" stroke-width="2"/><rect x="6" y="3" width="2" height="3" fill="#fff" opacity="0.9"/><rect x="11" y="2" width="2" height="4" fill="#fff" opacity="0.9"/></svg>`,
         T3: `<svg viewBox="0 0 24 24" width="46" height="46" fill="none"><rect x="3" y="5" width="18" height="14" fill="#78350f"/><rect x="5" y="7" width="6" height="10" fill="#fef3c7"/><rect x="13" y="7" width="6" height="10" fill="#fef3c7"/><rect x="11" y="5" width="2" height="14" fill="#451a03"/><rect x="7" y="9" width="3" height="2" fill="#38bdf8"/></svg>`,
@@ -1131,7 +1137,7 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 4. MODULE CANVAS BỤI PHÉP & SAO ĐÊM PIXEL (WORLD ENVIRONMENT) ---
+    // --- 4. MODULE CANVAS BỤI PHÉP & SAO ĐÊM PIXEL ---
     const canvas = document.getElementById('bg-canvas'); 
     const ctx = canvas.getContext('2d'); 
     let particlesArray = [];
@@ -1614,7 +1620,7 @@
             let countUsers = allNames.length; 
             let countShifts = 0;
             
-            // 1. CHIẾU THƯ QUẢN LÝ TÙNG (#priorityAdminContainer - Giảm inline style)
+            // 1. CHIẾU THƯ QUẢN LÝ TÙNG (#priorityAdminContainer - Giảm hoàn toàn inline style)
             const priorityContainer = document.getElementById("priorityAdminContainer");
             if (adminNames.length > 0) {
                 let adminHtml = `<div class="decree-box">
