@@ -7,88 +7,113 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="WorkShift Pro">
-    <meta name="theme-color" content="#03130d">
+    <meta name="theme-color" content="#0d0e1a">
     
-    <title>WorkShift Pro Enterprise | Cozy Christmas Edition</title>
+    <title>WorkShift Pro Enterprise | Final</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=VT323&family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
 
     <style>
         /* =========================================================
-           01. CHRISTMAS DESIGN SYSTEM & TOKENS
+           01. DESIGN SYSTEM & PIXEL ART RPG THEME TOKENS
         ========================================================= */
-        :root[data-theme="dark"], :root[data-theme="light"] {
-            --bg-night: #03130d;
-            --bg-night-gradient: radial-gradient(circle at 50% 12%, #123d29 0%, #062116 45%, #020d08 100%);
+        :root[data-theme="dark"] {
+            --bg-canvas: #090a14;
+            --sky-deep: #0e1124;
             
-            --xmas-red-dark: #6d0a0d;
-            --xmas-red: #a7181c;
-            --xmas-red-glow: #e02424;
-            --xmas-red-light: #fef2f2;
+            /* Gỗ quán rượu */
+            --wood-dark: #1b110b;
+            --wood-base: #2c1a11;
+            --wood-light: #442a1b;
+            --wood-border: #0d0704;
+            --wood-highlight: #633e28;
             
-            --pine-green-deep: #051a11;
-            --pine-green: #0a2f1e;
-            --pine-green-card: #0c3824;
-            --pine-green-light: #165338;
-            --pine-border: rgba(52, 211, 153, 0.22);
+            /* Giấy da nhiệm vụ */
+            --parchment-bg: #ecdcb9;
+            --parchment-border: #422a18;
+            --parchment-text: #2a180b;
+            --parchment-sub: #5f422b;
+            --parchment-slot: #ddc69d;
             
-            --gold-base: #f59e0b;
-            --gold-light: #fde68a;
-            --gold-glow: rgba(245, 158, 11, 0.45);
-            --gold-border: rgba(245, 158, 11, 0.4);
-            --gold-gradient: linear-gradient(135deg, #ffe082 0%, #d97706 100%);
+            /* Kim loại đồng thau & vàng */
+            --gold-light: #fbe285;
+            --gold-base: #d89e34;
+            --gold-dark: #8c5b13;
+            --gold-shadow: #3b2304;
             
-            --snow-white: #ffffff;
-            --snow-soft: #e2e8f0;
-            --snow-cap-shadow: rgba(3, 19, 13, 0.45);
+            /* Phép thuật & Trạng thái */
+            --mana-cyan: #38bdf8;
+            --mana-glow: rgba(56, 189, 248, 0.45);
+            --amethyst: #a855f7;
+            --emerald: #34d399;
+            --crimson: #e11d48;
+            --crimson-dark: #881337;
+            --crimson-glow: rgba(225, 29, 72, 0.5);
+            
+            /* Đá phiến ngục tối */
+            --stone-dark: #12141f;
+            --stone-base: #1e2235;
+            --stone-border: #090a10;
+            --stone-highlight: #303753;
             
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border-glass: rgba(255, 255, 255, 0.12);
-            --input-bg: rgba(6, 33, 22, 0.85);
             
-            --primary: #ef4444;
-            --primary-hover: #dc2626;
-            --primary-light: rgba(239, 68, 68, 0.15);
-            --primary-glow: rgba(239, 68, 68, 0.5);
-            
-            --success: #34d399;
-            --success-bg: rgba(16, 185, 129, 0.2);
-            --warning: #fbbf24;
-            --warning-bg: rgba(245, 158, 11, 0.2);
-            --danger: #f87171;
-            --danger-bg: rgba(239, 68, 68, 0.2);
-            --info: #60a5fa;
-            --info-bg: rgba(59, 130, 246, 0.2);
-            
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
-            --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
-            --canvas-dot: #ffffff;
-            --canvas-line: rgba(255, 255, 255, 0.15);
-            
-            --candy-cane-pattern: repeating-linear-gradient(45deg, #ffffff 0px, #ffffff 12px, #dc2626 12px, #dc2626 24px);
+            --pixel-shadow: 0 4px 0 #000;
+            --pixel-shadow-lg: 0 8px 0 #000;
         }
 
-        /* Tương thích Light Mode nhưng vẫn giữ sắc thái ấm áp của Giáng sinh */
         :root[data-theme="light"] {
-            --bg-night: #0a2618;
-            --bg-night-gradient: radial-gradient(circle at 50% 12%, #1b4f36 0%, #0d3522 50%, #061e13 100%);
+            --bg-canvas: #1e2235;
+            --sky-deep: #2a314d;
+            
+            --wood-dark: #24160d;
+            --wood-base: #3b2417;
+            --wood-light: #553421;
+            --wood-border: #140b06;
+            --wood-highlight: #7a4b2f;
+            
+            --parchment-bg: #f5eedb;
+            --parchment-border: #4a301b;
+            --parchment-text: #1e1107;
+            --parchment-sub: #523824;
+            --parchment-slot: #e7dac1;
+            
+            --gold-light: #fef08a;
+            --gold-base: #eab308;
+            --gold-dark: #a16207;
+            --gold-shadow: #422006;
+            
+            --mana-cyan: #0284c7;
+            --mana-glow: rgba(2, 132, 199, 0.35);
+            --amethyst: #9333ea;
+            --emerald: #059669;
+            --crimson: #dc2626;
+            --crimson-dark: #991b1b;
+            --crimson-glow: rgba(220, 38, 38, 0.4);
+            
+            --stone-dark: #1e2235;
+            --stone-base: #2a314c;
+            --stone-border: #111420;
+            --stone-highlight: #3f4970;
+            
             --text-main: #ffffff;
             --text-muted: #cbd5e1;
-            --canvas-dot: #fde68a;
+            
+            --pixel-shadow: 0 4px 0 #07090e;
+            --pixel-shadow-lg: 0 8px 0 #07090e;
         }
 
         /* =========================================================
-           02. BASE RESETS & SCROLLBAR
+           02. RESET & PIXEL TYPOGRAPHY
         ========================================================= */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; image-rendering: pixelated; }
         html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-night);
-            background-image: var(--bg-night-gradient);
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: var(--bg-canvas);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -98,1338 +123,739 @@
             -webkit-tap-highlight-color: transparent;
             -webkit-font-smoothing: antialiased;
         }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .mono { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .pixel-font { font-family: 'VT323', monospace; letter-spacing: 1px; }
+        .rpg-title { font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: 1px; }
 
-        input, select, textarea, button, input[type="text"] {
+        input, select, textarea, button {
+            font-family: inherit;
             font-size: 16px !important;
             touch-action: manipulation;
         }
 
         /* =========================================================
-           03. ATMOSPHERIC SCENERY (VILLAGE, MOON & SNOW)
+           03. ATMOSPHERIC CANVAS & GUILD WRAPPER
         ========================================================= */
         #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0; pointer-events: none;
         }
 
-        /* Trăng tròn sáng vằng vặc với silhouette xe tuần lộc Santa */
-        .scenery-sky {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 55vh;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .xmas-moon {
-            position: absolute;
-            top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 124px;
-            height: 124px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #fffdf0 0%, #fef08a 60%, rgba(254, 240, 138, 0.4) 100%);
-            box-shadow: 0 0 50px rgba(254, 240, 138, 0.8), 0 0 100px rgba(253, 224, 71, 0.4);
-            opacity: 0.92;
-        }
-        .santa-sleigh {
-            position: absolute;
-            top: 28px;
-            left: 50%;
-            transform: translateX(-40%);
-            width: 150px;
-            height: 48px;
-            pointer-events: none;
-            opacity: 0.88;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-            animation: sleighBob 5s ease-in-out infinite alternate;
-        }
-        @keyframes sleighBob {
-            0% { transform: translateX(-42%) translateY(0px) rotate(-2deg); }
-            100% { transform: translateX(-38%) translateY(6px) rotate(2deg); }
-        }
+        .mesh-blob { display: none !important; }
 
-        /* Làng tuyết & Rừng thông phủ tuyết phía dưới chân trang */
-        .scenery-village {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 240px;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-            background-repeat: repeat-x;
-            background-position: bottom center;
-            background-size: cover;
-        }
-        .scenery-glow {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.35;
-        }
-        .glow-1 { top: 10%; left: -10%; width: 50vw; height: 50vw; background: #047857; }
-        .glow-2 { bottom: 10%; right: -10%; width: 60vw; height: 60vw; background: #b91c1c; }
-
-        /* Khung chứa ứng dụng Mobile-first */
         .app-wrapper {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-            max-width: 580px;
-            margin: 0 auto;
-            padding: 0 14px;
-            padding-top: max(14px, env(safe-area-inset-top));
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            position: relative; z-index: 10; display: flex; flex-direction: column;
+            min-height: 100vh; width: 100%; max-width: 440px; margin: 0 auto;
+            padding: 0 12px;
+            padding-top: max(12px, env(safe-area-inset-top));
+            padding-bottom: max(16px, env(safe-area-inset-bottom));
         }
 
         /* =========================================================
-           04. HEADER BAR (CHRISMTAS ICONS & CAPSULES)
+           04. PIXEL ART TAVERN HEADER & ROOF CANOPY
         ========================================================= */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0 16px;
-            gap: 10px;
-            flex-wrap: wrap;
+            display: flex; flex-direction: column; gap: 10px;
+            padding: 10px 0 14px 0; width: 100%;
         }
-        .brand-group {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 10px;
-        }
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            user-select: none;
-            position: relative;
-            transition: transform 0.2s;
-        }
-        .brand-logo:active { transform: scale(0.96); }
 
-        .brand-logo-badge {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 0 14px rgba(255,255,255,0.4);
-            border: 2px solid var(--gold-base);
+        .tavern-canopy {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--wood-base);
+            border: 3px solid var(--wood-border);
+            box-shadow: inset 0 2px 0 var(--wood-highlight), inset 0 -2px 0 var(--wood-dark), var(--pixel-shadow);
+            padding: 8px 12px; position: relative;
         }
-        .brand-logo-badge svg { width: 22px; height: 22px; }
-        .brand-logo-badge .mini-santa-hat {
-            position: absolute;
-            top: -10px;
-            left: -8px;
-            width: 24px;
-            height: 24px;
-            transform: rotate(-18deg);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        .tavern-canopy::before {
+            content: ''; position: absolute; top: -3px; left: -3px; right: -3px; height: 3px;
+            background: var(--gold-dark);
+        }
+
+        .brand-group { display: flex; align-items: center; gap: 8px; }
+        
+        .brand-logo {
+            display: flex; align-items: center; gap: 8px; cursor: pointer;
+            user-select: none; transition: transform 0.1s;
+        }
+        .brand-logo:active { transform: translateY(2px); }
+
+        .tavern-sign-crest {
+            width: 32px; height: 32px; background: var(--wood-dark);
+            border: 2px solid var(--gold-base);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 0 4px rgba(0,0,0,0.8); flex-shrink: 0;
         }
 
         .brand-logo-text { display: flex; flex-direction: column; }
         .brand-logo-title {
-            font-weight: 900;
-            font-size: 17px;
-            letter-spacing: 0.8px;
-            line-height: 1.1;
-            text-transform: uppercase;
-            color: #ffffff;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            font-family: 'Cinzel', serif; font-weight: 900; font-size: 16px;
+            line-height: 1.1; color: var(--gold-light);
+            text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
         }
         .brand-logo-sub {
-            font-size: 9px;
-            font-weight: 800;
-            color: var(--gold-light);
-            letter-spacing: 1.2px;
-            line-height: 1.1;
-            text-transform: uppercase;
+            font-family: 'VT323', monospace; font-size: 13px; color: var(--gold-base);
+            line-height: 1; letter-spacing: 1px; text-transform: uppercase;
         }
 
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        /* Đồng bộ điều khiển góc phải */
+        .tavern-tools { display: flex; align-items: center; gap: 6px; }
 
-        /* Language Toggle Pill */
         .lang-toggle {
-            background: rgba(6, 33, 22, 0.85);
-            border: 1px solid var(--pine-border);
-            color: #ffffff;
-            height: 36px;
-            padding: 0 26px 0 12px;
-            border-radius: 18px;
-            font-weight: 800;
-            font-size: 13px !important;
-            cursor: pointer;
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            outline: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f59e0b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 9px center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: 0.3s;
-        }
-        .lang-toggle:focus { border-color: var(--gold-base); }
-
-        /* Christmas Bell Ring & Theme Buttons */
-        .theme-toggle {
-            background: rgba(6, 33, 22, 0.85);
-            border: 1px solid var(--pine-border);
+            background: var(--wood-dark);
+            border: 2px solid var(--gold-base);
             color: var(--gold-light);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-        }
-        .theme-toggle:active { transform: scale(0.92); }
-        .theme-toggle.bell-btn-custom {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border-color: #ef4444;
-            color: #ffffff;
-            box-shadow: 0 0 14px rgba(239, 68, 68, 0.5);
-        }
-        .bell-ring svg { animation: bellSwing 2.5s ease-in-out infinite; transform-origin: top center; }
-        @keyframes bellSwing {
-            0%, 100% { transform: rotate(0); }
-            10% { transform: rotate(18deg); }
-            20% { transform: rotate(-14deg); }
-            30% { transform: rotate(8deg); }
-            40% { transform: rotate(-6deg); }
-            50% { transform: rotate(0); }
+            height: 32px; padding: 0 4px;
+            font-weight: 800; font-size: 12px !important;
+            cursor: pointer; outline: none; appearance: none; -webkit-appearance: none;
+            box-shadow: inset 1px 1px 0 var(--wood-highlight), inset -1px -1px 0 #000;
+            text-align: center;
         }
 
-        /* Realtime Emerald Capsule Bar */
-        .realtime-pill-bar {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 12px;
+        .theme-toggle {
+            background: var(--wood-dark);
+            border: 2px solid var(--gold-base);
+            color: var(--gold-light);
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; flex-shrink: 0;
+            box-shadow: inset 1px 1px 0 var(--wood-highlight), inset -1px -1px 0 #000;
+        }
+        .theme-toggle:active { transform: translateY(2px); box-shadow: none; }
+
+        .bell-ring svg { animation: pixel-wiggle 1.8s infinite steps(2); transform-origin: top center; }
+        @keyframes pixel-wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            20% { transform: rotate(15deg); }
+            40% { transform: rotate(-15deg); }
+            60% { transform: rotate(10deg); }
+            80% { transform: rotate(-10deg); }
+        }
+
+        /* Thanh Mana Clock */
+        .header-controls {
+            display: flex; justify-content: center; align-items: center; width: 100%;
         }
         .update-ticker {
-            background: linear-gradient(90deg, rgba(8, 42, 28, 0.95) 0%, rgba(13, 62, 42, 0.95) 50%, rgba(8, 42, 28, 0.95) 100%);
-            border: 1px solid rgba(52, 211, 153, 0.35);
-            padding: 8px 18px;
-            border-radius: 24px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.15);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11.5px;
-            font-weight: 700;
-            color: #ffffff;
-            backdrop-filter: blur(12px);
+            width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--stone-dark);
+            border: 2px solid var(--stone-highlight);
+            padding: 6px 12px; box-shadow: inset 0 0 6px rgba(0,0,0,0.8), var(--pixel-shadow);
+            color: var(--mana-cyan); font-size: 13px; font-weight: 700;
         }
         .update-pulse {
-            width: 7px;
-            height: 7px;
-            background: #34d399;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #34d399;
-            animation: pulseGlow 1.8s infinite;
+            width: 8px; height: 8px; background: var(--mana-cyan);
+            border-radius: 0; box-shadow: 0 0 6px var(--mana-cyan);
+            animation: pixel-blink 1s infinite steps(1); flex-shrink: 0;
         }
-        @keyframes pulseGlow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+        @keyframes pixel-blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.2; } }
 
         /* =========================================================
-           05. MAIN CHRISTMAS CARD (RED VELVET & CANDY BORDER)
+           05. MAIN GUILD QUEST BOARD (#userCard)
         ========================================================= */
         .card {
-            background: var(--pine-green-card);
-            border-radius: 28px;
-            border: 1px solid var(--pine-border);
-            padding: 24px 18px;
-            margin-bottom: 24px;
-            box-shadow: var(--shadow-card);
-            position: relative;
+            background: var(--wood-base);
+            border: 4px solid var(--wood-border);
+            box-shadow: inset 2px 2px 0 var(--wood-highlight), inset -2px -2px 0 var(--wood-dark), var(--pixel-shadow-lg);
+            padding: 14px 10px; margin-bottom: 16px; position: relative;
         }
 
-        /* Thẻ đỏ nhung Giáng sinh có viền kẹo gậy & tuyết phủ */
-        .xmas-hero-card {
-            background: radial-gradient(circle at 50% 20%, #991418 0%, #700a0d 65%, #490406 100%);
-            border-radius: 26px;
-            padding: 24px 16px;
-            position: relative;
-            margin-bottom: 22px;
-            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55), inset 0 2px 10px rgba(255,255,255,0.15);
-            /* Candy Cane Border Simulation */
-            border: 5px solid transparent;
-            background-clip: padding-box;
-            outline: 5px solid transparent;
+        /* Khung cuộn giấy da cổ */
+        .quest-scroll-wrapper {
+            background: var(--parchment-bg);
+            border: 3px solid var(--parchment-border);
+            box-shadow: inset 0 0 10px rgba(92, 59, 31, 0.4), var(--pixel-shadow);
+            padding: 14px 10px; margin-bottom: 12px; position: relative;
         }
-        .xmas-hero-card::before {
-            content: '';
-            position: absolute;
-            top: -7px; left: -7px; right: -7px; bottom: -7px;
-            background: var(--candy-cane-pattern);
-            border-radius: 30px;
-            z-index: -1;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        .quest-scroll-wrapper::before, .quest-scroll-wrapper::after {
+            content: '◆'; position: absolute; top: 2px; font-size: 10px; color: var(--gold-dark);
         }
+        .quest-scroll-wrapper::before { left: 4px; }
+        .quest-scroll-wrapper::after { right: 4px; }
 
-        /* Lớp tuyết 3D đọng trên mép trên và mép dưới */
-        .snow-crest-top {
-            position: absolute;
-            top: -13px;
-            left: 12px;
-            right: 12px;
-            height: 18px;
-            background-repeat: repeat-x;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' fill='%23ffffff'%3E%3Cpath d='M0,0 Q15,18 30,8 Q45,20 60,10 Q75,19 90,8 Q105,18 120,0 Z'/%3E%3C/svg%3E");
-            background-size: 80px 18px;
-            filter: drop-shadow(0 3px 2px var(--snow-cap-shadow));
-            pointer-events: none;
-            z-index: 4;
-        }
-        .snow-crest-bottom {
-            position: absolute;
-            bottom: -11px;
-            left: 12px;
-            right: 12px;
-            height: 16px;
-            background-repeat: repeat-x;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 18' fill='%23ffffff'%3E%3Cpath d='M0,18 Q15,2 30,10 Q45,0 60,8 Q75,1 90,10 Q105,2 120,18 Z'/%3E%3C/svg%3E");
-            background-size: 80px 16px;
-            filter: drop-shadow(0 -2px 2px var(--snow-cap-shadow));
-            pointer-events: none;
-            z-index: 4;
-        }
-
-        /* Mũ Noel trên góc Card */
-        .corner-santa-hat {
-            position: absolute;
-            top: -24px;
-            right: -10px;
-            width: 58px;
-            height: 58px;
-            z-index: 6;
-            pointer-events: none;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
-            animation: hatTilt 4s ease-in-out infinite alternate;
-        }
-        @keyframes hatTilt { 0% { transform: rotate(0deg); } 100% { transform: rotate(5deg); } }
-
-        /* Hộp quà & Người tuyết trang trí góc card */
-        .gift-decor-left {
-            position: absolute;
-            bottom: -10px;
-            left: -6px;
-            width: 62px;
-            height: 62px;
-            z-index: 6;
-            pointer-events: none;
-            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.6));
-        }
-        .snowman-decor-right {
-            position: absolute;
-            bottom: -12px;
-            right: -4px;
-            width: 68px;
-            height: 76px;
-            z-index: 6;
-            pointer-events: none;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));
-            animation: snowmanWiggle 6s ease-in-out infinite;
-        }
-        @keyframes snowmanWiggle {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(3deg) scale(1.02); }
-        }
-
-        .card-header {
-            text-align: center;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 2;
-        }
+        .card-header { text-align: center; margin-bottom: 4px; }
         .card-title {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 0 20px rgba(254, 240, 138, 0.3);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            font-family: 'Cinzel', serif; font-size: 21px; font-weight: 900;
+            color: var(--parchment-text); text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 8px;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
         }
-        .snowflake-icon {
-            color: rgba(255,255,255,0.7);
-            animation: spinSlow 12s linear infinite;
-        }
-        @keyframes spinSlow { to { transform: rotate(360deg); } }
 
-        /* Link ancafe.vn viền vàng đôi kiểu ảnh tham chiếu */
         .ancafe-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: #fffbeb;
-            font-weight: 800;
-            text-decoration: none;
-            font-size: 13.5px;
-            padding: 10px 24px;
-            border-radius: 24px;
-            background: linear-gradient(180deg, rgba(120, 16, 20, 0.95) 0%, rgba(85, 9, 12, 0.95) 100%);
-            border: 2px solid #f59e0b;
-            box-shadow: 0 0 16px var(--gold-glow), inset 0 0 8px rgba(245, 158, 11, 0.3);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            margin-top: 4px;
-            margin-bottom: 8px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            background: var(--crimson);
+            color: #ffffff !important;
+            font-size: 13px; font-weight: 800; text-decoration: none;
+            padding: 6px 14px;
+            border: 2px solid #000;
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.3), inset 0 -2px 0 var(--crimson-dark), var(--pixel-shadow);
+            margin-bottom: 8px; transition: transform 0.08s;
         }
-        .ancafe-link:hover { transform: scale(1.03); box-shadow: 0 0 22px rgba(245, 158, 11, 0.7); }
-        .ancafe-link:active { transform: scale(0.96); }
+        .ancafe-link:active { transform: translateY(2px); box-shadow: inset 0 2px 0 #000; }
 
         .slogan-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 20px;
-            width: 100%;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 20px; width: 100%;
         }
         .slogan-text {
-            font-size: 12.5px;
-            font-weight: 600;
-            color: #fde68a;
-            font-style: italic;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+            font-size: 12px; font-weight: 700; color: var(--parchment-sub);
+            font-style: normal; font-family: 'VT323', monospace; letter-spacing: 0.5px;
         }
         .type-cursor {
-            font-size: 13px;
-            color: #ffffff;
-            font-weight: 800;
-            margin-left: 2px;
-            animation: blinkCursor 0.7s infinite;
+            font-size: 14px; color: var(--crimson); font-weight: 900;
+            margin-left: 2px; animation: pixel-blink 0.7s infinite steps(1);
         }
-        @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* =========================================================
-           06. LOCK STATUS PILL (PREMIUM CHRISTMAS BADGE)
+           06. ARCANE SEAL STATUS PANEL (#lockStatus)
         ========================================================= */
-        #lockStatus {
-            margin-bottom: 22px;
-            position: relative;
-        }
         .status-panel {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            padding: 14px 20px;
-            border-radius: 22px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            /* Viền kẹo giáng sinh mảnh */
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            outline: 3px solid transparent;
-        }
-        .status-panel::before {
-            content: '';
-            position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            background: var(--candy-cane-pattern);
-            border-radius: 25px;
-            z-index: -1;
-        }
-
-        .status-panel.sys-locked {
-            background: linear-gradient(135deg, #7c0a0d 0%, #4a0406 100%);
-            border-color: rgba(239, 68, 68, 0.5);
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+            display: flex; align-items: center; justify-content: flex-start; gap: 12px;
+            padding: 10px 12px; border: 3px solid #000; margin-bottom: 14px;
+            position: relative; box-shadow: inset 0 0 10px rgba(0,0,0,0.6), var(--pixel-shadow);
         }
         .status-panel.sys-open {
-            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
-            border-color: rgba(52, 211, 153, 0.5);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+            background: #082f25; border-color: var(--emerald);
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.3), inset 0 0 10px rgba(0,0,0,0.8), var(--pixel-shadow);
+        }
+        .status-panel.sys-locked {
+            background: #2b0b14; border-color: var(--crimson);
+            box-shadow: 0 0 10px rgba(225, 29, 72, 0.4), inset 0 0 10px rgba(0,0,0,0.8), var(--pixel-shadow);
         }
 
         .st-icon-box {
-            position: relative;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+            position: relative; width: 38px; height: 38px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            background: rgba(0,0,0,0.6); border: 2px solid currentColor;
         }
-        .sys-locked .st-icon-box {
-            background: #b91c1c;
-            border: 2px solid #f87171;
-            color: #ffffff;
-        }
-        .sys-open .st-icon-box {
-            background: #059669;
-            border: 2px solid #34d399;
-            color: #ffffff;
-        }
+        .sys-open .st-icon-box { color: var(--emerald); }
+        .sys-locked .st-icon-box { color: var(--crimson); }
+        .st-pulse { display: none; }
 
-        .st-pulse {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: inherit;
-            animation: boxPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-            z-index: -1;
+        .st-info { display: flex; flex-direction: column; text-align: left; }
+        .st-title {
+            font-family: 'Cinzel', serif; font-size: 15px; font-weight: 900;
+            letter-spacing: 0.5px; line-height: 1.2; text-transform: uppercase;
         }
-        .sys-open .st-pulse { background: rgba(52, 211, 153, 0.6); }
-        .sys-locked .st-pulse { background: rgba(248, 113, 113, 0.6); }
-        @keyframes boxPing { 75%, 100% { transform: scale(1.5); opacity: 0; } }
-
-        .st-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
-        .st-title { font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.8px; color: #ffffff; }
-        .st-desc { font-size: 12px; font-weight: 600; color: #fde68a; }
+        .sys-open .st-title { color: var(--emerald); text-shadow: 1px 1px 0 #000; }
+        .sys-locked .st-title { color: var(--crimson); text-shadow: 1px 1px 0 #000; }
+        .st-desc {
+            font-size: 11px; font-weight: 600; color: #cbd5e1;
+            line-height: 1.2; font-family: 'Be Vietnam Pro', sans-serif;
+        }
 
         /* =========================================================
-           07. EMPLOYEE INPUT WITH CHRISTMAS TREE
+           07. ADVENTURER IDENTITY INPUT (#name)
         ========================================================= */
+        .input-wrapper { position: relative; margin-bottom: 12px; }
         .input-label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-        .input-label svg { color: var(--gold-base); }
-        
-        .input-wrapper {
-            position: relative;
-            margin-bottom: 24px;
-        }
-        .form-control {
-            width: 100%;
-            padding: 16px 48px 16px 46px;
-            border-radius: 20px;
-            border: 2px solid var(--pine-border);
-            background: rgba(4, 25, 17, 0.9);
-            color: #ffffff;
-            font-family: inherit;
-            font-weight: 700;
-            transition: 0.3s;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        .form-control::placeholder { color: #64748b; font-weight: 500; }
-        .form-control:focus {
-            background: rgba(6, 38, 26, 0.95);
-            border-color: #34d399;
-            box-shadow: 0 0 16px rgba(52, 211, 153, 0.35);
-            outline: none;
+            display: flex; align-items: center; gap: 6px;
+            font-size: 11px; font-weight: 800; color: var(--gold-light);
+            margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+            text-shadow: 1px 1px 0 #000;
         }
         .input-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gold-base);
-            pointer-events: none;
+            position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+            color: var(--gold-base); pointer-events: none; z-index: 2;
         }
-        /* Cây thông nhỏ trang trí bên phải thanh input */
-        .input-tree-decor {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-            pointer-events: none;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        .form-control {
+            width: 100%; padding: 10px 12px 10px 38px;
+            background: var(--stone-dark);
+            border: 2px solid var(--stone-highlight);
+            color: var(--text-main);
+            font-weight: 700; font-size: 15px !important;
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.8);
+            outline: none; border-radius: 0;
+        }
+        .form-control:focus {
+            border-color: var(--gold-base);
+            box-shadow: 0 0 6px var(--gold-base), inset 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         /* =========================================================
-           08. WEEKLY SCHEDULE CARDS (PINE GREEN + FAIRY LIGHTS)
+           08. WEEKLY QUEST BOARD & SLOTS (#form)
         ========================================================= */
         .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 26px;
+            display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px;
         }
 
         .day-card {
-            background: linear-gradient(180deg, #093322 0%, #052015 100%);
-            border: 1px solid rgba(52, 211, 153, 0.25);
-            border-radius: 18px;
-            padding: 14px 12px;
-            position: relative;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-            transition: all 0.3s ease;
+            background: var(--stone-base);
+            border: 2px solid var(--stone-border);
+            box-shadow: inset 1px 1px 0 var(--stone-highlight), var(--pixel-shadow);
+            padding: 6px 10px; display: flex; align-items: center; justify-content: space-between;
+            position: relative; z-index: 1;
         }
-        .day-card:hover { transform: translateY(-2px); border-color: var(--gold-base); }
-
-        /* Lớp tuyết đọng mini trên đỉnh mỗi card ngày */
         .day-card::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 8px;
-            right: 8px;
-            height: 9px;
-            background-repeat: repeat-x;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10' fill='%23ffffff'%3E%3Cpath d='M0,0 Q10,10 20,4 Q30,10 40,5 Q50,9 60,0 Z'/%3E%3C/svg%3E");
-            background-size: 40px 9px;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
-            pointer-events: none;
-            z-index: 2;
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+            background: var(--gold-dark);
         }
-
-        /* Dây đèn nhấp nháy fairy lights */
-        .fairy-lights {
-            position: absolute;
-            top: 2px;
-            left: 6px;
-            right: 6px;
-            display: flex;
-            justify-content: space-around;
-            pointer-events: none;
-            z-index: 3;
-        }
-        .fairy-bulb {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #fde047;
-            box-shadow: 0 0 6px #fde047;
-            animation: bulbTwinkle 2s infinite alternate;
-        }
-        .fairy-bulb:nth-child(2) { background: #f87171; box-shadow: 0 0 6px #f87171; animation-delay: 0.5s; }
-        .fairy-bulb:nth-child(3) { background: #34d399; box-shadow: 0 0 6px #34d399; animation-delay: 1s; }
-        .fairy-bulb:nth-child(4) { background: #60a5fa; box-shadow: 0 0 6px #60a5fa; animation-delay: 1.5s; }
-        @keyframes bulbTwinkle { 0% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 4px;
-            margin-bottom: 10px;
-            font-weight: 800;
-            font-size: 13px;
-            color: #ffffff;
+            display: flex; align-items: center; gap: 8px;
+            font-weight: 800; font-size: 13px; color: var(--gold-light);
+            text-shadow: 1px 1px 0 #000; flex-shrink: 0;
         }
-        /* Tag hộp quà đỏ cho T2, T3... */
         .day-badge {
-            font-size: 10px;
-            font-weight: 800;
-            padding: 2px 7px;
-            border-radius: 6px;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: #ffffff;
-            border: 1px solid rgba(254, 202, 202, 0.4);
-            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
+            font-family: 'VT323', monospace; font-size: 14px;
+            padding: 1px 4px; background: var(--stone-dark);
+            border: 1px solid var(--stone-highlight); color: var(--text-muted);
         }
 
-        /* Custom Dropdown phong cách ngọc bích thông */
-        .custom-dropdown { position: relative; width: 100%; font-family: inherit; }
+        /* Custom Pixel Artwork trước tên thứ */
+        .day-header::before {
+            content: '⚔️'; font-size: 14px; display: inline-block;
+        }
+        .day-card:nth-child(1) .day-header::before { content: '☕'; }
+        .day-card:nth-child(2) .day-header::before { content: '📖'; }
+        .day-card:nth-child(3) .day-header::before { content: '🧪'; }
+        .day-card:nth-child(4) .day-header::before { content: '🗡️'; }
+        .day-card:nth-child(5) .day-header::before { content: '🌿'; }
+        .day-card:nth-child(6) .day-header::before { content: '💎'; }
+        .day-card:nth-child(7) .day-header::before { content: '🌙'; }
+
+        /* Magic Shift Selector */
+        .custom-dropdown { position: relative; width: 140px; font-family: inherit; }
         .dropdown-selected {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(52, 211, 153, 0.3);
-            background: rgba(3, 20, 13, 0.85);
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 13.5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            user-select: none;
+            width: 100%; padding: 6px 8px;
+            border: 2px solid #000; background: var(--stone-dark);
+            color: var(--text-muted); font-weight: 800; font-size: 13px;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; user-select: none;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1), var(--pixel-shadow);
         }
-        .dropdown-selected:active { transform: scale(0.97); }
-        .dropdown-selected .select-arrow {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            color: var(--gold-base);
-        }
+        .dropdown-selected:active { transform: translateY(1px); }
+        .dropdown-selected .select-arrow { color: var(--gold-base); }
+        
         .custom-dropdown.open .dropdown-selected {
             border-color: var(--gold-base);
-            box-shadow: 0 0 12px var(--gold-glow);
+            box-shadow: 0 0 6px var(--gold-base);
         }
         .custom-dropdown.open .select-arrow { transform: rotate(180deg); }
 
         .dropdown-options {
-            position: absolute;
-            top: calc(100% + 6px);
-            left: 0;
-            right: 0;
-            background: #082a1c;
-            border: 1px solid var(--gold-border);
-            border-radius: 14px;
-            padding: 6px;
-            box-shadow: 0 14px 35px rgba(0,0,0,0.8);
-            z-index: 100;
-            max-height: 200px;
-            overflow-y: auto;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px) scale(0.96);
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: absolute; top: calc(100% + 4px); right: 0; width: 160px;
+            background: var(--wood-dark); border: 2px solid var(--gold-base);
+            box-shadow: 0 8px 0 #000, 0 0 12px rgba(0,0,0,0.9);
+            padding: 4px; z-index: 100; max-height: 220px; overflow-y: auto;
+            display: none;
         }
-        .custom-dropdown.open .dropdown-options { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .custom-dropdown.open .dropdown-options { display: block; }
+
         .dropdown-option {
-            padding: 10px 12px;
-            font-weight: 700;
-            font-size: 13px;
-            color: #ffffff;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-bottom: 2px;
+            padding: 8px 10px; font-weight: 700; font-size: 13px;
+            color: var(--text-main); cursor: pointer; border-bottom: 1px dashed rgba(255,255,255,0.1);
         }
+        .dropdown-option:last-child { border-bottom: none; }
         .dropdown-option:hover {
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--gold-light);
-            padding-left: 16px;
+            background: var(--wood-base); color: var(--gold-light);
+            border-left: 3px solid var(--gold-base);
         }
 
-        /* Phối màu ca theo phong cách Giáng sinh */
-        .dropdown-selected.sel-c1 { background: rgba(59, 130, 246, 0.25); color: #93c5fd; border-color: #60a5fa; }
-        .dropdown-selected.sel-c2 { background: rgba(245, 158, 11, 0.25); color: #fde68a; border-color: #fbbf24; }
-        .dropdown-selected.sel-c3 { background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border-color: #c084fc; }
-        .dropdown-selected.sel-f  { background: rgba(239, 68, 68, 0.3); color: #fca5a5; border-color: #f87171; }
+        /* Màu sắc ca được chọn */
+        .dropdown-selected.sel-c1 {
+            background: #0c2840; color: var(--mana-cyan); border-color: var(--mana-cyan);
+            box-shadow: 0 0 6px var(--mana-glow);
+        }
+        .dropdown-selected.sel-c2 {
+            background: #3b2304; color: var(--gold-light); border-color: var(--gold-base);
+            box-shadow: 0 0 6px rgba(216, 158, 52, 0.4);
+        }
+        .dropdown-selected.sel-c3 {
+            background: #2a113d; color: var(--amethyst); border-color: var(--amethyst);
+            box-shadow: 0 0 6px rgba(168, 85, 247, 0.4);
+        }
+        .dropdown-selected.sel-f  {
+            background: #380b18; color: #fda4af; border-color: var(--crimson);
+            box-shadow: 0 0 6px var(--crimson-glow);
+        }
         .dropdown-selected.sel-double {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.35) 0%, rgba(245, 158, 11, 0.35) 100%);
-            color: #ffffff;
-            border-color: #f59e0b;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+            background: #450a0a; color: #fef08a; border-color: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
         }
 
         /* =========================================================
-           09. BUTTONS (GOLD & CHRISTMAS CRIMSON)
+           09. BUTTONS (SEAL & ACCEPT QUEST)
         ========================================================= */
         .btn {
-            width: 100%;
-            padding: 16px;
-            border-radius: 20px;
-            font-family: inherit;
-            font-size: 14.5px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: none;
-            position: relative;
-            overflow: hidden;
+            width: 100%; padding: 12px 14px;
+            font-family: 'Cinzel', serif; font-size: 14px; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 8px; border: 3px solid #000; outline: none;
+            transition: transform 0.08s;
         }
+
         .btn-primary {
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
-            color: #ffffff;
-            border: 2px solid #f87171;
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+            background: var(--crimson); color: #ffffff;
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.4), inset 0 -3px 0 var(--crimson-dark), var(--pixel-shadow);
+            text-shadow: 1px 1px 0 #000;
         }
-        .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(220, 38, 38, 0.65); }
-        .btn-primary:active:not(:disabled) { transform: scale(0.97); }
-        .btn-primary:disabled { opacity: 0.6; filter: grayscale(0.5); cursor: not-allowed; }
+        .btn-primary:active:not(:disabled) {
+            transform: translateY(2px);
+            box-shadow: inset 0 2px 0 #000;
+        }
+        .btn-primary:disabled {
+            background: #334155; border-color: #1e293b; color: #64748b;
+            cursor: not-allowed; box-shadow: none; text-shadow: none;
+        }
 
         .btn-outline {
-            background: rgba(6, 33, 22, 0.8);
-            border: 2px solid var(--gold-border);
-            color: var(--gold-light);
-            margin-top: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background: var(--wood-dark); border: 2px solid var(--gold-base);
+            color: var(--gold-light); margin-top: 10px;
+            box-shadow: inset 0 2px 0 var(--wood-highlight), var(--pixel-shadow);
         }
-        .btn-outline:active { transform: scale(0.97); background: rgba(12, 56, 36, 0.9); }
+        .btn-outline:active { transform: translateY(2px); box-shadow: none; }
 
         /* =========================================================
-           10. MANAGER DASHBOARD (ROYAL CHRISTMAS PALACE)
+           10. GUILD MASTER CHAMBER & SWIPE RUNE (#managerBox)
         ========================================================= */
-        .dashboard-container { position: relative; }
-        .dashboard-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 14px;
-            border-bottom: 1px dashed rgba(245, 158, 11, 0.3);
+        #managerBox {
+            background: var(--stone-dark);
+            border: 4px solid var(--gold-dark);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9), var(--pixel-shadow-lg);
+            min-height: 260px;
         }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
+        #loginSection {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; position: relative; padding: 30px 10px;
         }
-        .bento-card {
-            background: linear-gradient(145deg, #093322 0%, #051d13 100%);
-            border: 1px solid var(--gold-border);
-            border-radius: 20px;
-            padding: 18px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
-        }
-        .bento-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 24px; height: 24px;
-            border-top: 2px solid var(--gold-base);
-            border-left: 2px solid var(--gold-base);
-            border-top-left-radius: 20px;
-        }
-        .stat-val {
-            font-size: 38px;
-            font-weight: 900;
-            color: #fde68a;
-            font-family: 'JetBrains Mono', monospace;
-            line-height: 1;
-            margin-bottom: 6px;
-            text-shadow: 0 0 15px var(--gold-glow);
-        }
-        .stat-label {
-            font-size: 11px;
-            font-weight: 800;
-            color: #34d399;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-        }
-        .bento-icon {
-            position: absolute;
-            top: 50%;
-            right: -6px;
-            transform: translateY(-50%) scale(3);
-            color: var(--gold-base);
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
-        .action-dock {
-            background: rgba(3, 20, 13, 0.9);
-            padding: 10px;
-            border-radius: 22px;
-            border: 1px solid var(--pine-border);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .dock-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 14px 6px;
-            border-radius: 16px;
-            background: #093322;
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: all 0.25s ease;
-        }
-        .dock-btn:hover { background: #0e442d; border-color: var(--gold-base); }
-        .dock-btn:active { transform: scale(0.94); }
-        .dock-btn.success { color: #34d399; }
-        .dock-btn.warning { color: #fbbf24; }
-        .dock-btn.info { color: #60a5fa; }
-        .dock-btn.danger { color: #f87171; }
-        .dock-btn svg { width: 22px; height: 22px; }
-
-        /* Bảng dữ liệu quản trị Noel */
-        .table-container {
-            border-radius: 20px;
-            border: 1px solid var(--pine-border);
-            background: #062317;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .table-wrapper { overflow-x: auto; max-height: 400px; -webkit-overflow-scrolling: touch; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th {
-            background: #093322;
-            color: var(--gold-light);
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.8px;
-            padding: 16px 10px;
-            text-align: center;
-            border-bottom: 2px solid var(--gold-base);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        th:first-child { text-align: left; left: 0; z-index: 20; background: #052015; }
-        td {
-            padding: 14px 10px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        tr:hover td { background: rgba(255,255,255,0.04); }
-        td:first-child {
-            text-align: left;
-            position: sticky;
-            left: 0;
-            background: #08291b;
-            z-index: 5;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .shift-badge {
-            display: inline-flex;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 11px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .badge-c1 { background: rgba(59, 130, 246, 0.25); color: #93c5fd; border: 1px solid #60a5fa; }
-        .badge-c2 { background: rgba(245, 158, 11, 0.25); color: #fde68a; border: 1px solid #fbbf24; }
-        .badge-c3 { background: rgba(168, 85, 247, 0.25); color: #e9d5ff; border: 1px solid #c084fc; }
-        .badge-f { background: rgba(239, 68, 68, 0.25); color: #fca5a5; border: 1px solid #f87171; }
-        .badge-double { background: #991b1b; color: #ffffff; border: 1px solid #f59e0b; }
-
-        .btn-exit {
-            background: transparent;
-            border: 1px solid #f87171;
-            color: #f87171;
-            padding: 6px 14px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 11px;
-            text-transform: uppercase;
-            cursor: pointer;
+        .card-subtitle {
+            font-family: 'VT323', monospace; font-size: 14px; color: var(--gold-base);
+            letter-spacing: 1px; margin-top: 4px; text-transform: uppercase;
         }
 
         .swipe-auth-zone {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            touch-action: none;
-            cursor: grab;
-            background: transparent;
-            border-radius: 28px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; touch-action: none; cursor: grab; background: transparent;
+        }
+        .swipe-auth-zone::after {
+            content: '❖ VUỐT MỞ PHONG ẤN RUNE ➔';
+            position: absolute; bottom: 20px; left: 0; right: 0; text-align: center;
+            font-family: 'VT323', monospace; font-size: 16px; color: var(--mana-cyan);
+            letter-spacing: 2px; animation: pixel-blink 1.2s infinite steps(1);
         }
 
+        /* Bento Stats in Admin */
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px;
+        }
+        .bento-card {
+            background: var(--stone-base); border: 2px solid var(--stone-highlight);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8), var(--pixel-shadow);
+            padding: 12px 10px; text-align: center; position: relative;
+        }
+        .stat-val {
+            font-size: 28px; font-weight: 900; color: var(--gold-light);
+            font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 4px;
+            text-shadow: 2px 2px 0 #000;
+        }
+        .stat-label {
+            font-size: 10px; font-weight: 800; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .bento-icon { display: none; }
+
+        /* Action Dock 4 Runes */
+        .action-dock {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px;
+        }
+        .dock-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 4px; padding: 10px 4px;
+            background: var(--wood-dark); border: 2px solid #000;
+            color: var(--text-main); font-size: 10px; font-weight: 800;
+            text-transform: uppercase; cursor: pointer;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), var(--pixel-shadow);
+        }
+        .dock-btn:active { transform: translateY(2px); box-shadow: none; }
+        .dock-btn.success { border-color: var(--emerald); color: var(--emerald); }
+        .dock-btn.warning { border-color: var(--gold-base); color: var(--gold-base); }
+        .dock-btn.info { border-color: var(--mana-cyan); color: var(--mana-cyan); }
+        .dock-btn.danger { border-color: var(--crimson); color: #fda4af; }
+        .dock-btn svg { width: 18px; height: 18px; }
+
+        /* Guild Ledger Table */
+        .table-container {
+            border: 3px solid var(--parchment-border);
+            background: var(--parchment-bg);
+            box-shadow: var(--pixel-shadow); overflow: hidden;
+        }
+        .table-wrapper {
+            overflow-x: auto; max-height: 320px;
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th {
+            background: var(--wood-dark); color: var(--gold-light);
+            font-family: 'Cinzel', serif; font-size: 11px; font-weight: 900;
+            padding: 8px 6px; border-bottom: 2px solid var(--gold-base);
+            text-align: center; white-space: nowrap;
+        }
+        td {
+            padding: 8px 6px; border-bottom: 1px solid var(--parchment-border);
+            color: var(--parchment-text); font-weight: 700; text-align: center;
+        }
+        tr:hover td { background: var(--parchment-slot); }
+
+        .shift-badge {
+            display: inline-flex; padding: 2px 6px; border: 1px solid #000;
+            font-weight: 800; font-size: 10px; font-family: 'JetBrains Mono', monospace;
+        }
+        .badge-c1 { background: #0c2840; color: var(--mana-cyan); }
+        .badge-c2 { background: #3b2304; color: var(--gold-light); }
+        .badge-c3 { background: #2a113d; color: var(--amethyst); }
+        .badge-f  { background: #380b18; color: #fda4af; }
+        .badge-double { background: #450a0a; color: #fef08a; border-color: #f59e0b; }
+
+        .btn-exit {
+            background: var(--crimson-dark); border: 2px solid #000; color: #ffffff;
+            padding: 6px 10px; font-size: 11px; font-weight: 800; cursor: pointer;
+            box-shadow: var(--pixel-shadow);
+        }
+        .btn-exit:active { transform: translateY(1px); }
+
         /* =========================================================
-           11. MODAL & TOASTS & FOOTER
+           11. MODAL & TOAST NOTIFICATIONS
         ========================================================= */
         .support-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.75); z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
         }
         .support-modal:not(.hidden) { opacity: 1; visibility: visible; }
         .support-modal-content {
-            background: radial-gradient(circle at 50% 20%, #7f1215 0%, #4c0709 100%);
-            border: 2px solid var(--gold-base);
-            border-radius: 26px;
-            padding: 28px 22px;
-            width: 90%;
-            max-width: 360px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px var(--gold-glow);
+            background: var(--parchment-bg); border: 4px solid var(--wood-border);
+            padding: 20px 16px; width: 90%; max-width: 360px; text-align: center;
+            position: relative; box-shadow: var(--pixel-shadow-lg);
         }
         .support-close {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background: rgba(255,255,255,0.15);
-            border: none;
-            color: #ffffff;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            position: absolute; top: 8px; right: 8px;
+            background: var(--wood-dark); border: 2px solid var(--gold-base);
+            color: var(--gold-light); width: 26px; height: 26px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
         }
         .support-icon-wrapper {
-            width: 54px;
-            height: 54px;
-            background: #b91c1c;
-            border: 2px solid #f87171;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
+            width: 44px; height: 44px; background: var(--wood-dark);
+            border: 2px solid var(--gold-base);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 12px;
+        }
+        .support-modal h3 {
+            font-family: 'Cinzel', serif; color: var(--parchment-text);
+            font-size: 16px; font-weight: 900; margin-bottom: 8px;
+        }
+        .support-modal p {
+            font-size: 12px; color: var(--parchment-sub); line-height: 1.5; font-weight: 600;
         }
 
         .toast-container {
-            position: fixed;
-            top: max(20px, env(safe-area-inset-top));
-            right: 16px;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            pointer-events: none;
+            position: fixed; top: 20px; left: 16px; right: 16px;
+            z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+            pointer-events: none; align-items: center;
         }
         .toast {
-            background: linear-gradient(135deg, #093322 0%, #052015 100%);
-            color: #ffffff;
-            padding: 12px 18px;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid var(--gold-border);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            transform: translateX(120%);
-            opacity: 0;
-            transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: var(--stone-dark); border: 2px solid var(--gold-base);
+            color: var(--gold-light); padding: 10px 14px;
+            font-weight: 800; font-size: 12px;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: var(--pixel-shadow); width: 100%; max-width: 360px;
+            transform: translateY(-40px); opacity: 0; transition: 0.2s steps(4);
         }
-        .toast.show { transform: translateX(0); opacity: 1; }
-        .toast-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .toast-success .toast-icon { background: #059669; color: #fff; }
-        .toast-error .toast-icon { background: #b91c1c; color: #fff; }
-        .toast-warning .toast-icon { background: #d97706; color: #fff; }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast-icon {
+            width: 22px; height: 22px; border: 1px solid currentColor;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .toast-success { border-color: var(--emerald); color: var(--emerald); }
+        .toast-error { border-color: var(--crimson); color: #fda4af; }
+        .toast-warning { border-color: var(--gold-base); color: var(--gold-light); }
 
         .hidden { display: none !important; }
         .skeleton {
-            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 75%);
-            background-size: 200% 100%;
-            animation: skeletonLoad 1.5s infinite;
-            border-radius: 12px;
+            background: var(--stone-dark); border: 2px dashed var(--stone-highlight);
         }
-        @keyframes skeletonLoad { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
         footer {
-            text-align: center;
-            padding: 24px 0 32px;
-            font-size: 12.5px;
-            color: #94a3b8;
-            font-weight: 600;
-            z-index: 10;
-            line-height: 1.6;
+            text-align: center; padding: 14px 0 24px;
+            font-size: 11px; color: var(--text-muted); font-weight: 600;
+            z-index: 10; position: relative; line-height: 1.5;
         }
-        footer strong { color: var(--gold-base); }
-        footer span.pro-text { color: #f87171; font-weight: 800; }
+        footer strong { color: var(--gold-light); }
+        footer span.pro-text { color: var(--crimson); font-weight: 800; }
     </style>
 </head>
 
 <body>
 
-<!-- Lớp phong cảnh Giáng sinh: Bầu trời trăng sao, cỗ xe tuần lộc Santa & Tuyết rơi -->
 <canvas id="bg-canvas"></canvas>
-<div class="scenery-sky">
-    <div class="xmas-moon"></div>
-    <!-- Silhouette Santa Claus & Reindeer Sleigh -->
-    <svg class="santa-sleigh" viewBox="0 0 200 60" fill="#082a1c">
-        <path d="M190,20 C185,18 178,22 172,25 C165,22 155,20 148,25 C140,22 132,24 125,30 C122,25 110,22 102,28 C95,25 85,28 78,35 C70,30 55,32 45,40 C38,36 28,38 20,48 C15,46 10,48 5,52 C2,53 1,55 0,56 L200,56 C198,42 195,30 190,20 Z" opacity="0.3"/>
-        <path d="M18,34 Q22,26 28,30 Q34,26 38,32 L40,32 Q45,28 50,34 L54,34 Q60,30 65,36 L70,36 C76,32 82,35 88,40 L100,40 Q106,30 114,35 Q120,24 128,32 C132,32 136,36 142,42 L130,44 C120,44 116,42 110,46 C95,44 85,42 70,44 C50,44 35,42 20,44 Z" fill="#03150e"/>
-        <circle cx="126" cy="26" r="4" fill="#03150e"/>
-        <path d="M110,46 Q130,46 145,40 Q150,46 140,50 Q118,52 105,48 Z" fill="#03150e"/>
-    </svg>
-</div>
-
-<div class="scenery-glow glow-1"></div>
-<div class="scenery-glow glow-2"></div>
 
 <div class="app-wrapper" id="app">
-    <!-- Header Điều khiển & Thương hiệu An Café -->
     <header class="header">
-        <div class="brand-group">
-            <div class="brand-logo" style="gap: 10px;">
-                <div class="brand-logo-badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#a7181c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                        <line x1="6" y1="1" x2="6" y2="4"></line>
-                        <line x1="10" y1="1" x2="10" y2="4"></line>
-                        <line x1="14" y1="1" x2="14" y2="4"></line>
-                    </svg>
-                    <!-- Mũ Santa trên logo -->
-                    <svg class="mini-santa-hat" viewBox="0 0 40 40">
-                        <path d="M8,30 Q20,8 32,24 Q30,16 34,14" fill="#dc2626"/>
-                        <circle cx="35" cy="14" r="4" fill="#ffffff"/>
-                        <rect x="6" y="27" width="28" height="7" rx="3.5" fill="#ffffff"/>
-                    </svg>
-                </div>
-                <div class="brand-logo-text">
-                    <span class="brand-logo-title">AN CAFÉ</span>
-                    <span class="brand-logo-sub">WORKSHIFT PRO</span>
+        <div class="tavern-canopy">
+            <div class="brand-group">
+                <div class="brand-logo">
+                    <div class="tavern-sign-crest">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2.5" stroke-linecap="square">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <div class="brand-logo-text">
+                        <span class="brand-logo-title">AN CAFÉ</span>
+                        <span class="brand-logo-sub">WorkShift Pro</span>
+                    </div>
                 </div>
             </div>
             
-            <select id="langSelect" class="lang-toggle">
-                <option value="vi">🇻🇳 VI</option>
-                <option value="en">🇬🇧 EN</option>
-                <option value="zh">🇨🇳 ZH</option>
-                <option value="ko">🇰🇷 KO</option>
-                <option value="ja">🇯🇵 JA</option>
-            </select>
-        </div>
-        
-        <div class="header-controls">
-            <!-- Nút Chuông Noel đỏ -->
-            <button class="theme-toggle bell-btn-custom bell-ring" id="supportBtn" aria-label="Support">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                </svg>
-            </button>
+            <div class="tavern-tools">
+                <select id="langSelect" class="lang-toggle">
+                    <option value="vi">🇻🇳 VI</option>
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="zh">🇨🇳 ZH</option>
+                    <option value="ko">🇰🇷 KO</option>
+                    <option value="ja">🇯🇵 JA</option>
+                </select>
 
-            <!-- Toggle Theme -->
-            <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
-                <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-                <svg id="sunIcon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-            </button>
+                <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
+                    <svg id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sunIcon" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-controls">
+            <div class="update-ticker" id="timeTicker">
+                <div class="update-pulse"></div> 
+                <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
+            </div>
         </div>
     </header>
 
-    <!-- Đồng bộ Realtime Capsule -->
-    <div class="realtime-pill-bar">
-        <div class="update-ticker" id="timeTicker">
-            <div class="update-pulse"></div> 
-            <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
-        </div>
-    </div>
-
-    <!-- Hộp thoại Hỗ trợ Modal Noel -->
     <div id="supportModal" class="support-modal hidden">
         <div class="support-modal-content">
             <button class="support-close" id="closeSupportBtn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
             <div class="support-icon-wrapper">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2.5" stroke-linecap="square">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
             </div>
-            <h3 data-i18n="supportTitle" style="color: #ffffff; font-weight: 900; margin-bottom: 10px;">Trung Tâm Thông Báo</h3>
-            <p data-i18n="supportDesc" style="margin-bottom: 0; padding-bottom: 8px; font-size: 13px; color: #fde68a; line-height: 1.6; font-weight: 500;">
-                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: #ffffff; font-size: 14px;">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
+            <h3 data-i18n="supportTitle">Trung Tâm Thông Báo</h3>
+            <p data-i18n="supportDesc">
+                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: var(--crimson); font-size: 14px;">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
             </p>
         </div>
     </div>
 
     <div id="toastContainer" class="toast-container"></div>
 
-    <!-- MAIN VIEW: ĐĂNG KÝ CA LÀM (CHRISTMAS RED CARD + CANDY CANE BORDER) -->
-    <main class="card" id="userCard" style="background: transparent; border: none; padding: 0; box-shadow: none;">
-        
-        <!-- Bảng hiệu Đỏ Nhung Giáng Sinh -->
-        <div class="xmas-hero-card">
-            <!-- Tuyết đọng mép trên & dưới -->
-            <div class="snow-crest-top"></div>
-            <div class="snow-crest-bottom"></div>
-            
-            <!-- Mũ Santa góc trên -->
-            <svg class="corner-santa-hat" viewBox="0 0 60 60">
-                <path d="M12,48 Q32,10 52,38 Q48,24 55,20" fill="#dc2626"/>
-                <circle cx="56" cy="20" r="6" fill="#ffffff" filter="drop-shadow(0 2px 3px rgba(0,0,0,0.3))"/>
-                <rect x="8" y="44" width="46" height="12" rx="6" fill="#ffffff" filter="drop-shadow(0 2px 3px rgba(0,0,0,0.3))"/>
-            </svg>
-
-            <!-- Hộp quà bên trái -->
-            <svg class="gift-decor-left" viewBox="0 0 60 60">
-                <rect x="10" y="24" width="38" height="30" rx="4" fill="#dc2626"/>
-                <rect x="6" y="16" width="46" height="10" rx="3" fill="#ef4444"/>
-                <rect x="25" y="16" width="8" height="38" fill="#f59e0b"/>
-                <!-- Nơ vàng -->
-                <path d="M29,16 C22,8 14,14 26,16 Z" fill="#fbbf24"/>
-                <path d="M29,16 C36,8 44,14 32,16 Z" fill="#fbbf24"/>
-            </svg>
-
-            <!-- Người tuyết Snowman bên phải -->
-            <svg class="snowman-decor-right" viewBox="0 0 80 90">
-                <circle cx="40" cy="62" r="24" fill="#ffffff"/>
-                <circle cx="40" cy="30" r="16" fill="#ffffff"/>
-                <!-- Mắt & Miệng cười -->
-                <circle cx="34" cy="28" r="2" fill="#0f172a"/>
-                <circle cx="46" cy="28" r="2" fill="#0f172a"/>
-                <polygon points="40,32 40,36 48,34" fill="#f97316"/>
-                <!-- Khăn quàng đỏ -->
-                <path d="M28,40 Q40,46 52,40 L50,56 L44,54 L44,43 Z" fill="#dc2626"/>
-                <!-- Mũ len đỏ chóp trắng -->
-                <path d="M28,18 Q40,4 52,18 Z" fill="#dc2626"/>
-                <circle cx="40" cy="6" r="4" fill="#ffffff"/>
-                <rect x="26" y="16" width="28" height="5" rx="2.5" fill="#ffffff"/>
-            </svg>
-
+    <main class="card" id="userCard">
+        <div class="quest-scroll-wrapper">
             <div class="card-header">
-                <h2 class="card-title">
-                    <span class="snowflake-icon">❄</span>
-                    <span data-i18n="title">Đăng Ký Ca Làm</span>
-                    <span class="snowflake-icon">❄</span>
-                </h2>
+                <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
                 
                 <a href="https://ancafe.vn" target="_blank" class="ancafe-link">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                         <polyline points="15 3 21 3 21 9"></polyline>
                         <line x1="10" y1="14" x2="21" y2="3"></line>
                     </svg>
-                    Khám phá ancafe.vn &gt;
+                    Khám phá ancafe.vn
                 </a>
                 
                 <div class="slogan-container">
-                    <span id="typewriter-text" class="slogan-text"></span><span class="type-cursor">|</span>
+                    <span id="typewriter-text" class="slogan-text"></span><span class="type-cursor">█</span>
                 </div>
             </div>
         </div>
         
-        <!-- Khối Báo Trạng Thái Hệ Thống (Mở / Khóa) -->
         <div id="lockStatus">
-            <div class="skeleton" style="width: 100%; height: 74px; border-radius: 20px;"></div>
+            <div class="skeleton" style="width: 100%; height: 60px; margin-bottom: 14px;"></div>
         </div>
 
-        <!-- Nhập Định Danh Nhân Sự -->
-        <div>
+        <div style="margin-bottom: 12px;">
             <label class="input-label">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 <span data-i18n="employeeId">Định danh nhân sự</span>
             </label>
-            <div class="input-wrapper">
-                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <div class="input-wrapper" style="margin-bottom: 0;">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+                    <rect x="3" y="11" width="18" height="11" rx="0"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
                 <input type="text" id="name" class="form-control" placeholder="Ví dụ: AnCafe..." data-i18n-placeholder="placeholder" autocomplete="off">
-                <!-- Cây thông Noel nhỏ trang trí -->
-                <svg class="input-tree-decor" viewBox="0 0 24 24">
-                    <polygon points="12,2 17,9 14,9 19,16 5,16 10,9 7,9" fill="#15803d"/>
-                    <rect x="10" y="16" width="4" height="4" fill="#78350f"/>
-                    <circle cx="12" cy="2" r="1.5" fill="#fde047"/>
-                </svg>
             </div>
         </div>
 
-        <!-- Lưới Đăng Ký Lịch Làm Việc (Tuần này) -->
-        <div style="margin-bottom: 24px;">
-            <label class="input-label">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <div style="margin-bottom: 16px;">
+            <label class="input-label" style="margin-bottom: 8px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
+                    <rect x="3" y="4" width="18" height="18"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
                     <line x1="8" y1="2" x2="8" y2="6"></line>
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
                 <span data-i18n="schedule">Đăng ký lịch làm việc (Tuần này)</span>
             </label>
-            <div id="form" class="calendar-grid">
-                <!-- Javascript sẽ render động các card ngày Noel tại đây -->
-            </div>
+            <div id="form" class="calendar-grid" style="margin-bottom: 0;"></div>
         </div>
 
         <button id="submitBtn" class="btn btn-primary" data-i18n="confirmBtn">Xác Nhận Đăng Ký</button>
         <button id="managerBtn" class="btn btn-outline" data-i18n="managerBtn">Truy Cập Khu Vực Quản Lý</button>
     </main>
 
-    <!-- MANAGER / ADMIN BOX -->
-    <main class="card hidden" id="managerBox" style="position: relative; min-height: 260px; display: flex; flex-direction: column; justify-content: center; background: #08291b; border: 2px solid var(--gold-border);">
-        <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 0;">
+    <main class="card hidden" id="managerBox">
+        <div id="loginSection">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
-                <h2 class="card-title" style="color: var(--gold-base);" data-i18n="secureAccess">Secure Access</h2>
-                <div class="card-subtitle" style="font-size: 13px; font-weight: 700; color: #34d399;" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
-                <div style="font-size: 12px; color: #fde68a; margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <span>ancf.vn</span>
-                </div>
+                <h2 class="card-title" style="color: var(--crimson); font-family: 'Cinzel', serif;" data-i18n="secureAccess">Secure Access</h2>
+                <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
             </div>
-            <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: 26px;"></canvas>
+            <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none;"></canvas>
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
         <div id="adminPanel" class="hidden dashboard-container">
-            <div class="dashboard-header-flex">
-                <div>
-                    <h2 class="card-title" style="font-size: 18px; margin:0; text-align: left; display: flex; align-items: center; gap: 8px; color: #fde68a;">
-                        <span data-i18n="dashboard">DASHBOARD</span>
-                    </h2>
-                </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px dashed var(--stone-highlight);">
+                <h2 class="card-title" style="font-size: 16px; margin: 0; text-align: left; color: var(--gold-light);">
+                    <span data-i18n="dashboard">DASHBOARD</span>
+                </h2>
                 <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">Khóa Hệ Thống</button>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
                     <div class="stat-val" id="totalUsers">0</div>
                     <div class="stat-label" data-i18n="totalEmp">Tổng Nhân Sự</div>
                 </div>
                 <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
+                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18"></rect></svg>
                     <div class="stat-val" id="totalShifts">0</div>
                     <div class="stat-label" data-i18n="totalShifts">Ca Đăng Ký</div>
                 </div>
@@ -1437,27 +863,25 @@
 
             <div class="action-dock">
                 <div class="dock-btn success" id="unlockBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg> 
                     <span data-i18n="openShift">Mở Lịch</span>
                 </div>
                 <div class="dock-btn warning" id="lockBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> 
                     <span data-i18n="lock">Khóa</span>
                 </div>
                 <div class="dock-btn info" id="copyBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> 
                     <span data-i18n="export">Xuất File</span>
                 </div>
                 <div class="dock-btn danger" id="clearBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> 
                     <span data-i18n="cleanup">Dọn Dẹp</span>
                 </div>
             </div>
 
-            <!-- Khu vực hiển thị Lịch ưu tiên của Quản lý -->
             <div id="priorityAdminContainer"></div>
 
-            <!-- Bảng hiển thị ca toàn bộ nhân viên -->
             <div class="table-container">
                 <div id="excelTable" class="table-wrapper"></div>
             </div>
@@ -1466,7 +890,7 @@
 </div>
 
 <footer>
-    ©2026 DangTung<span class="pro-text">Pro</span> Enterprise.<br>
+    © bản quyền 2026 DangTung. WorkShift <span class="pro-text">Pro</span> Enterprise.<br>
     <span data-i18n="designed">Designed & Engineered by</span> <strong>Dang Tung</strong>. <span data-i18n="rights">All rights reserved.</span>
 </footer>
 
@@ -1490,7 +914,7 @@
             dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
             off: "OFF", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
             supportTitle: "Trung Tâm Thông Báo", 
-            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
+            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--crimson); font-size: 14px;'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
             dayTitle: "Ngày", listTitle: "Danh sách nhân sự đăng ký"
         },
         en: {
@@ -1499,7 +923,7 @@
             dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
             off: "OFF", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
             supportTitle: "Notification Center", 
-            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong>. We will address and resolve them immediately.",
+            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--crimson); font-size: 14px;'>host PhuongAnh</strong>. We will address and resolve them immediately.",
             dayTitle: "Date", listTitle: "Registered Staff"
         },
         zh: {
@@ -1508,7 +932,7 @@
             dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
             off: "OFF", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
             supportTitle: "通知中心", 
-            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong>。我们将立即处理并解决。",
+            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--crimson); font-size: 14px;'>host PhuongAnh</strong>。我们将立即处理并解决。",
             dayTitle: "日期", listTitle: "员工名单"
         },
         ko: {
@@ -1517,7 +941,7 @@
             dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
             off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
             supportTitle: "알림 센터", 
-            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
+            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--crimson); font-size: 14px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
             dayTitle: "날짜", listTitle: "직원 명단"
         },
         ja: {
@@ -1526,7 +950,7 @@
             dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
             off: "OFF", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
             supportTitle: "通知センター", 
-            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: #ffffff; font-size: 14px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
+            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--crimson); font-size: 14px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
             dayTitle: "日付", listTitle: "スタッフリスト"
         }
     };
@@ -1589,94 +1013,102 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 4. MODULE CANVAS TUYẾT RƠI CHÂN THỰC (CHRISTMAS SNOWFALL) ---
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let snowflakes = [];
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    // --- 4. MODULE CANVAS BỤI PHÉP & SAO ĐÊM PIXEL (TỐI ƯU HIỆU NĂNG) ---
+    const canvas = document.getElementById('bg-canvas'); 
+    const ctx = canvas.getContext('2d'); 
+    let particlesArray = [];
+    
+    function resizeCanvas() { 
+        canvas.width = window.innerWidth; 
+        canvas.height = window.innerHeight; 
     }
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas); 
     resizeCanvas();
 
-    class Snowflake {
-        constructor() { this.reset(); }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * -canvas.height;
-            this.size = (Math.random() * 2.8) + 1.2;
-            this.speedY = (Math.random() * 1.2) + 0.6;
-            this.speedX = (Math.random() * 0.8) - 0.4;
-            this.opacity = (Math.random() * 0.6) + 0.3;
-            this.swing = Math.random() * Math.PI * 2;
-            this.swingSpeed = Math.random() * 0.02 + 0.01;
+    let mouse = { x: null, y: null, radius: 80 };
+    window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; });
+    window.addEventListener('touchend', () => { mouse.x = undefined; mouse.y = undefined; });
+    window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
+    window.addEventListener('mouseout', () => { mouse.x = undefined; mouse.y = undefined; });
+
+    class Particle {
+        constructor(x, y, dx, dy, size, color) { 
+            this.x = x; this.y = y; this.dx = dx; this.dy = dy; 
+            this.size = size; this.color = color; 
+        }
+        draw() { 
+            ctx.fillStyle = this.color;
+            ctx.fillRect(Math.floor(this.x), Math.floor(this.y), this.size, this.size);
         }
         update() {
-            this.swing += this.swingSpeed;
-            this.x += this.speedX + Math.sin(this.swing) * 0.5;
-            this.y += this.speedY;
-            if (this.y > canvas.height || this.x < 0 || this.x > canvas.width) {
-                this.reset();
-                this.y = -10;
+            if(this.x > canvas.width || this.x < 0) this.dx = -this.dx; 
+            if(this.y > canvas.height || this.y < 0) this.dy = -this.dy;
+            
+            let dist = Math.sqrt((mouse.x - this.x) ** 2 + (mouse.y - this.y) ** 2);
+            if(dist < mouse.radius + this.size) {
+                if(mouse.x < this.x && this.x < canvas.width - this.size * 4) this.x += 1; 
+                if(mouse.x > this.x && this.x > this.size * 4) this.x -= 1;
+                if(mouse.y < this.y && this.y < canvas.height - this.size * 4) this.y += 1; 
+                if(mouse.y > this.y && this.y > this.size * 4) this.y -= 1;
             }
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
-            ctx.fill();
+            this.x += this.dx; 
+            this.y += this.dy; 
+            this.draw();
         }
     }
 
     function initCanvas() {
-        snowflakes = [];
-        const count = Math.floor((canvas.width * canvas.height) / 12000) + 40;
-        for (let i = 0; i < count; i++) {
-            const flake = new Snowflake();
-            flake.y = Math.random() * canvas.height;
-            snowflakes.push(flake);
+        particlesArray = []; 
+        let noOfParticles = Math.min(Math.floor((canvas.height * canvas.width) / 18000), 40);
+        for(let i = 0; i < noOfParticles; i++) {
+            let size = Math.random() > 0.6 ? 3 : 2; 
+            let color = Math.random() > 0.5 ? '#38bdf8' : '#fbbf24';
+            particlesArray.push(new Particle(
+                Math.random() * (innerWidth - size * 2) + size * 2, 
+                Math.random() * (innerHeight - size * 2) + size * 2, 
+                (Math.random() * 0.3) - 0.15, 
+                (Math.random() * 0.3) - 0.15, 
+                size, 
+                color
+            ));
         }
     }
 
     function animateCanvas() {
-        requestAnimationFrame(animateCanvas);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < snowflakes.length; i++) {
-            snowflakes[i].update();
-            snowflakes[i].draw();
+        requestAnimationFrame(animateCanvas); 
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        for(let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
         }
     }
-    initCanvas();
+    initCanvas(); 
     animateCanvas();
 
     // --- 5. MODULE QUẢN LÝ GIAO DIỆN LIGHT/DARK THEME ---
-    const themeBtn = document.getElementById('themeBtn');
+    const themeBtn = document.getElementById('themeBtn'); 
     const html = document.documentElement;
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    html.setAttribute('data-theme', savedTheme);
+    const savedTheme = localStorage.getItem('theme') || 'dark'; 
+    html.setAttribute('data-theme', savedTheme); 
     updateThemeIcon(savedTheme);
 
     themeBtn.onclick = () => {
         const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', newTheme);
+        html.setAttribute('data-theme', newTheme); 
         localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
+        updateThemeIcon(newTheme); 
+        initCanvas(); 
     };
 
     function updateThemeIcon(theme) {
-        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark');
+        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark'); 
         document.getElementById('sunIcon').classList.toggle('hidden', theme === 'light');
     }
 
-    // --- TYPEWRITER EFFECT CHO SLOGAN GIÁNG SINH ---
+    // --- TYPEWRITER EFFECT LOGIC CHO SLOGAN ---
     const sloganTexts = [
         "\"Nơi chốn thoải mái. Cảm giác thân thuộc.\"",
-        "\"Giáng sinh ấm áp. Hương vị cà phê trọn vẹn.\"",
-        "\"Góc nhỏ an yên giữa mùa đông lạnh giá.\"",
+        "\"Hương vị đậm đà. Khởi nguồn sáng tạo.\"",
+        "\"Góc nhỏ an yên giữa lòng thành phố.\"",
         "\"Thưởng thức cà phê. Kết nối đam mê.\""
     ];
     let sloganIndex = 0;
@@ -1686,6 +1118,7 @@
 
     function typeWriterEffect() {
         const currentSlogan = sloganTexts[sloganIndex];
+        
         if (isDeletingSlogan) {
             typewriterElement.textContent = currentSlogan.substring(0, charIndex - 1);
             charIndex--;
@@ -1697,76 +1130,77 @@
         let typeSpeed = isDeletingSlogan ? 25 : 55;
 
         if (!isDeletingSlogan && charIndex === currentSlogan.length) {
-            typeSpeed = 2200;
+            typeSpeed = 2000;
             isDeletingSlogan = true;
         } else if (isDeletingSlogan && charIndex === 0) {
             isDeletingSlogan = false;
             sloganIndex = (sloganIndex + 1) % sloganTexts.length;
-            typeSpeed = 500;
+            typeSpeed = 400;
         }
+
         setTimeout(typeWriterEffect, typeSpeed);
     }
-    setTimeout(typeWriterEffect, 1000);
+    setTimeout(typeWriterEffect, 800);
 
     // --- 6. HỆ THỐNG TOAST THÔNG BÁO ---
     function showToast(msg, type = 'success') {
-        const container = document.getElementById('toastContainer');
-        const toast = document.createElement('div');
+        const container = document.getElementById('toastContainer'); 
+        const toast = document.createElement('div'); 
         toast.className = `toast toast-${type}`;
-        const icons = {
-            success: '<polyline points="20 6 9 17 4 12"></polyline>',
-            error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
-            warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'
+        const icons = { 
+            success: '<polyline points="20 6 9 17 4 12"></polyline>', 
+            error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>', 
+            warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>' 
         };
-        toast.innerHTML = `<div class="toast-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
-        container.appendChild(toast);
-        void toast.offsetWidth;
+        toast.innerHTML = `<div class="toast-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">${icons[type]}</svg></div> <span>${msg}</span>`;
+        container.appendChild(toast); 
+        void toast.offsetWidth; 
         toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-            setTimeout(() => toast.remove(), 400);
-        }, 3000);
+        setTimeout(() => { 
+            toast.classList.remove('show'); 
+            setTimeout(() => toast.remove(), 400); 
+        }, 2800);
     }
 
     // --- 6.5 LOGIC MODAL THÔNG BÁO HỖ TRỢ ---
-    const supportBtn = document.getElementById('supportBtn');
-    const supportModal = document.getElementById('supportModal');
+    const supportBtn = document.getElementById('supportBtn'); 
+    const supportModal = document.getElementById('supportModal'); 
     const closeSupportBtn = document.getElementById('closeSupportBtn');
-    supportBtn.addEventListener('click', () => { supportModal.classList.remove('hidden'); supportBtn.classList.remove('bell-ring'); });
-    closeSupportBtn.addEventListener('click', () => { supportModal.classList.add('hidden'); });
-    supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.add('hidden'); });
+    
+    supportBtn.addEventListener('click', () => { 
+        supportModal.classList.remove('hidden'); 
+        supportBtn.classList.remove('bell-ring'); 
+    });
+    closeSupportBtn.addEventListener('click', () => { 
+        supportModal.classList.add('hidden'); 
+    });
+    supportModal.addEventListener('click', (e) => { 
+        if(e.target === supportModal) supportModal.classList.add('hidden'); 
+    });
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (CUSTOM DROPDOWN UI MỚI PHONG CÁCH NOEL) ---
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (7 NGÀY NHIỆM VỤ) ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
-        const fullDayName = t('dayFullName_' + dayName);
-        const shortDayName = t('dayShort_' + dayName);
+        const fullDayName = t('dayFullName_' + dayName); 
+        const shortDayName = t('dayShort_' + dayName); 
         const offText = t('off');
         const gridSpanStyle = dayName === 'CN' ? 'grid-column: 1 / -1;' : '';
         
         let optionsHtml = `<div class="dropdown-option" onclick="selectShift('${dayName}', '', '${offText}')">${offText}</div>`;
-        SHIFTS.forEach(s => { optionsHtml += `<div class="dropdown-option" onclick="selectShift('${dayName}', '${s.id}', '${s.id}')">${s.id}</div>`; });
+        SHIFTS.forEach(s => { 
+            optionsHtml += `<div class="dropdown-option" onclick="selectShift('${dayName}', '${s.id}', '${s.id}')">${s.id}</div>`; 
+        });
         
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
-                <!-- Dây đèn nháy Giáng sinh -->
-                <div class="fairy-lights">
-                    <span class="fairy-bulb"></span>
-                    <span class="fairy-bulb"></span>
-                    <span class="fairy-bulb"></span>
-                    <span class="fairy-bulb"></span>
-                </div>
                 <div class="day-header">
                     <span id="fullDayText_${dayName}">${fullDayName}</span>
-                    <span class="day-badge" id="shortDayText_${dayName}">
-                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M12 8v12"></path></svg>
-                        ${shortDayName}
-                    </span>
+                    <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
                 </div>
                 <div class="custom-dropdown" id="dropdown_${dayName}">
                     <div class="dropdown-selected" onclick="toggleDropdown('${dayName}')">
                         <span class="selected-text" id="text_${dayName}">${offText}</span>
-                        <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -1779,12 +1213,20 @@
 
     window.toggleDropdown = function(dayName) {
         document.querySelectorAll('.custom-dropdown').forEach(el => {
-            if (el.id !== 'dropdown_' + dayName) { el.classList.remove('open'); el.closest('.day-card').style.zIndex = '1'; }
+            if (el.id !== 'dropdown_' + dayName) { 
+                el.classList.remove('open'); 
+                el.closest('.day-card').style.zIndex = '1'; 
+            }
         });
-        const dropdown = document.getElementById('dropdown_' + dayName);
+        const dropdown = document.getElementById('dropdown_' + dayName); 
         const card = dropdown.closest('.day-card');
-        if (dropdown.classList.contains('open')) { dropdown.classList.remove('open'); card.style.zIndex = '1'; } 
-        else { dropdown.classList.add('open'); card.style.zIndex = '10'; }
+        if (dropdown.classList.contains('open')) { 
+            dropdown.classList.remove('open'); 
+            card.style.zIndex = '1'; 
+        } else { 
+            dropdown.classList.add('open'); 
+            card.style.zIndex = '20'; 
+        }
     };
 
     window.selectShift = function(dayName, value, label) {
@@ -1792,7 +1234,7 @@
         document.getElementById(dayName).value = value;
         document.getElementById('text_' + dayName).innerText = label;
         
-        dropdown.classList.remove('open');
+        dropdown.classList.remove('open'); 
         dropdown.closest('.day-card').style.zIndex = '1';
         
         const selectedDiv = dropdown.querySelector('.dropdown-selected');
@@ -1807,81 +1249,92 @@
 
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.custom-dropdown')) {
-            document.querySelectorAll('.custom-dropdown').forEach(el => { el.classList.remove('open'); el.closest('.day-card').style.zIndex = '1'; });
+            document.querySelectorAll('.custom-dropdown').forEach(el => { 
+                el.classList.remove('open'); 
+                el.closest('.day-card').style.zIndex = '1'; 
+            });
         }
     });
 
-    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG (CHRISTMAS BADGE) ---
+    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG ---
     let manualLock = null;
-    onValue(ref(db, "settings/lock"), snap => { manualLock = snap.exists() ? snap.val() : null; updateStatusUI(); });
+    onValue(ref(db, "settings/lock"), snap => { 
+        manualLock = snap.exists() ? snap.val() : null; 
+        updateStatusUI(); 
+    });
 
     function isSystemLocked() {
-        if(manualLock === true) return true;
+        if(manualLock === true) return true; 
         if(manualLock === false) return false;
-        const now = new Date();
-        const dayOfWeek = now.getDay();
+        const now = new Date(); 
+        const dayOfWeek = now.getDay(); 
         const hours = now.getHours();
         return (dayOfWeek === 5 && hours >= 20) || dayOfWeek === 6 || dayOfWeek === 0;
     }
 
     function updateStatusUI() {
-        const lockStatus = document.getElementById("lockStatus");
+        const lockStatus = document.getElementById("lockStatus"); 
         const submitBtn = document.getElementById("submitBtn");
         if (isSystemLocked()) {
             lockStatus.className = "status-panel sys-locked";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
                     <div class="st-pulse"></div>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><rect x="3" y="11" width="18" height="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </div>
                 <div class="st-info">
                     <span class="st-title">${t('sysLocked')}</span>
                     <span class="st-desc">${t('stopReg')}</span>
                 </div>
             `;
-            submitBtn.disabled = true;
+            submitBtn.disabled = true; 
             submitBtn.innerHTML = t('sysLocked');
         } else {
             lockStatus.className = "status-panel sys-open";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
                     <div class="st-pulse"></div>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
                 <div class="st-info">
                     <span class="st-title">${t('sysOpen')}</span>
                     <span class="st-desc">${t('sysOnline')}</span>
                 </div>
             `;
-            submitBtn.disabled = false;
+            submitBtn.disabled = false; 
             submitBtn.innerHTML = t('confirmBtn');
         }
     }
 
     // --- 9. XỬ LÝ SỰ KIỆN GỬI FORM LÊN FIREBASE ---
     document.getElementById("submitBtn").onclick = async () => {
-        const nameInput = document.getElementById("name");
+        const nameInput = document.getElementById("name"); 
         const employeeName = nameInput.value.trim();
-        if(!employeeName) { nameInput.focus(); return showToast(t('placeholder'), "warning"); }
-        if(isSystemLocked()) { return showToast(t('sysLocked'), "error"); }
+        if(!employeeName) { 
+            nameInput.focus(); 
+            return showToast(t('placeholder'), "warning"); 
+        }
+        if(isSystemLocked()) { 
+            return showToast(t('sysLocked'), "error"); 
+        }
         
         const schedule = {}; 
-        DAYS.forEach(day => {
-            const selectedShift = document.getElementById(day).value;
-            if(selectedShift) schedule[day] = selectedShift;
+        DAYS.forEach(day => { 
+            const selectedShift = document.getElementById(day).value; 
+            if(selectedShift) schedule[day] = selectedShift; 
         });
         if(!Object.keys(schedule).length) return showToast(t('off'), "warning");
 
-        const btn = document.getElementById("submitBtn");
+        const btn = document.getElementById("submitBtn"); 
         const originalText = btn.innerHTML;
-        btn.innerHTML = `...`;
+        btn.innerHTML = `...`; 
         btn.disabled = true;
 
         try {
             const snapshot = await get(ref(db, "dangKy/" + employeeName));
             if(snapshot.exists() && !confirm(`Định danh "${employeeName}" đã có dữ liệu. Bạn có muốn ghi đè lịch mới?`)) { 
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                btn.innerHTML = originalText; 
+                btn.disabled = false; 
                 return; 
             }
             
@@ -1896,108 +1349,115 @@
             });
             
         } catch(error) { 
-            console.error("Firebase fetch error:", error);
+            console.error("Firebase fetch error:", error); 
             showToast("Error: " + error.message, "error"); 
         } finally { 
-            btn.innerHTML = originalText;
+            btn.innerHTML = originalText; 
             btn.disabled = false; 
         }
     };
 
     // --- 10. ĐIỀU HƯỚNG GIỮA KHU VỰC USER VÀ MANAGER ---
     document.getElementById("managerBtn").onclick = () => {
-        document.getElementById("userCard").classList.add("hidden");
-        document.getElementById("managerBox").classList.remove("hidden");
+        document.getElementById("userCard").classList.add("hidden"); 
+        document.getElementById("managerBox").classList.remove("hidden"); 
         initSwipeTrail();
     };
 
     document.getElementById("logoutBtn").onclick = () => {
-        document.getElementById("adminPanel").classList.add("hidden");
+        document.getElementById("adminPanel").classList.add("hidden"); 
         document.getElementById("managerBox").classList.add("hidden");
-        document.getElementById("userCard").classList.remove("hidden");
+        document.getElementById("userCard").classList.remove("hidden"); 
         document.getElementById("loginSection").classList.remove("hidden");
     };
 
-    // --- 11. XỬ LÝ VUỐT NGANG ẨN & VỆT KÉO VÀNG GOLD LẤP LÁNH ---
-    let startX = 0;
-    let isSwiping = false;
-    let swipeTriggered = false;
+    // --- 11. XỬ LÝ VUỐT MỞ PHONG ẤN RUNE & CANVAS TRAIL ---
+    let startX = 0; 
+    let isSwiping = false; 
+    let swipeTriggered = false; 
     let trailPoints = [];
-    const swipeZone = document.getElementById('swipeZone');
-    const trailCanvas = document.getElementById('swipeTrailCanvas');
+    const swipeZone = document.getElementById('swipeZone'); 
+    const trailCanvas = document.getElementById('swipeTrailCanvas'); 
     const tCtx = trailCanvas.getContext('2d');
 
     function initSwipeTrail() {
-        swipeTriggered = false;
-        isSwiping = false;
-        trailPoints = [];
-        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+        swipeTriggered = false; 
+        isSwiping = false; 
+        trailPoints = []; 
+        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height); 
         resizeTrailCanvas();
     }
 
     function resizeTrailCanvas() {
-        const rect = swipeZone.parentElement.getBoundingClientRect();
-        trailCanvas.width = rect.width;
+        const rect = swipeZone.parentElement.getBoundingClientRect(); 
+        trailCanvas.width = rect.width; 
         trailCanvas.height = rect.height;
     }
     window.addEventListener('resize', resizeTrailCanvas);
 
     function drawTrail() {
-        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height); 
         if (trailPoints.length < 2) return;
-        tCtx.beginPath();
+        tCtx.beginPath(); 
         tCtx.moveTo(trailPoints[0].x, trailPoints[0].y);
         for(let i = 1; i < trailPoints.length; i++) {
-            const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2;
-            const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2;
+            const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2; 
+            const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2; 
             tCtx.quadraticCurveTo(trailPoints[i-1].x, trailPoints[i-1].y, xc, yc);
         }
-        tCtx.strokeStyle = 'rgba(251, 191, 36, 0.9)';
-        tCtx.lineWidth = 6;
-        tCtx.lineCap = 'round';
-        tCtx.shadowBlur = 16;
-        tCtx.shadowColor = '#f59e0b';
+        tCtx.strokeStyle = '#38bdf8'; 
+        tCtx.lineWidth = 4; 
+        tCtx.lineCap = 'square'; 
+        tCtx.shadowBlur = 10; 
+        tCtx.shadowColor = '#38bdf8'; 
         tCtx.stroke();
     }
 
     setInterval(() => {
-        if(trailPoints.length > 0 && !isSwiping) { trailPoints.shift(); drawTrail(); } 
-        else if (trailPoints.length > 20) { trailPoints.shift(); }
+        if(trailPoints.length > 0 && !isSwiping) { 
+            trailPoints.shift(); 
+            drawTrail(); 
+        } else if (trailPoints.length > 18) { 
+            trailPoints.shift(); 
+        }
     }, 20);
 
     swipeZone.addEventListener('pointerdown', (e) => {
-        if(swipeTriggered) return;
-        isSwiping = true;
-        startX = e.clientX;
-        trailPoints = [];
+        if(swipeTriggered) return; 
+        isSwiping = true; 
+        startX = e.clientX; 
+        trailPoints = []; 
         swipeZone.setPointerCapture(e.pointerId);
     });
 
     swipeZone.addEventListener('pointermove', (e) => {
         if (!isSwiping || swipeTriggered) return;
-        const rect = trailCanvas.getBoundingClientRect();
-        trailPoints.push({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+        const rect = trailCanvas.getBoundingClientRect(); 
+        trailPoints.push({ x: e.clientX - rect.left, y: e.clientY - rect.top }); 
         drawTrail();
         if (e.clientX - startX > 150) {
-            swipeTriggered = true;
+            swipeTriggered = true; 
             isSwiping = false;
-            tCtx.fillStyle = "rgba(245, 158, 11, 0.25)";
-            tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height);
+            tCtx.fillStyle = "rgba(56, 189, 248, 0.25)"; 
+            tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height); 
             if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
-            setTimeout(() => { loginAdmin(); initSwipeTrail(); }, 300);
+            setTimeout(() => { 
+                loginAdmin(); 
+                initSwipeTrail(); 
+            }, 250);
         }
     });
 
-    swipeZone.addEventListener('pointerup', (e) => {
-        if (!isSwiping) return;
-        isSwiping = false;
-        swipeZone.releasePointerCapture(e.pointerId);
+    swipeZone.addEventListener('pointerup', (e) => { 
+        if (!isSwiping) return; 
+        isSwiping = false; 
+        swipeZone.releasePointerCapture(e.pointerId); 
     });
 
     function loginAdmin() {
-        showToast("Welcome", "success");
-        document.getElementById("loginSection").classList.add("hidden");
-        document.getElementById("adminPanel").classList.remove("hidden");
+        showToast("Welcome", "success"); 
+        document.getElementById("loginSection").classList.add("hidden"); 
+        document.getElementById("adminPanel").classList.remove("hidden"); 
         fetchAndRenderAdminData();
     }
 
@@ -2005,12 +1465,12 @@
     let rawExcelDataExport = ""; 
     async function fetchAndRenderAdminData() {
         const tableContainer = document.getElementById("excelTable"); 
-        tableContainer.innerHTML = `<div style="padding: 40px; text-align: center;"><div class="skeleton" style="height: 140px; border-radius: 16px;"></div></div>`;
+        tableContainer.innerHTML = `<div style="padding: 20px; text-align: center;"><div class="skeleton" style="height: 120px;"></div></div>`;
         
         try {
             const snapshot = await get(ref(db, "dangKy"));
             if(!snapshot.exists()) {
-                tableContainer.innerHTML = `<div style="padding: 40px; color: #cbd5e1; text-align: center; font-weight: 700;">${t('emptyData')}</div>`; 
+                tableContainer.innerHTML = `<div style="padding: 24px; color: var(--parchment-sub); text-align: center; font-weight: 700;">${t('emptyData')}</div>`; 
                 document.getElementById("totalUsers").innerText = "0"; 
                 document.getElementById("totalShifts").innerText = "0"; 
                 document.getElementById("priorityAdminContainer").innerHTML = "";
@@ -2030,35 +1490,30 @@
             let countUsers = allNames.length; 
             let countShifts = 0;
             
-            // XỬ LÝ KHU VỰC ƯU TIÊN CHO ADMIN TÙNG
+            // 1. CHIẾU THƯ QUẢN LÝ TÙNG (#priorityAdminContainer)
             const priorityContainer = document.getElementById("priorityAdminContainer");
             if (adminNames.length > 0) {
-                let adminHtml = `
-                    <div style="background: radial-gradient(circle at 50% 20%, #7f1215 0%, #4c0709 100%); border: 2px solid #f59e0b; border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
-                        <h3 style="color: #fde68a; margin-bottom: 14px; font-size: 15px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-weight: 900;">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            Ưu tiên em Tùng nhé chị!!!
-                        </h3>
-                        <div style="display: flex; flex-direction: column; gap: 14px;">
-                `;
+                let adminHtml = `<div style="background: var(--stone-base); border: 2px solid var(--crimson); box-shadow: 0 0 10px rgba(225, 29, 72, 0.4), var(--pixel-shadow); padding: 12px; margin-bottom: 14px;">
+                    <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 13px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-weight: 900; font-family: 'Cinzel', serif;">
+                        ❖ Ưu tiên em Tùng nhé chị!!!
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">`;
 
                 adminNames.forEach(adminName => {
                     const adminData = data[adminName];
                     const lichData = adminData?.lich || {};
                     let hasShifts = false;
-                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 6px;">`;
 
                     DAYS.forEach(day => {
                         if (lichData[day]) {
                             hasShifts = true;
                             const shiftInfoObj = SHIFTS.find(s => s.id === lichData[day]);
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
-                            shiftsHtml += `
-                                <div style="background: #093322; padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; gap: 6px;">
-                                    <span style="font-weight: 800; font-size: 11.5px; color: #fde68a;">${t('dayShort_' + day)}</span>
-                                    <span class="shift-badge ${cssBadgeClass}" style="padding: 2px 6px; font-size: 10px;">${lichData[day]}</span>
-                                </div>
-                            `;
+                            shiftsHtml += `<div style="background: var(--stone-dark); padding: 4px 8px; border: 1px solid var(--stone-highlight); display: flex; align-items: center; gap: 6px;">
+                                <span style="font-weight: 800; font-size: 11px; color: var(--gold-light);">${t('dayShort_' + day)}</span>
+                                <span class="shift-badge ${cssBadgeClass}">${lichData[day]}</span>
+                            </div>`;
                         }
                     });
                     shiftsHtml += `</div>`;
@@ -2066,9 +1521,7 @@
                     if (hasShifts) {
                         adminHtml += `
                             <div>
-                                <div style="font-weight: 900; font-size: 14px; margin-bottom: 6px; color: #ffffff;">
-                                    ${adminName} <span style="font-size: 9px; background: #dc2626; color: white; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 4px;">ADMIN</span>
-                                </div>
+                                <div style="font-weight: 800; font-size: 13px; margin-bottom: 6px; color: var(--gold-light);">${adminName} <span style="font-size: 9px; background: var(--crimson); color: white; padding: 1px 4px;">ADMIN</span></div>
                                 ${shiftsHtml}
                             </div>
                         `;
@@ -2080,8 +1533,8 @@
                 priorityContainer.innerHTML = '';
             }
 
-            // XỬ LÝ BẢNG CHÍNH NHÂN SỰ THƯỜNG
-            let htmlTable = `<table><thead><tr><th style="width: 100px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
+            // 2. SỔ CÁI BIÊN NIÊN SỬ NHÂN SỰ (#excelTable)
+            let htmlTable = `<table><thead><tr><th style="width: 75px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
             rawExcelDataExport = `${t('dayTitle') || 'Ngày'}\t${t('listTitle') || 'Danh sách nhân sự đăng ký'}\n`;
             
             DAYS.forEach(day => {
@@ -2103,16 +1556,16 @@
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
                             
                             dayShiftsHTML.push(`
-                                <div style="display: inline-flex; align-items: center; background: #093322; padding: 4px 8px; border-radius: 8px; margin: 3px 6px 3px 0; border: 1px solid rgba(52, 211, 153, 0.3);">
-                                    <span style="font-weight: 700; margin-right: 6px; color: #ffffff;">${employeeName}</span>
-                                    <span class="shift-badge ${cssBadgeClass}" style="padding: 2px 6px; font-size: 10px;">${shiftRegistered}</span>
+                                <div style="display: inline-flex; align-items: center; background: rgba(0,0,0,0.08); padding: 3px 6px; border: 1px solid var(--parchment-border); margin: 2px 4px 2px 0;">
+                                    <span style="font-weight: 800; margin-right: 6px; color: var(--parchment-text);">${employeeName}</span>
+                                    <span class="shift-badge ${cssBadgeClass}">${shiftRegistered}</span>
                                 </div>
                             `);
                         }
                     }
                 });
                 
-                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: #64748b; font-style: italic;">-</span>`;
+                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: var(--parchment-sub); font-style: italic;">-</span>`;
                 const rawExportList = dayShiftsExport.length > 0 ? dayShiftsExport.join(', ') : '-';
                 
                 htmlTable += `<tr><td><strong>${dayName}</strong></td><td style="text-align: left; white-space: normal;">${displayList}</td></tr>`;
@@ -2121,8 +1574,8 @@
             htmlTable += `</tbody></table>`;
             
             tableContainer.innerHTML = htmlTable;
-            animateNumberCounter("totalUsers", 0, countUsers, 800); 
-            animateNumberCounter("totalShifts", 0, countShifts, 800);
+            animateNumberCounter("totalUsers", 0, countUsers, 600); 
+            animateNumberCounter("totalShifts", 0, countShifts, 600);
             
         } catch(error) { 
             console.error("Firebase fetch error:", error); 
@@ -2132,105 +1585,115 @@
 
     // --- 13. CÁC HÀNH ĐỘNG CỦA QUẢN TRỊ VIÊN ---
     document.getElementById("copyBtn").onclick = () => {
-        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning");
-        navigator.clipboard.writeText(rawExcelDataExport).then(() => showToast("Copied Data", "success")).catch(() => showToast("Error Copying", "error"));
+        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning"); 
+        navigator.clipboard.writeText(rawExcelDataExport)
+            .then(() => showToast("Copied Data", "success"))
+            .catch(() => showToast("Error Copying", "error"));
     };
-    document.getElementById("unlockBtn").onclick = async () => {
-        if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), false); showToast("Success", "success"); }
+    document.getElementById("unlockBtn").onclick = async () => { 
+        if(confirm("Confirm action?")) { 
+            await set(ref(db,"settings/lock"), false); 
+            showToast("Success", "success"); 
+        } 
     };
-    document.getElementById("lockBtn").onclick = async () => {
-        if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), true); showToast("Locked", "warning"); }
+    document.getElementById("lockBtn").onclick = async () => { 
+        if(confirm("Confirm action?")) { 
+            await set(ref(db,"settings/lock"), true); 
+            showToast("Locked", "warning"); 
+        } 
     };
     document.getElementById("clearBtn").onclick = async () => {
-        if(confirm("DANGER: Are you sure?")) {
-            const validationPin = prompt("Enter PIN:");
-            if(validationPin === "2005") {
-                await remove(ref(db,"dangKy"));
-                showToast("Cleared", "success");
-                fetchAndRenderAdminData();
-            } else {
-                showToast("Invalid PIN", "error");
-            }
+        if(confirm("DANGER: Are you sure?")) { 
+            const validationPin = prompt("Enter PIN:"); 
+            if(validationPin === "2005") { 
+                await remove(ref(db,"dangKy")); 
+                showToast("Cleared", "success"); 
+                fetchAndRenderAdminData(); 
+            } else { 
+                showToast("Invalid PIN", "error"); 
+            } 
         }
     };
 
-    // --- 14. HÀM TIỆN ÍCH (COUNTER) ---
+    // --- 14. HÀM TIỆN ÍCH (UTILITIES) ---
     function animateNumberCounter(elementId, startValue, endValue, durationMs) {
-        let element = document.getElementById(elementId);
+        let element = document.getElementById(elementId); 
         let startTimestamp = null;
         const step = (timestamp) => {
-            if(!startTimestamp) startTimestamp = timestamp;
+            if(!startTimestamp) startTimestamp = timestamp; 
             const progress = Math.min((timestamp - startTimestamp) / durationMs, 1);
-            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue);
-            if(progress < 1) { window.requestAnimationFrame(step); }
-        };
+            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue); 
+            if(progress < 1) { 
+                window.requestAnimationFrame(step); 
+            }
+        }; 
         window.requestAnimationFrame(step);
     }
 
     // =========================================================
-    // 15. EASTER EGG: PHYSICS GRAVITY FALL
+    // 15. EASTER EGG: GRAVITY FALL (KHÔNG TRỌNG LỰC)
     // =========================================================
-    let isGravityActive = false;
+    let isGravityActive = false; 
     let logoClickCount = 0;
     const brandLogo = document.querySelector('.brand-logo');
-    brandLogo.addEventListener('click', () => {
-        if(isGravityActive) return;
-        logoClickCount++;
-        if(logoClickCount >= 5) { activateGravityEasterEgg(); }
-        setTimeout(() => { logoClickCount = 0; }, 2000);
+    brandLogo.addEventListener('click', () => { 
+        if(isGravityActive) return; 
+        logoClickCount++; 
+        if(logoClickCount >= 5) { 
+            activateGravityEasterEgg(); 
+        } 
+        setTimeout(() => { logoClickCount = 0; }, 2000); 
     });
     
     let lastX, lastY, lastZ;
     window.addEventListener('devicemotion', (event) => {
-        if (isGravityActive) return;
-        let accel = event.accelerationIncludingGravity;
+        if (isGravityActive) return; 
+        let accel = event.accelerationIncludingGravity; 
         if(!accel || accel.x === null) return;
-        let deltaX = Math.abs(lastX ? accel.x - lastX : 0);
-        let deltaY = Math.abs(lastY ? accel.y - lastY : 0);
+        let deltaX = Math.abs(lastX ? accel.x - lastX : 0); 
+        let deltaY = Math.abs(lastY ? accel.y - lastY : 0); 
         let deltaZ = Math.abs(lastZ ? accel.z - lastZ : 0);
-        if (deltaX + deltaY + deltaZ > 40) { activateGravityEasterEgg(); }
+        if (deltaX + deltaY + deltaZ > 40) { activateGravityEasterEgg(); } 
         lastX = accel.x; lastY = accel.y; lastZ = accel.z;
     });
 
     function activateGravityEasterEgg() {
-        isGravityActive = true;
-        showToast("⚠️ GRAVITY FAILURE", "warning");
+        isGravityActive = true; 
+        showToast("⚠️ GRAVITY FAILURE", "warning"); 
         if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
-        const resetBtn = document.createElement('button');
-        resetBtn.innerHTML = `Khôi Phục Giao Diện`;
-        resetBtn.style.cssText = "position:fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 999999; padding: 12px 24px; border-radius: 20px; background: #dc2626; color: white; font-weight: 800; border: 2px solid #f59e0b; box-shadow: 0 10px 25px rgba(0,0,0,0.6); cursor: pointer;";
-        document.body.appendChild(resetBtn);
+        const resetBtn = document.createElement('button'); 
+        resetBtn.innerHTML = `Khóa & Khôi Phục`; 
+        resetBtn.style.cssText = "position:fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 999999; padding: 10px 20px; background: var(--crimson); color: white; font-weight: 800; border: 2px solid #000; box-shadow: 0 4px 0 #000; cursor: pointer;"; 
+        document.body.appendChild(resetBtn); 
         resetBtn.onclick = () => window.location.reload();
         
-        const elements = document.querySelectorAll('.card, .header, .xmas-hero-card');
+        const elements = document.querySelectorAll('.card, .header'); 
         const physicsElements = [];
         elements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            el.style.width = rect.width + 'px';
-            el.style.height = rect.height + 'px';
-            el.style.position = 'fixed';
-            el.style.top = rect.top + 'px';
-            el.style.left = rect.left + 'px';
-            el.style.margin = '0';
-            el.style.transition = 'none';
+            const rect = el.getBoundingClientRect(); 
+            el.style.width = rect.width + 'px'; 
+            el.style.height = rect.height + 'px'; 
+            el.style.position = 'fixed'; 
+            el.style.top = rect.top + 'px'; 
+            el.style.left = rect.left + 'px'; 
+            el.style.margin = '0'; 
+            el.style.transition = 'none'; 
             el.style.zIndex = '9999';
-            physicsElements.push({ el: el, x: rect.left, y: rect.top, vx: (Math.random() - 0.5) * 12, vy: -4 - Math.random() * 8, rotation: 0, vr: (Math.random() - 0.5) * 8 });
+            physicsElements.push({ el: el, x: rect.left, y: rect.top, vx: (Math.random() - 0.5) * 15, vy: -5 - Math.random() * 10, rotation: 0, vr: (Math.random() - 0.5) * 10 });
         });
-        const gravity = 0.7;
-        const bounce = 0.45;
+        const gravity = 0.8; const bounce = 0.5;
         function updatePhysics() {
             if(!isGravityActive) return;
             physicsElements.forEach(p => {
                 p.vy += gravity; p.x += p.vx; p.y += p.vy; p.rotation += p.vr;
                 if (p.y + p.el.offsetHeight > window.innerHeight) { p.y = window.innerHeight - p.el.offsetHeight; p.vy *= -bounce; p.vx *= 0.95; p.vr *= 0.95; }
-                if (p.x < 0) { p.x = 0; p.vx *= -bounce; } else if (p.x + p.el.offsetWidth > window.innerWidth) { p.x = window.innerWidth - p.el.offsetWidth; p.vx *= -bounce; }
+                if (p.x < 0) { p.x = 0; p.vx *= -bounce; p.vr *= -0.8; } else if (p.x + p.el.offsetWidth > window.innerWidth) { p.x = window.innerWidth - p.el.offsetWidth; p.vx *= -bounce; p.vr *= -0.8; }
                 p.el.style.top = p.y + 'px'; p.el.style.left = p.x + 'px'; p.el.style.transform = `rotate(${p.rotation}deg)`;
-            });
+            }); 
             requestAnimationFrame(updatePhysics);
-        }
+        } 
         requestAnimationFrame(updatePhysics);
     }
-
     updateLanguageUI();
 </script>
 
