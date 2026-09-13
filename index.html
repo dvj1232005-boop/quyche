@@ -13,12 +13,47 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Cinzel:wght@700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Phông chữ chuẩn hóa: Be Vietnam Pro hỗ trợ 100% tiếng Việt, JetBrains Mono cho số liệu/ca trực -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         /* =========================================================
-           01. DESIGN TOKENS & PIXEL RPG PALETTE
+           01. DESIGN TOKENS & TYPOGRAPHY STANDARDIZATION
         ========================================================= */
+        :root {
+            /* Font Family chuẩn hóa */
+            --font-main: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Cấp độ Typography Tokens cố định */
+            --font-size-title: 20px;
+            --line-title: 1.2;
+            --weight-title: 900;
+            --space-title: 0.5px;
+
+            --font-size-section: 15px;
+            --line-section: 1.25;
+            --weight-section: 800;
+            --space-section: 0.5px;
+
+            --font-size-body: 13px;
+            --line-body: 1.4;
+            --weight-body: 600;
+
+            --font-size-label: 11px;
+            --line-label: 1.2;
+            --weight-label: 800;
+            --space-label: 0.5px;
+
+            --font-size-caption: 10px;
+            --line-caption: 1.3;
+            --weight-caption: 700;
+
+            --font-size-btn: 13px;
+            --weight-btn: 800;
+            --space-btn: 0.5px;
+        }
+
         :root[data-theme="dark"] {
             --sky-void: #04060c;
             --sky-top: #090e1d;
@@ -43,7 +78,7 @@
             --parch-base: #ebd5ad;
             --parch-light: #fff3db;
             --parch-ink: #241206;
-            --parch-faded: #5a3d22;
+            --parch-faded: #624326;
             
             /* Đá phiến ngục tối */
             --stone-rim: #07090f;
@@ -60,7 +95,6 @@
             --crimson-dark: #881337;
             --crimson-glow: rgba(225, 29, 72, 0.55);
             
-            /* Độ tương phản cao cho chữ phụ */
             --text-main: #ffffff;
             --text-muted: #cbd5e1;
             
@@ -89,7 +123,7 @@
             --parch-base: #f5e4c6;
             --parch-light: #fff8eb;
             --parch-ink: #1c0e04;
-            --parch-faded: #4d321c;
+            --parch-faded: #54371e;
             
             --stone-rim: #0b0e18;
             --stone-dark: #161b2a;
@@ -118,7 +152,10 @@
         html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
         
         body {
-            font-family: 'Be Vietnam Pro', sans-serif;
+            font-family: var(--font-main);
+            font-size: var(--font-size-body);
+            font-weight: var(--weight-body);
+            line-height: var(--line-body);
             background: linear-gradient(180deg, var(--sky-void) 0%, var(--sky-top) 35%, var(--sky-mid) 100%);
             background-color: var(--sky-void);
             color: var(--text-main);
@@ -158,11 +195,12 @@
             padding-bottom: max(16px, env(safe-area-inset-bottom));
         }
 
-        .rpg-font { font-family: 'Cinzel', serif; font-weight: 900; }
-        .mono { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        .mono { font-family: var(--font-mono); font-weight: 800; }
 
         input, select, textarea, button {
-            font-family: inherit; font-size: 16px !important; touch-action: manipulation;
+            font-family: var(--font-main);
+            font-size: 16px !important;
+            touch-action: manipulation;
         }
 
         /* =========================================================
@@ -204,22 +242,30 @@
 
         .brand-logo-text { display: flex; flex-direction: column; }
         .brand-logo-title {
-            font-family: 'Cinzel', serif; font-weight: 900; font-size: 16px;
-            line-height: 1.1; color: var(--brass-hi);
+            font-size: 16px;
+            font-weight: var(--weight-title);
+            line-height: 1.1;
+            color: var(--brass-hi);
+            letter-spacing: var(--space-title);
             text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
         }
         .brand-logo-sub {
-            font-size: 10px; font-weight: 800; color: var(--brass-base);
-            line-height: 1.2; letter-spacing: 1px; text-transform: uppercase;
+            font-size: var(--font-size-caption);
+            font-weight: var(--weight-label);
+            color: var(--brass-base);
+            line-height: var(--line-caption);
+            letter-spacing: var(--space-label);
+            text-transform: uppercase;
         }
 
-        /* Đồng bộ điều khiển Header (tavern-tools & tavern-controls) */
         .tavern-tools, .tavern-controls { display: flex; align-items: center; gap: 6px; }
 
         .lang-toggle {
             background: #140b06; border: 2px solid var(--brass-base);
             color: var(--brass-hi); height: 34px; padding: 0 6px;
-            font-weight: 800; font-size: 12px !important;
+            font-size: 12px !important;
+            font-weight: var(--weight-btn);
+            letter-spacing: var(--space-btn);
             cursor: pointer; outline: none; appearance: none; -webkit-appearance: none;
             box-shadow: inset 1px 1px 0 var(--wood-hi), inset -1px -1px 0 #000;
             text-align: center;
@@ -253,7 +299,10 @@
             border: 2px solid var(--stone-hi);
             box-shadow: inset 2px 2px 0 #28334e, inset -2px -2px 0 #06080e, var(--pixel-hard);
             padding: 6px 10px;
-            color: var(--mana-cyan); font-size: 12px; font-weight: 800;
+            color: var(--mana-cyan);
+            font-size: var(--font-size-label);
+            font-weight: var(--weight-label);
+            letter-spacing: var(--space-label);
         }
         .update-pulse {
             width: 8px; height: 8px; background: var(--mana-cyan);
@@ -294,9 +343,13 @@
 
         .card-header { text-align: center; }
         .card-title {
-            font-family: 'Cinzel', serif; font-size: 20px; font-weight: 900;
-            color: var(--parch-ink); text-transform: uppercase;
-            letter-spacing: 0.5px; margin-bottom: 6px;
+            font-size: var(--font-size-title);
+            font-weight: var(--weight-title);
+            line-height: var(--line-title);
+            color: var(--parch-ink);
+            text-transform: uppercase;
+            letter-spacing: var(--space-title);
+            margin-bottom: 6px;
             text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
         }
 
@@ -304,7 +357,10 @@
             display: inline-flex; align-items: center; justify-content: center; gap: 6px;
             background: var(--crimson);
             color: #ffffff !important;
-            font-size: 13px; font-weight: 900; text-decoration: none;
+            font-size: var(--font-size-btn);
+            font-weight: var(--weight-btn);
+            letter-spacing: var(--space-btn);
+            text-decoration: none;
             padding: 6px 14px;
             border: 2px solid #000;
             box-shadow: inset 0 2px 0 rgba(255,255,255,0.35), inset 0 -2px 0 var(--crimson-dark), 0 2px 0 #000;
@@ -317,12 +373,18 @@
             min-height: 20px; width: 100%;
         }
         .slogan-text {
-            font-size: 11.5px; font-weight: 700; color: var(--parch-faded);
-            font-style: italic; letter-spacing: 0.2px;
+            font-size: var(--font-size-label);
+            font-weight: var(--weight-body);
+            color: var(--parch-faded);
+            font-style: italic;
+            letter-spacing: 0.2px;
         }
         .type-cursor {
-            font-size: 13px; color: var(--crimson); font-weight: 900;
-            margin-left: 2px; animation: crystal-flash 0.8s infinite steps(1);
+            font-size: var(--font-size-label);
+            color: var(--crimson);
+            font-weight: var(--weight-title);
+            margin-left: 2px;
+            animation: crystal-flash 0.8s infinite steps(1);
         }
 
         /* =========================================================
@@ -353,13 +415,19 @@
 
         .st-info { display: flex; flex-direction: column; text-align: left; }
         .st-title {
-            font-family: 'Cinzel', serif; font-size: 14px; font-weight: 900;
-            line-height: 1.2; text-transform: uppercase;
+            font-size: 14px;
+            font-weight: var(--weight-title);
+            line-height: 1.2;
+            letter-spacing: var(--space-section);
+            text-transform: uppercase;
         }
         .sys-open .st-title { color: var(--emerald); text-shadow: 1px 1px 0 #000; }
         .sys-locked .st-title { color: var(--crimson); text-shadow: 1px 1px 0 #000; }
         .st-desc {
-            font-size: 11px; font-weight: 700; color: #cbd5e1; line-height: 1.2;
+            font-size: var(--font-size-label);
+            font-weight: var(--weight-body);
+            color: var(--text-muted);
+            line-height: var(--line-label);
         }
 
         /* =========================================================
@@ -373,8 +441,12 @@
         }
         .input-label {
             display: flex; align-items: center; gap: 6px;
-            font-size: 11px; font-weight: 900; color: var(--brass-hi);
-            margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+            font-size: var(--font-size-label);
+            font-weight: var(--weight-label);
+            color: var(--brass-hi);
+            line-height: var(--line-label);
+            margin-bottom: 6px; text-transform: uppercase;
+            letter-spacing: var(--space-label);
             text-shadow: 1px 1px 0 #000;
         }
         .input-wrapper { position: relative; margin-bottom: 0; }
@@ -387,7 +459,8 @@
             background: #080a12;
             border: 2px solid var(--stone-hi);
             color: #ffffff;
-            font-weight: 800; font-size: 14px !important;
+            font-size: 14px !important;
+            font-weight: var(--weight-section);
             box-shadow: inset 2px 2px 4px rgba(0,0,0,0.8);
             outline: none; border-radius: 0;
         }
@@ -432,7 +505,6 @@
             min-height: 74px;
         }
 
-        /* Mini Pixel Scene Container */
         .scene-container {
             position: relative; width: 100%; height: 62px;
             background: #080c18;
@@ -472,12 +544,17 @@
         }
 
         .day-header {
-            font-weight: 900; font-size: 12px; color: var(--brass-hi);
+            font-size: 12px;
+            font-weight: var(--weight-title);
+            line-height: 1.1;
+            color: var(--brass-hi);
             text-shadow: 1px 1px 0 #000;
         }
         .day-badge {
-            font-size: 10px; font-weight: 900;
-            padding: 1px 5px; background: #080b14;
+            font-size: var(--font-size-caption);
+            font-weight: var(--weight-label);
+            line-height: 1;
+            padding: 2px 5px; background: #080b14;
             border: 1px solid var(--stone-hi); color: var(--text-muted);
         }
 
@@ -494,7 +571,9 @@
         .dropdown-selected {
             width: 100%; padding: 6px 6px;
             border: 2px solid #000; background: #080a14;
-            color: var(--text-muted); font-weight: 900; font-size: 12px;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: var(--weight-btn);
             display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; user-select: none;
             box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1), 0 2px 0 #000;
@@ -518,7 +597,9 @@
         .custom-dropdown.open .dropdown-options { display: block; }
 
         .dropdown-option {
-            padding: 6px 8px; font-weight: 800; font-size: 12px;
+            padding: 6px 8px;
+            font-size: 12px;
+            font-weight: var(--weight-section);
             color: #f8fafc; cursor: pointer; border-bottom: 1px dashed rgba(255,255,255,0.1);
         }
         .dropdown-option:last-child { border-bottom: none; }
@@ -554,8 +635,11 @@
         ========================================================= */
         .btn {
             width: 100%; padding: 12px 14px;
-            font-family: 'Cinzel', serif; font-size: 14px; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 0.5px;
+            font-size: var(--font-size-btn);
+            font-weight: var(--weight-btn);
+            line-height: 1.1;
+            letter-spacing: var(--space-btn);
+            text-transform: uppercase;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             gap: 8px; border: 3px solid #000; outline: none;
             transition: transform 0.08s;
@@ -597,8 +681,11 @@
             align-items: center; justify-content: center; position: relative; padding: 24px 8px;
         }
         .card-subtitle {
-            font-size: 12px; font-weight: 800; color: var(--brass-base);
-            letter-spacing: 0.5px; margin-top: 4px; text-transform: uppercase;
+            font-size: 12px;
+            font-weight: var(--weight-label);
+            color: var(--brass-base);
+            letter-spacing: var(--space-label);
+            margin-top: 4px; text-transform: uppercase;
         }
 
         .swipe-auth-zone {
@@ -608,8 +695,11 @@
         .swipe-auth-zone::after {
             content: '❖ VUỐT MỞ KHÓA PHONG ẤN ➔';
             position: absolute; bottom: 16px; left: 0; right: 0; text-align: center;
-            font-weight: 900; font-size: 13px; color: var(--mana-cyan);
-            letter-spacing: 1px; animation: crystal-flash 1.2s infinite steps(1);
+            font-size: var(--font-size-body);
+            font-weight: var(--weight-title);
+            color: var(--mana-cyan);
+            letter-spacing: 1px;
+            animation: crystal-flash 1.2s infinite steps(1);
         }
 
         /* Guild Crystal Stat Pods (Không Bento) */
@@ -626,13 +716,19 @@
             font-size: 8px; color: var(--brass-base);
         }
         .stat-val {
-            font-size: 26px; font-weight: 900; color: var(--brass-hi);
-            font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 4px;
+            font-size: 26px;
+            font-weight: var(--weight-title);
+            color: var(--brass-hi);
+            font-family: var(--font-mono);
+            line-height: 1; margin-bottom: 4px;
             text-shadow: 2px 2px 0 #000;
         }
         .stat-label {
-            font-size: 10px; font-weight: 800; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 0.5px;
+            font-size: var(--font-size-caption);
+            font-weight: var(--weight-label);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: var(--space-label);
         }
 
         /* Tứ Đại Ngọc Ấn Lệnh */
@@ -643,7 +739,9 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             gap: 4px; padding: 8px 4px;
             background: #140b06; border: 2px solid #000;
-            color: #f8fafc; font-size: 10px; font-weight: 900;
+            color: #f8fafc;
+            font-size: var(--font-size-caption);
+            font-weight: var(--weight-title);
             text-transform: uppercase; cursor: pointer;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), var(--pixel-hard);
         }
@@ -666,19 +764,26 @@
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
         th {
             background: #180f08; color: var(--brass-hi);
-            font-family: 'Cinzel', serif; font-size: 11px; font-weight: 900;
+            font-size: var(--font-size-label);
+            font-weight: var(--weight-title);
+            letter-spacing: var(--space-label);
             padding: 8px 6px; border-bottom: 2px solid var(--brass-base);
             text-align: center; white-space: nowrap;
         }
         td {
             padding: 6px 6px; border-bottom: 1px solid var(--parch-border);
-            color: var(--parch-ink); font-weight: 700; text-align: center;
+            color: var(--parch-ink);
+            font-size: 12px;
+            font-weight: var(--weight-section);
+            text-align: center;
         }
         tr:hover td { background: #dfc89f; }
 
         .shift-badge {
             display: inline-flex; padding: 2px 6px; border: 1px solid #000;
-            font-weight: 900; font-size: 10px; font-family: 'JetBrains Mono', monospace;
+            font-size: var(--font-size-caption);
+            font-weight: var(--weight-title);
+            font-family: var(--font-mono);
         }
         .badge-c1 { background: #08253d; color: var(--mana-cyan); }
         .badge-c2 { background: #382104; color: var(--brass-hi); }
@@ -688,28 +793,36 @@
 
         .btn-exit {
             background: var(--crimson-dark); border: 2px solid #000; color: #ffffff;
-            padding: 5px 8px; font-size: 10px; font-weight: 900; cursor: pointer;
-            box-shadow: var(--pixel-hard);
+            padding: 5px 8px;
+            font-size: var(--font-size-caption);
+            font-weight: var(--weight-title);
+            cursor: pointer; box-shadow: var(--pixel-hard);
         }
         .btn-exit:active { transform: translateY(1px); }
 
-        /* Dynamic Classes cho Admin Container */
+        /* Dynamic Classes cho Admin Container - Chuẩn hóa Typography */
         .decree-box {
             background: #101422; border: 2px solid var(--crimson);
             box-shadow: 0 0 10px rgba(225, 29, 72, 0.4), var(--pixel-hard);
             padding: 10px; margin-bottom: 12px;
         }
         .decree-title {
-            color: var(--brass-hi); margin-bottom: 6px; font-size: 13px;
+            color: var(--brass-hi); margin-bottom: 6px;
+            font-size: var(--font-size-body);
+            font-weight: var(--weight-title);
             display: flex; align-items: center; gap: 6px; text-transform: uppercase;
-            font-weight: 900; font-family: 'Cinzel', serif;
+            letter-spacing: var(--space-section);
         }
         .decree-row { display: flex; flex-direction: column; gap: 6px; }
         .decree-name {
-            font-weight: 800; font-size: 13px; margin-bottom: 4px; color: var(--brass-hi);
+            font-size: var(--font-size-body);
+            font-weight: var(--weight-section);
+            margin-bottom: 4px; color: var(--brass-hi);
         }
         .decree-tag {
-            font-size: 9px; background: var(--crimson); color: white; padding: 1px 4px;
+            font-size: 9px;
+            font-weight: var(--weight-title);
+            background: var(--crimson); color: white; padding: 1px 4px;
         }
         .decree-shifts { display: flex; flex-wrap: wrap; gap: 6px; }
         .decree-badge-wrap {
@@ -717,14 +830,18 @@
             display: flex; align-items: center; gap: 4px;
         }
         .decree-day-text {
-            font-weight: 800; font-size: 10px; color: var(--brass-hi);
+            font-size: var(--font-size-caption);
+            font-weight: var(--weight-section);
+            color: var(--brass-hi);
         }
         .staff-shift-tag {
             display: inline-flex; align-items: center; background: rgba(0,0,0,0.06);
             padding: 2px 5px; border: 1px solid var(--parch-border); margin: 2px 3px 2px 0;
         }
         .staff-name-text {
-            font-weight: 800; margin-right: 4px; color: var(--parch-ink);
+            font-size: 12px;
+            font-weight: var(--weight-section);
+            margin-right: 4px; color: var(--parch-ink);
         }
 
         /* =========================================================
@@ -755,11 +872,17 @@
             margin: 0 auto 10px;
         }
         .support-modal h3 {
-            font-family: 'Cinzel', serif; color: var(--parch-ink);
-            font-size: 15px; font-weight: 900; margin-bottom: 6px;
+            color: var(--parch-ink);
+            font-size: var(--font-size-section);
+            font-weight: var(--weight-title);
+            letter-spacing: var(--space-section);
+            margin-bottom: 6px;
         }
         .support-modal p {
-            font-size: 11.5px; color: var(--parch-faded); line-height: 1.45; font-weight: 700;
+            font-size: 11.5px;
+            font-weight: var(--weight-section);
+            color: var(--parch-faded);
+            line-height: 1.45;
         }
 
         .toast-container {
@@ -770,7 +893,8 @@
         .toast {
             background: #090c17; border: 2px solid var(--brass-base);
             color: var(--brass-hi); padding: 8px 12px;
-            font-weight: 800; font-size: 12px;
+            font-size: 12px;
+            font-weight: var(--weight-section);
             display: flex; align-items: center; gap: 8px;
             box-shadow: var(--pixel-hard); width: 100%; max-width: 350px;
             transform: translateY(-40px); opacity: 0; transition: 0.18s steps(3);
@@ -791,11 +915,14 @@
 
         footer {
             text-align: center; padding: 10px 0 20px;
-            font-size: 11px; color: var(--text-muted); font-weight: 600;
-            z-index: 10; position: relative; line-height: 1.4;
+            font-size: var(--font-size-label);
+            font-weight: var(--weight-body);
+            color: var(--text-muted);
+            line-height: var(--line-caption);
+            z-index: 10; position: relative;
         }
-        footer strong { color: var(--brass-hi); }
-        footer span.pro-text { color: var(--crimson); font-weight: 800; }
+        footer strong { color: var(--brass-hi); font-weight: var(--weight-title); }
+        footer span.pro-text { color: var(--crimson); font-weight: var(--weight-title); }
     </style>
 </head>
 
@@ -825,7 +952,7 @@
                 </div>
             </div>
             
-            <div class="tavern-tools">
+            <div class="tavern-controls">
                 <select id="langSelect" class="lang-toggle">
                     <option value="vi">🇻🇳 VI</option>
                     <option value="en">🇬🇧 EN</option>
@@ -874,7 +1001,7 @@
             </div>
             <h3 data-i18n="supportTitle">Trung Tâm Thông Báo</h3>
             <p data-i18n="supportDesc">
-                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: var(--crimson); font-size: 13px;">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
+                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: var(--crimson);">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
             </p>
         </div>
     </div>
@@ -946,7 +1073,7 @@
     <main class="card hidden" id="managerBox">
         <div id="loginSection">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
-                <h2 class="card-title" style="color: var(--crimson); font-family: 'Cinzel', serif;" data-i18n="secureAccess">Secure Access</h2>
+                <h2 class="card-title" style="color: var(--crimson);" data-i18n="secureAccess">Secure Access</h2>
                 <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
             </div>
             <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none;"></canvas>
@@ -1027,7 +1154,7 @@
             dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
             off: "OFF", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
             supportTitle: "Trung Tâm Thông Báo", 
-            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--crimson); font-size: 13px;'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
+            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--crimson);'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
             dayTitle: "Ngày", listTitle: "Danh sách nhân sự đăng ký"
         },
         en: {
@@ -1036,7 +1163,7 @@
             dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
             off: "OFF", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
             supportTitle: "Notification Center", 
-            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--crimson); font-size: 13px;'>host PhuongAnh</strong>. We will address and resolve them immediately.",
+            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--crimson);'>host PhuongAnh</strong>. We will address and resolve them immediately.",
             dayTitle: "Date", listTitle: "Registered Staff"
         },
         zh: {
@@ -1045,7 +1172,7 @@
             dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
             off: "OFF", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
             supportTitle: "通知中心", 
-            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--crimson); font-size: 13px;'>host PhuongAnh</strong>。我们将立即处理并解决。",
+            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--crimson);'>host PhuongAnh</strong>。我们将立即处理并解决。",
             dayTitle: "日期", listTitle: "员工名单"
         },
         ko: {
@@ -1054,7 +1181,7 @@
             dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
             off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
             supportTitle: "알림 센터", 
-            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--crimson); font-size: 13px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
+            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--crimson);'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
             dayTitle: "날짜", listTitle: "직원 명단"
         },
         ja: {
@@ -1063,7 +1190,7 @@
             dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
             off: "OFF", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
             supportTitle: "通知センター", 
-            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--crimson); font-size: 13px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
+            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--crimson);'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
             dayTitle: "日付", listTitle: "スタッフリスト"
         }
     };
@@ -1137,7 +1264,7 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 4. MODULE CANVAS BỤI PHÉP & SAO ĐÊM PIXEL ---
+    // --- 4. MODULE CANVAS BỤI PHÉP & SAO ĐÊM PIXEL (WORLD ENVIRONMENT) ---
     const canvas = document.getElementById('bg-canvas'); 
     const ctx = canvas.getContext('2d'); 
     let particlesArray = [];
@@ -1620,11 +1747,11 @@
             let countUsers = allNames.length; 
             let countShifts = 0;
             
-            // 1. CHIẾU THƯ QUẢN LÝ TÙNG (#priorityAdminContainer - Giảm hoàn toàn inline style)
+            // 1. CHIẾU THƯ QUẢN LÝ TÙNG (#priorityAdminContainer - Chuẩn hóa Typography)
             const priorityContainer = document.getElementById("priorityAdminContainer");
             if (adminNames.length > 0) {
                 let adminHtml = `<div class="decree-box">
-                    <h3 class="decree-title">❖ Ưu tiên em Tùng nhé chị!!!</h3>
+                    <div class="decree-title">❖ Ưu tiên em Tùng nhé chị!!!</div>
                     <div class="decree-row">`;
 
                 adminNames.forEach(adminName => {
@@ -1661,7 +1788,7 @@
                 priorityContainer.innerHTML = '';
             }
 
-            // 2. SỔ CÁI BIÊN NIÊN SỬ NHÂN SỰ (#excelTable)
+            // 2. SỔ CÁI BIÊN NIÊN SỬ NHÂN SỰ (#excelTable - Chuẩn hóa Typography)
             let htmlTable = `<table><thead><tr><th style="width: 65px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
             rawExcelDataExport = `${t('dayTitle') || 'Ngày'}\t${t('listTitle') || 'Danh sách nhân sự đăng ký'}\n`;
             
@@ -1791,7 +1918,7 @@
         if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
         const resetBtn = document.createElement('button'); 
         resetBtn.innerHTML = `Khóa & Khôi Phục`; 
-        resetBtn.style.cssText = "position:fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 999999; padding: 10px 16px; background: var(--crimson); color: white; font-weight: 900; border: 2px solid #000; box-shadow: 0 4px 0 #000; cursor: pointer; font-family: inherit;"; 
+        resetBtn.style.cssText = "position:fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 999999; padding: 10px 16px; background: var(--crimson); color: white; font-weight: 800; border: 2px solid #000; box-shadow: 0 4px 0 #000; cursor: pointer; font-family: inherit;"; 
         document.body.appendChild(resetBtn); 
         resetBtn.onclick = () => window.location.reload();
         
